@@ -1,6 +1,6 @@
 ## seng350f19-project-2-1
 
-# Team Name: <Team Name>
+# Team Name: //TODO
 
 ## Members
 * Emily Sluis
