@@ -16,5 +16,7 @@ This decision enables the purchase summaries and analytics pages to show new pur
 
 Additionally, this decison requires user feedback to inform if the user  if a new purchase has been successfully stored, or if there has been a failure and they need to resubmit their purchase in order for it to not be lost.
 
+It was decided to not impliment caching in order to reduce complexity in the development of this application. It was decided to not wait for the purchase to get stored in the datastore before updating the summaries and analytics page as it would of decreased the performance of the application.
+
 ### Consequences
 Loss of data integrity if the datastore fails to update successfully.
