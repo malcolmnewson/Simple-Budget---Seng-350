@@ -11,5 +11,5 @@ It was decided to create a DAO for each action related to the datastore. This wi
 The alternative to this decision would have been to not create a DAO for each action on the datastore. This was rejected as it would require the datastore to be tightly coupled with accessing the database. This would have made modification or extension of the purchase summaries more difficult.
 
 ### Consequences
-Improved maintainability.
-This enables many of the core User Stories to be successfully implemented by connecting users to their purchases.
+* Improved maintainability.
+* This enables many of the core User Stories to be efficently implemented by utilizing clear interfaces to the datastore.
