@@ -7,17 +7,17 @@ To improve user experience, the purchase summary and analytics should be able to
 
 Therefore, a decision needs to be made on how to handle showing new purchases that have been logged during a user session in the purchase summary and analytics.
 
-### Decison
+### Decision
 It was decided to locally update purchase summaries and analytics on the client-side with the input from new purchases. The alternatives would of been to 
 * update the datastore with the new data and then update the summaries from the datastore, or,
-* impliment caching using a tool such as Redis.
+* implement caching using a tool such as Redis.
 
 This decision enables the purchase summaries and analytics pages to show new purchases very quickly, and reducing the traffic load on the server; addressing the [Performance QAS](https://github.com/seng350/seng350f19-project-2-1/issues/10). 
 
-Additionally, this decison requires user feedback to inform the the user if a new purchase has been successfully stored, or if there has been a failure and they need to resubmit their purchase in order for it to not be lost.
+Additionally, this decision requires user feedback to inform the the user if a new purchase has been successfully stored, or if there has been a failure and they need to resubmit their purchase in order for it to not be lost.
 
-It was decided to not impliment caching in order to reduce complexity in the development of this application. It was decided to not wait for the purchase to get stored in the datastore before updating the summaries and analytics page as it would of decreased the performance of the application.
+It was decided to not implement caching in order to reduce complexity in the development of this application. It was decided to not wait for the purchase to get stored in the datastore before updating the summaries and analytics page as it would of decreased the performance of the application.
 
 ### Consequences
 Loss of data integrity if the datastore fails to update successfully.
-Imporoved performance with regards to server loading and purchase summary and analytics refresh speed.
+Improved performance with regards to server loading and purchase summary and analytics refresh speed.
