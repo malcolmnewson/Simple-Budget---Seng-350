@@ -19,5 +19,5 @@ Additionally, this decision requires user feedback to inform the the user if a n
 It was decided to not implement caching in order to reduce complexity in the development of this application. It was decided to not wait for the purchase to get stored in the datastore before updating the summaries and analytics page as it would of decreased the performance of the application.
 
 ### Consequences
-Loss of data integrity if the datastore fails to update successfully.
-Improved performance with regards to server loading and purchase summary and analytics refresh speed.
+* Loss of data integrity if the datastore fails to update successfully.
+* Improved performance with regards to server loading and purchase summary and analytics refresh speed.
