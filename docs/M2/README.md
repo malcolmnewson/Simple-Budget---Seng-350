@@ -11,5 +11,5 @@ This document describes the architecture of the Simple Budget web application. T
 ![Sequence Diagram](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M2/sequence-diagram.png)
 ## ADRs
 * [Impliment Postman API testing](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M2/adr-impliment-postman-testing.md)
-* [Update purchase summary and analytics with local data](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M2/adr-storage-layer-dao.md)
-* [Storage layer DAOs](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M2/sequence-diagram.png)
+* [Update purchase summary and analytics with local data](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M2/adr-update-with-local-data.md)
+* [Storage layer DAOs](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M2/adr-storage-layer-dao.md)
