@@ -35,27 +35,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var mongodb_1 = require("mongodb");
+/*
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://admin:<password>@cluster0-ov4iq.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+*/
 var DbClient = /** @class */ (function () {
     function DbClient() {
     }
     DbClient.prototype.connect = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var client, error_1;
+            var uri, client, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, mongodb_1.MongoClient.connect("mongodb://localhost:27017")];
+                        uri = "mongodb+srv://admin:admin@cluster0-ov4iq.mongodb.net/test?retryWrites=true&w=majority";
+                        _a.label = 1;
                     case 1:
-                        client = _a.sent();
-                        this.db = client.db("myapp");
-                        console.log("Connected to db");
-                        return [2 /*return*/, this.db];
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, mongodb_1.MongoClient.connect(uri, { useNewUrlParser: true })];
                     case 2:
+                        client = _a.sent();
+                        this.db = client.db("sample_training");
+                        console.log("Connected to sample_training database");
+                        return [2 /*return*/, this.db];
+                    case 3:
                         error_1 = _a.sent();
-                        console.log("Unable to connect to db");
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        console.log("Unable to connect to database");
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
@@ -63,4 +76,4 @@ var DbClient = /** @class */ (function () {
     return DbClient;
 }());
 module.exports = new DbClient();
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGJDbGllbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvRGJDbGllbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsbUNBQTBDO0FBRTFDO0lBQUE7SUFlQSxDQUFDO0lBWlMsMEJBQU8sR0FBYjs7Ozs7Ozt3QkFHcUIscUJBQU0scUJBQVcsQ0FBQyxPQUFPLENBQUMsMkJBQTJCLENBQUMsRUFBQTs7d0JBQS9ELE1BQU0sR0FBRyxTQUFzRDt3QkFDbkUsSUFBSSxDQUFDLEVBQUUsR0FBRyxNQUFNLENBQUMsRUFBRSxDQUFDLE9BQU8sQ0FBQyxDQUFDO3dCQUM3QixPQUFPLENBQUMsR0FBRyxDQUFDLGlCQUFpQixDQUFDLENBQUM7d0JBQy9CLHNCQUFPLElBQUksQ0FBQyxFQUFFLEVBQUM7Ozt3QkFFZixPQUFPLENBQUMsR0FBRyxDQUFDLHlCQUF5QixDQUFDLENBQUM7Ozs7OztLQUc5QztJQUNMLGVBQUM7QUFBRCxDQUFDLEFBZkQsSUFlQztBQUVELGlCQUFTLElBQUksUUFBUSxFQUFFLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBNb25nb0NsaWVudCwgRGIgfSBmcm9tIFwibW9uZ29kYlwiO1xuXG5jbGFzcyBEYkNsaWVudCB7XG4gICAgcHVibGljIGRiITogRGI7XG5cbiAgICBhc3luYyBjb25uZWN0KCkge1xuXG4gICAgICAgIHRyeSB7XG4gICAgICAgICAgICBsZXQgY2xpZW50ID0gYXdhaXQgTW9uZ29DbGllbnQuY29ubmVjdChcIm1vbmdvZGI6Ly9sb2NhbGhvc3Q6MjcwMTdcIik7XG4gICAgICAgICAgICB0aGlzLmRiID0gY2xpZW50LmRiKFwibXlhcHBcIik7XG4gICAgICAgICAgICBjb25zb2xlLmxvZyhcIkNvbm5lY3RlZCB0byBkYlwiKTtcbiAgICAgICAgICAgIHJldHVybiB0aGlzLmRiO1xuICAgICAgICB9IGNhdGNoIChlcnJvcikge1xuICAgICAgICAgICAgY29uc29sZS5sb2coXCJVbmFibGUgdG8gY29ubmVjdCB0byBkYlwiKTtcbiAgICAgICAgfVxuXG4gICAgfVxufVxuXG5leHBvcnQgPSBuZXcgRGJDbGllbnQoKTsiXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGJDbGllbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvRGJDbGllbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsbUNBQTBDO0FBQzFDOzs7Ozs7Ozs7RUFTRTtBQUVGO0lBQUE7SUFpQkEsQ0FBQztJQWJTLDBCQUFPLEdBQWI7Ozs7Ozt3QkFFVSxHQUFHLEdBQUcsdUZBQXVGLENBQUM7Ozs7d0JBR25GLHFCQUFNLHFCQUFXLENBQUMsT0FBTyxDQUFDLEdBQUcsRUFBRSxFQUFFLGVBQWUsRUFBRSxJQUFJLEVBQUUsQ0FBQyxFQUFBOzt3QkFBbEUsTUFBTSxHQUFHLFNBQXlEO3dCQUN0RSxJQUFJLENBQUMsRUFBRSxHQUFHLE1BQU0sQ0FBQyxFQUFFLENBQUMsaUJBQWlCLENBQUMsQ0FBQzt3QkFDdkMsT0FBTyxDQUFDLEdBQUcsQ0FBQyx1Q0FBdUMsQ0FBQyxDQUFDO3dCQUNyRCxzQkFBTyxJQUFJLENBQUMsRUFBRSxFQUFDOzs7d0JBRWYsT0FBTyxDQUFDLEdBQUcsQ0FBQywrQkFBK0IsQ0FBQyxDQUFDOzs7Ozs7S0FFcEQ7SUFDTCxlQUFDO0FBQUQsQ0FBQyxBQWpCRCxJQWlCQztBQUVELGlCQUFTLElBQUksUUFBUSxFQUFFLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBNb25nb0NsaWVudCwgRGIgfSBmcm9tIFwibW9uZ29kYlwiO1xuLypcbmNvbnN0IE1vbmdvQ2xpZW50ID0gcmVxdWlyZSgnbW9uZ29kYicpLk1vbmdvQ2xpZW50O1xuY29uc3QgdXJpID0gXCJtb25nb2RiK3NydjovL2FkbWluOjxwYXNzd29yZD5AY2x1c3RlcjAtb3Y0aXEubW9uZ29kYi5uZXQvdGVzdD9yZXRyeVdyaXRlcz10cnVlJnc9bWFqb3JpdHlcIjtcbmNvbnN0IGNsaWVudCA9IG5ldyBNb25nb0NsaWVudCh1cmksIHsgdXNlTmV3VXJsUGFyc2VyOiB0cnVlIH0pO1xuY2xpZW50LmNvbm5lY3QoZXJyID0+IHtcbiAgY29uc3QgY29sbGVjdGlvbiA9IGNsaWVudC5kYihcInRlc3RcIikuY29sbGVjdGlvbihcImRldmljZXNcIik7XG4gIC8vIHBlcmZvcm0gYWN0aW9ucyBvbiB0aGUgY29sbGVjdGlvbiBvYmplY3RcbiAgY2xpZW50LmNsb3NlKCk7XG59KTtcbiovXG5cbmNsYXNzIERiQ2xpZW50IHtcbiAgICAvLyBUaGlzIHdpbGwgYmUgdXBkYXRlZCB0byBiZSBwcm9qZWN0X2RhdGEgZGF0YWJhc2VcbiAgICBwdWJsaWMgZGIhOiBEYjsgLy8gZGF0YWJhc2VcblxuICAgIGFzeW5jIGNvbm5lY3QoKSB7XG4gICAgICAgIC8vIENvbm5lY3Rpb24gdXJpXG4gICAgICAgIGNvbnN0IHVyaSA9IFwibW9uZ29kYitzcnY6Ly9hZG1pbjphZG1pbkBjbHVzdGVyMC1vdjRpcS5tb25nb2RiLm5ldC90ZXN0P3JldHJ5V3JpdGVzPXRydWUmdz1tYWpvcml0eVwiO1xuXG4gICAgICAgIHRyeSB7XG4gICAgICAgICAgICBsZXQgY2xpZW50ID0gYXdhaXQgTW9uZ29DbGllbnQuY29ubmVjdCh1cmksIHsgdXNlTmV3VXJsUGFyc2VyOiB0cnVlIH0pO1xuICAgICAgICAgICAgdGhpcy5kYiA9IGNsaWVudC5kYihcInNhbXBsZV90cmFpbmluZ1wiKTtcbiAgICAgICAgICAgIGNvbnNvbGUubG9nKFwiQ29ubmVjdGVkIHRvIHNhbXBsZV90cmFpbmluZyBkYXRhYmFzZVwiKTtcbiAgICAgICAgICAgIHJldHVybiB0aGlzLmRiO1xuICAgICAgICB9IGNhdGNoIChlcnJvcikge1xuICAgICAgICAgICAgY29uc29sZS5sb2coXCJVbmFibGUgdG8gY29ubmVjdCB0byBkYXRhYmFzZVwiKTtcbiAgICAgICAgfVxuICAgIH1cbn1cblxuZXhwb3J0ID0gbmV3IERiQ2xpZW50KCk7Il19

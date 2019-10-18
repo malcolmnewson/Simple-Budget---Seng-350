@@ -27,11 +27,11 @@ export class HeroRouter {
     public getAll(req: Request, res: Response, next: NextFunction) {
         DbClient.connect()
             .then((db : any) => {
-                return db!.collection("heroes").find().toArray();
+                return db!.collection("companies").find({ "name" : "Slacker" } ).toArray();
             })
-            .then((heroes : any) => {
-                console.log(heroes);
-                res.send(heroes);
+            .then((companies : any) => {
+                console.log(companies);
+                res.send(companies);
             })
             .catch((err : any) => {
                 console.log("err.message");
