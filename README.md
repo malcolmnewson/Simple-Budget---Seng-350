@@ -1,6 +1,6 @@
 ## seng350f19-project-2-1
 
-# Team Name: //TODO
+# Team Name: Simple Budget
 
 ## Members
 * Emily Sluis
