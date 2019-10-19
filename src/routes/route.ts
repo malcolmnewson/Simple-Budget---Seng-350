@@ -2,7 +2,7 @@
 import { NextFunction, Request, Response } from "express";
 
 /**
- * Constructo
+ * Constructor
  *
  * @class BaseRoute
  */

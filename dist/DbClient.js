@@ -35,19 +35,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var mongodb_1 = require("mongodb");
-/*
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://admin:<password>@cluster0-ov4iq.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-*/
 var DbClient = /** @class */ (function () {
     function DbClient() {
     }
+    /*
+    * Does client.close() need to be called at some point in this function or does
+    * it have to be closed after?
+     */
     DbClient.prototype.connect = function () {
         return __awaiter(this, void 0, void 0, function () {
             var uri, client, error_1;
@@ -61,12 +55,12 @@ var DbClient = /** @class */ (function () {
                         return [4 /*yield*/, mongodb_1.MongoClient.connect(uri, { useNewUrlParser: true })];
                     case 2:
                         client = _a.sent();
-                        this.db = client.db("sample_training");
-                        console.log("Connected to sample_training database");
+                        this.db = client.db("project_data");
+                        console.log("Connected to project_data database");
                         return [2 /*return*/, this.db];
                     case 3:
                         error_1 = _a.sent();
-                        console.log("Unable to connect to database");
+                        console.log("Unable to connect to project_data database");
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
@@ -76,4 +70,4 @@ var DbClient = /** @class */ (function () {
     return DbClient;
 }());
 module.exports = new DbClient();
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGJDbGllbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvRGJDbGllbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsbUNBQTBDO0FBQzFDOzs7Ozs7Ozs7RUFTRTtBQUVGO0lBQUE7SUFpQkEsQ0FBQztJQWJTLDBCQUFPLEdBQWI7Ozs7Ozt3QkFFVSxHQUFHLEdBQUcsdUZBQXVGLENBQUM7Ozs7d0JBR25GLHFCQUFNLHFCQUFXLENBQUMsT0FBTyxDQUFDLEdBQUcsRUFBRSxFQUFFLGVBQWUsRUFBRSxJQUFJLEVBQUUsQ0FBQyxFQUFBOzt3QkFBbEUsTUFBTSxHQUFHLFNBQXlEO3dCQUN0RSxJQUFJLENBQUMsRUFBRSxHQUFHLE1BQU0sQ0FBQyxFQUFFLENBQUMsaUJBQWlCLENBQUMsQ0FBQzt3QkFDdkMsT0FBTyxDQUFDLEdBQUcsQ0FBQyx1Q0FBdUMsQ0FBQyxDQUFDO3dCQUNyRCxzQkFBTyxJQUFJLENBQUMsRUFBRSxFQUFDOzs7d0JBRWYsT0FBTyxDQUFDLEdBQUcsQ0FBQywrQkFBK0IsQ0FBQyxDQUFDOzs7Ozs7S0FFcEQ7SUFDTCxlQUFDO0FBQUQsQ0FBQyxBQWpCRCxJQWlCQztBQUVELGlCQUFTLElBQUksUUFBUSxFQUFFLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBNb25nb0NsaWVudCwgRGIgfSBmcm9tIFwibW9uZ29kYlwiO1xuLypcbmNvbnN0IE1vbmdvQ2xpZW50ID0gcmVxdWlyZSgnbW9uZ29kYicpLk1vbmdvQ2xpZW50O1xuY29uc3QgdXJpID0gXCJtb25nb2RiK3NydjovL2FkbWluOjxwYXNzd29yZD5AY2x1c3RlcjAtb3Y0aXEubW9uZ29kYi5uZXQvdGVzdD9yZXRyeVdyaXRlcz10cnVlJnc9bWFqb3JpdHlcIjtcbmNvbnN0IGNsaWVudCA9IG5ldyBNb25nb0NsaWVudCh1cmksIHsgdXNlTmV3VXJsUGFyc2VyOiB0cnVlIH0pO1xuY2xpZW50LmNvbm5lY3QoZXJyID0+IHtcbiAgY29uc3QgY29sbGVjdGlvbiA9IGNsaWVudC5kYihcInRlc3RcIikuY29sbGVjdGlvbihcImRldmljZXNcIik7XG4gIC8vIHBlcmZvcm0gYWN0aW9ucyBvbiB0aGUgY29sbGVjdGlvbiBvYmplY3RcbiAgY2xpZW50LmNsb3NlKCk7XG59KTtcbiovXG5cbmNsYXNzIERiQ2xpZW50IHtcbiAgICAvLyBUaGlzIHdpbGwgYmUgdXBkYXRlZCB0byBiZSBwcm9qZWN0X2RhdGEgZGF0YWJhc2VcbiAgICBwdWJsaWMgZGIhOiBEYjsgLy8gZGF0YWJhc2VcblxuICAgIGFzeW5jIGNvbm5lY3QoKSB7XG4gICAgICAgIC8vIENvbm5lY3Rpb24gdXJpXG4gICAgICAgIGNvbnN0IHVyaSA9IFwibW9uZ29kYitzcnY6Ly9hZG1pbjphZG1pbkBjbHVzdGVyMC1vdjRpcS5tb25nb2RiLm5ldC90ZXN0P3JldHJ5V3JpdGVzPXRydWUmdz1tYWpvcml0eVwiO1xuXG4gICAgICAgIHRyeSB7XG4gICAgICAgICAgICBsZXQgY2xpZW50ID0gYXdhaXQgTW9uZ29DbGllbnQuY29ubmVjdCh1cmksIHsgdXNlTmV3VXJsUGFyc2VyOiB0cnVlIH0pO1xuICAgICAgICAgICAgdGhpcy5kYiA9IGNsaWVudC5kYihcInNhbXBsZV90cmFpbmluZ1wiKTtcbiAgICAgICAgICAgIGNvbnNvbGUubG9nKFwiQ29ubmVjdGVkIHRvIHNhbXBsZV90cmFpbmluZyBkYXRhYmFzZVwiKTtcbiAgICAgICAgICAgIHJldHVybiB0aGlzLmRiO1xuICAgICAgICB9IGNhdGNoIChlcnJvcikge1xuICAgICAgICAgICAgY29uc29sZS5sb2coXCJVbmFibGUgdG8gY29ubmVjdCB0byBkYXRhYmFzZVwiKTtcbiAgICAgICAgfVxuICAgIH1cbn1cblxuZXhwb3J0ID0gbmV3IERiQ2xpZW50KCk7Il19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGJDbGllbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvRGJDbGllbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsbUNBQTBDO0FBRTFDO0lBQUE7SUFxQkEsQ0FBQztJQWpCRzs7O09BR0c7SUFDRywwQkFBTyxHQUFiOzs7Ozs7d0JBRVUsR0FBRyxHQUFHLHVGQUF1RixDQUFDOzs7O3dCQUduRixxQkFBTSxxQkFBVyxDQUFDLE9BQU8sQ0FBQyxHQUFHLEVBQUUsRUFBRSxlQUFlLEVBQUUsSUFBSSxFQUFFLENBQUMsRUFBQTs7d0JBQWxFLE1BQU0sR0FBRyxTQUF5RDt3QkFDdEUsSUFBSSxDQUFDLEVBQUUsR0FBRyxNQUFNLENBQUMsRUFBRSxDQUFDLGNBQWMsQ0FBQyxDQUFDO3dCQUNwQyxPQUFPLENBQUMsR0FBRyxDQUFDLG9DQUFvQyxDQUFDLENBQUM7d0JBQ2xELHNCQUFPLElBQUksQ0FBQyxFQUFFLEVBQUM7Ozt3QkFFZixPQUFPLENBQUMsR0FBRyxDQUFDLDRDQUE0QyxDQUFDLENBQUM7Ozs7OztLQUVqRTtJQUNMLGVBQUM7QUFBRCxDQUFDLEFBckJELElBcUJDO0FBRUQsaUJBQVMsSUFBSSxRQUFRLEVBQUUsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IE1vbmdvQ2xpZW50LCBEYiB9IGZyb20gXCJtb25nb2RiXCI7XG5cbmNsYXNzIERiQ2xpZW50IHtcbiAgICAvLyBwcm9qZWN0X2RhdGEgZGF0YWJhc2VcbiAgICBwdWJsaWMgZGIhOiBEYjtcblxuICAgIC8qXG4gICAgKiBEb2VzIGNsaWVudC5jbG9zZSgpIG5lZWQgdG8gYmUgY2FsbGVkIGF0IHNvbWUgcG9pbnQgaW4gdGhpcyBmdW5jdGlvbiBvciBkb2VzXG4gICAgKiBpdCBoYXZlIHRvIGJlIGNsb3NlZCBhZnRlcj9cbiAgICAgKi9cbiAgICBhc3luYyBjb25uZWN0KCkge1xuICAgICAgICAvLyBDb25uZWN0aW9uIHVyaVxuICAgICAgICBjb25zdCB1cmkgPSBcIm1vbmdvZGIrc3J2Oi8vYWRtaW46YWRtaW5AY2x1c3RlcjAtb3Y0aXEubW9uZ29kYi5uZXQvdGVzdD9yZXRyeVdyaXRlcz10cnVlJnc9bWFqb3JpdHlcIjtcblxuICAgICAgICB0cnkge1xuICAgICAgICAgICAgbGV0IGNsaWVudCA9IGF3YWl0IE1vbmdvQ2xpZW50LmNvbm5lY3QodXJpLCB7IHVzZU5ld1VybFBhcnNlcjogdHJ1ZSB9KTtcbiAgICAgICAgICAgIHRoaXMuZGIgPSBjbGllbnQuZGIoXCJwcm9qZWN0X2RhdGFcIik7XG4gICAgICAgICAgICBjb25zb2xlLmxvZyhcIkNvbm5lY3RlZCB0byBwcm9qZWN0X2RhdGEgZGF0YWJhc2VcIik7XG4gICAgICAgICAgICByZXR1cm4gdGhpcy5kYjtcbiAgICAgICAgfSBjYXRjaCAoZXJyb3IpIHtcbiAgICAgICAgICAgIGNvbnNvbGUubG9nKFwiVW5hYmxlIHRvIGNvbm5lY3QgdG8gcHJvamVjdF9kYXRhIGRhdGFiYXNlXCIpO1xuICAgICAgICB9XG4gICAgfVxufVxuXG5leHBvcnQgPSBuZXcgRGJDbGllbnQoKTsiXX0=

@@ -6,7 +6,7 @@ import logger from "morgan";
 import path from "path";
 import errorHandler from "errorhandler";
 import { IndexRoute } from "./routes/index";
-import { HeroRouter} from "./routes/heroRouter";
+import { UserRouter } from "./routes/userRouter";
 
 /**
  * The server.
@@ -36,7 +36,7 @@ export class Server {
      * @constructor
      */
     constructor() {
-        //create expressjs application
+        //create express.js application
         this.app = express();
 
         //configure application
@@ -96,7 +96,7 @@ export class Server {
         router = express.Router();
 
         IndexRoute.create(router);
-        HeroRouter.create(router);
+        UserRouter.create(router);
 
         //use router middleware
         this.app.use(router);
