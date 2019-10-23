@@ -4,10 +4,11 @@ block content
   h1= title
   //p Welcome to #{title}
   p #{message}
-  p(style='white-space:pre;')
-  | bonus message #{bonus}
-  | Users: #{users.users[0].userID}
-  a.foo_link(href='/users', target='_blank') Users
-  p
-    a.foo_link(href='/users/oliverlewis', target='_blank') Oliver
-
+  //p(style='white-space:pre;')
+    //| bonus message #{bonus}
+  //a.foo_link(href='/users', target='_blank') Users
+  p  #{instructions}
+  ul
+    each user in users
+      a(href='/users/' + user) #{user}
+      br

@@ -1,7 +1,5 @@
 import express, {NextFunction, Request, Response, Router} from "express";
 import { BaseRoute } from "./route";
-import {UserDao} from "../daos/userDao";
-import {UserRouter} from "./userRouter";
 import * as http from "http";
 
 
@@ -66,18 +64,16 @@ export class IndexRoute extends BaseRoute {
             });
         });
 
-        console.log("apiResponse: " + (apiResponse as any).users[0].userID);
-        console.log(typeof apiResponse);
-
-        let userObject
-
+        const userIDs = [];
+        for (let user of (apiResponse as any).users) {
+            userIDs.push(user.userID);
+        }
 
         //set message
         let options: Object = {
             "message": "Welcome to UVic Seng 350!",
-            "bonus": "Hello World",
-            "users": apiResponse as any
-
+            "instructions": "Select your user ID to view your purchases",
+            "users": userIDs
         };
 
         console.log(options);
