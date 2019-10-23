@@ -7,8 +7,6 @@ import path from "path";
 import errorHandler from "errorhandler";
 import { IndexRoute } from "./routes/index";
 import { UserRouter } from "./routes/userRouter";
-import {UserDao} from "./daos/userDao";
-
 
 /**
  * The server.
@@ -93,17 +91,15 @@ export class Server {
      * @method routes
      * @return void
      */
-    private routes() {
+    private async routes() {
         let router: express.Router;
         router = express.Router();
 
-
-        UserRouter.create(router);
         IndexRoute.create(router);
+        await UserRouter.create(router);
 
         //use router middleware
         this.app.use(router);
-
     }
 
 }

@@ -42,58 +42,62 @@ var DbClient = require("../DbClient");
  */
 var UserDao = /** @class */ (function () {
     function UserDao() {
-        //  console.log("in userdao constructor")
-        // this.allUsers = this.getAllUsers();
-        //console.log(this.allUsers);
     }
     UserDao.prototype.getUser = function (userID) {
         return __awaiter(this, void 0, void 0, function () {
-            var user;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var user, database, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        user = undefined;
-                        return [4 /*yield*/, DbClient.connect()
-                                .then(function (db) {
-                                console.log("Getting the user: " + userID);
-                                return db.collection("users").findOne({ "userID": userID });
-                            })
-                                .then(function (userDoc) {
-                                console.log(userDoc);
-                                user = userDoc;
-                            })
-                                .catch(function (err) {
-                                console.log("err.message");
-                            })];
+                        _b.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, DbClient.connect()];
                     case 1:
-                        _a.sent();
-                        return [2 /*return*/, user];
+                        database = _b.sent();
+                        user = database.collection("users").findOne({ "userID": userID });
+                        return [3 /*break*/, 3];
+                    case 2:
+                        _a = _b.sent();
+                        console.log("Dao: Error getting user");
+                        return [3 /*break*/, 3];
+                    case 3: 
+                    /*
+                    await DbClient.connect()
+                        .then((db : any) => {
+                            console.log("Getting the user: " + userID);
+                            return db!.collection("users").findOne({"userID" : userID});
+                        })
+                        .then((userDoc : any) => {
+                            console.log(userDoc);
+                            user = userDoc;
+                        })
+                        .catch((err : any) => {
+                            console.log("err.message");
+                        }); */
+                    return [2 /*return*/, user];
                 }
             });
         });
     };
     UserDao.prototype.getAllUsers = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var allUsers;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var users, database, _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        allUsers = undefined;
-                        return [4 /*yield*/, DbClient.connect()
-                                .then(function (db) {
-                                console.log("Getting the users collection");
-                                return db.collection("users").find().toArray();
-                            })
-                                .then(function (users) {
-                                console.log(users);
-                                allUsers = users;
-                            })
-                                .catch(function (err) {
-                                console.log("err.message");
-                            })];
+                        users = undefined;
+                        _b.label = 1;
                     case 1:
-                        _a.sent();
-                        return [2 /*return*/, allUsers];
+                        _b.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, DbClient.connect()];
+                    case 2:
+                        database = _b.sent();
+                        users = database.collection("users").find().toArray();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        _a = _b.sent();
+                        console.log("Dao: Error getting all users.");
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/, users];
                 }
             });
         });
@@ -101,4 +105,4 @@ var UserDao = /** @class */ (function () {
     return UserDao;
 }());
 exports.UserDao = UserDao;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXNlckRhby5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9kYW9zL3VzZXJEYW8udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHNDQUF5QztBQUd6Qzs7O0dBR0c7QUFFSDtJQUlJO1FBQ0kseUNBQXlDO1FBQ3pDLHNDQUFzQztRQUN0Qyw2QkFBNkI7SUFDakMsQ0FBQztJQUVZLHlCQUFPLEdBQXBCLFVBQXFCLE1BQVk7Ozs7Ozt3QkFDekIsSUFBSSxHQUFHLFNBQVMsQ0FBQzt3QkFFckIscUJBQU0sUUFBUSxDQUFDLE9BQU8sRUFBRTtpQ0FDbkIsSUFBSSxDQUFDLFVBQUMsRUFBUTtnQ0FDWCxPQUFPLENBQUMsR0FBRyxDQUFDLG9CQUFvQixHQUFHLE1BQU0sQ0FBQyxDQUFDO2dDQUMzQyxPQUFPLEVBQUcsQ0FBQyxVQUFVLENBQUMsT0FBTyxDQUFDLENBQUMsT0FBTyxDQUFDLEVBQUMsUUFBUSxFQUFHLE1BQU0sRUFBQyxDQUFDLENBQUM7NEJBQ2hFLENBQUMsQ0FBQztpQ0FDRCxJQUFJLENBQUMsVUFBQyxPQUFhO2dDQUNoQixPQUFPLENBQUMsR0FBRyxDQUFDLE9BQU8sQ0FBQyxDQUFDO2dDQUNyQixJQUFJLEdBQUcsT0FBTyxDQUFDOzRCQUNuQixDQUFDLENBQUM7aUNBQ0QsS0FBSyxDQUFDLFVBQUMsR0FBUztnQ0FDYixPQUFPLENBQUMsR0FBRyxDQUFDLGFBQWEsQ0FBQyxDQUFDOzRCQUMvQixDQUFDLENBQUMsRUFBQTs7d0JBWE4sU0FXTSxDQUFDO3dCQUVQLHNCQUFPLElBQUksRUFBQzs7OztLQUNmO0lBRVksNkJBQVcsR0FBeEI7Ozs7Ozt3QkFDUSxRQUFRLEdBQUcsU0FBUyxDQUFDO3dCQUV6QixxQkFBTSxRQUFRLENBQUMsT0FBTyxFQUFFO2lDQUNuQixJQUFJLENBQUMsVUFBQyxFQUFRO2dDQUNYLE9BQU8sQ0FBQyxHQUFHLENBQUMsOEJBQThCLENBQUMsQ0FBQztnQ0FDNUMsT0FBTyxFQUFHLENBQUMsVUFBVSxDQUFDLE9BQU8sQ0FBQyxDQUFDLElBQUksRUFBRSxDQUFDLE9BQU8sRUFBRSxDQUFDOzRCQUNwRCxDQUFDLENBQUM7aUNBQ0QsSUFBSSxDQUFDLFVBQUMsS0FBVztnQ0FDZCxPQUFPLENBQUMsR0FBRyxDQUFDLEtBQUssQ0FBQyxDQUFDO2dDQUNuQixRQUFRLEdBQUcsS0FBSyxDQUFDOzRCQUNyQixDQUFDLENBQUM7aUNBQ0QsS0FBSyxDQUFDLFVBQUMsR0FBUztnQ0FDYixPQUFPLENBQUMsR0FBRyxDQUFDLGFBQWEsQ0FBQyxDQUFDOzRCQUMvQixDQUFDLENBQUMsRUFBQTs7d0JBWE4sU0FXTSxDQUFDO3dCQUVQLHNCQUFPLFFBQVEsRUFBQzs7OztLQUNuQjtJQUNMLGNBQUM7QUFBRCxDQUFDLEFBL0NELElBK0NDO0FBL0NZLDBCQUFPIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IERiQ2xpZW50ID0gcmVxdWlyZShcIi4uL0RiQ2xpZW50XCIpO1xuaW1wb3J0ICB7IENvbGxlY3Rpb24gfSBmcm9tIFwibW9uZ29kYlwiO1xuXG4vKlxuICogVGhpcyBjbGFzcyBpcyBjdXJyZW50bHkgbm90IGJlaW5nIHVzZWQ7IGhvd2V2ZXIgaXQgZXZlbnR1YWxseSB3aWxsIGJlLlxuICogVGhlcmUgYXJlIHNvbWUgZGVzaWduIGRlY2lzaW9ucyB0aGF0IG5lZWQgdG8gYmUgbWFkZS5cbiAqL1xuXG5leHBvcnQgY2xhc3MgVXNlckRhbyB7XG4gICAgcHJpdmF0ZSBjb2xsZWN0aW9uISA6IENvbGxlY3Rpb247IC8vQ3VycmVudGx5IG5vdCB1c2VkLlxuICAgIHB1YmxpYyBhbGxVc2VyczogYW55O1xuXG4gICAgY29uc3RydWN0b3IoKSB7XG4gICAgICAgIC8vICBjb25zb2xlLmxvZyhcImluIHVzZXJkYW8gY29uc3RydWN0b3JcIilcbiAgICAgICAgLy8gdGhpcy5hbGxVc2VycyA9IHRoaXMuZ2V0QWxsVXNlcnMoKTtcbiAgICAgICAgLy9jb25zb2xlLmxvZyh0aGlzLmFsbFVzZXJzKTtcbiAgICB9XG5cbiAgICBwdWJsaWMgYXN5bmMgZ2V0VXNlcih1c2VySUQgOiBhbnkpIHtcbiAgICAgICAgbGV0IHVzZXIgPSB1bmRlZmluZWQ7XG5cbiAgICAgICAgYXdhaXQgRGJDbGllbnQuY29ubmVjdCgpXG4gICAgICAgICAgICAudGhlbigoZGIgOiBhbnkpID0+IHtcbiAgICAgICAgICAgICAgICBjb25zb2xlLmxvZyhcIkdldHRpbmcgdGhlIHVzZXI6IFwiICsgdXNlcklEKTtcbiAgICAgICAgICAgICAgICByZXR1cm4gZGIhLmNvbGxlY3Rpb24oXCJ1c2Vyc1wiKS5maW5kT25lKHtcInVzZXJJRFwiIDogdXNlcklEfSk7XG4gICAgICAgICAgICB9KVxuICAgICAgICAgICAgLnRoZW4oKHVzZXJEb2MgOiBhbnkpID0+IHtcbiAgICAgICAgICAgICAgICBjb25zb2xlLmxvZyh1c2VyRG9jKTtcbiAgICAgICAgICAgICAgICB1c2VyID0gdXNlckRvYztcbiAgICAgICAgICAgIH0pXG4gICAgICAgICAgICAuY2F0Y2goKGVyciA6IGFueSkgPT4ge1xuICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKFwiZXJyLm1lc3NhZ2VcIik7XG4gICAgICAgICAgICB9KTtcblxuICAgICAgICByZXR1cm4gdXNlcjtcbiAgICB9XG5cbiAgICBwdWJsaWMgYXN5bmMgZ2V0QWxsVXNlcnMoKSB7XG4gICAgICAgIGxldCBhbGxVc2VycyA9IHVuZGVmaW5lZDtcblxuICAgICAgICBhd2FpdCBEYkNsaWVudC5jb25uZWN0KClcbiAgICAgICAgICAgIC50aGVuKChkYiA6IGFueSkgPT4ge1xuICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKFwiR2V0dGluZyB0aGUgdXNlcnMgY29sbGVjdGlvblwiKTtcbiAgICAgICAgICAgICAgICByZXR1cm4gZGIhLmNvbGxlY3Rpb24oXCJ1c2Vyc1wiKS5maW5kKCkudG9BcnJheSgpO1xuICAgICAgICAgICAgfSlcbiAgICAgICAgICAgIC50aGVuKCh1c2VycyA6IGFueSkgPT4ge1xuICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKHVzZXJzKTtcbiAgICAgICAgICAgICAgICBhbGxVc2VycyA9IHVzZXJzO1xuICAgICAgICAgICAgfSlcbiAgICAgICAgICAgIC5jYXRjaCgoZXJyIDogYW55KSA9PiB7XG4gICAgICAgICAgICAgICAgY29uc29sZS5sb2coXCJlcnIubWVzc2FnZVwiKTtcbiAgICAgICAgICAgIH0pO1xuXG4gICAgICAgIHJldHVybiBhbGxVc2VycztcbiAgICB9XG59Il19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXNlckRhby5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9kYW9zL3VzZXJEYW8udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLHNDQUF5QztBQUd6Qzs7O0dBR0c7QUFFSDtJQUdJO0lBRUEsQ0FBQztJQUVZLHlCQUFPLEdBQXBCLFVBQXFCLE1BQVk7Ozs7Ozs7d0JBSVYscUJBQU0sUUFBUSxDQUFDLE9BQU8sRUFBRSxFQUFBOzt3QkFBbkMsUUFBUSxHQUFHLFNBQXdCO3dCQUN2QyxJQUFJLEdBQUcsUUFBUyxDQUFDLFVBQVUsQ0FBQyxPQUFPLENBQUMsQ0FBQyxPQUFPLENBQUMsRUFBQyxRQUFRLEVBQUcsTUFBTSxFQUFDLENBQUMsQ0FBQzs7Ozt3QkFFbEUsT0FBTyxDQUFDLEdBQUcsQ0FBQyx5QkFBeUIsQ0FBQyxDQUFDOzs7b0JBRTNDOzs7Ozs7Ozs7Ozs7OEJBWVU7b0JBRVYsc0JBQU8sSUFBSSxFQUFDOzs7O0tBQ2Y7SUFFWSw2QkFBVyxHQUF4Qjs7Ozs7O3dCQUNRLEtBQUssR0FBRyxTQUFTLENBQUM7Ozs7d0JBR0gscUJBQU0sUUFBUSxDQUFDLE9BQU8sRUFBRSxFQUFBOzt3QkFBbkMsUUFBUSxHQUFHLFNBQXdCO3dCQUN2QyxLQUFLLEdBQUcsUUFBUyxDQUFDLFVBQVUsQ0FBQyxPQUFPLENBQUMsQ0FBQyxJQUFJLEVBQUUsQ0FBQyxPQUFPLEVBQUUsQ0FBQzs7Ozt3QkFFdkQsT0FBTyxDQUFDLEdBQUcsQ0FBQywrQkFBK0IsQ0FBQyxDQUFDOzs0QkFHakQsc0JBQU8sS0FBSyxFQUFDOzs7O0tBQ2hCO0lBQ0wsY0FBQztBQUFELENBQUMsQUE3Q0QsSUE2Q0M7QUE3Q1ksMEJBQU8iLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgRGJDbGllbnQgPSByZXF1aXJlKFwiLi4vRGJDbGllbnRcIik7XG5pbXBvcnQgIHsgQ29sbGVjdGlvbiB9IGZyb20gXCJtb25nb2RiXCI7XG5cbi8qXG4gKiBUaGlzIGNsYXNzIGlzIGN1cnJlbnRseSBub3QgYmVpbmcgdXNlZDsgaG93ZXZlciBpdCBldmVudHVhbGx5IHdpbGwgYmUuXG4gKiBUaGVyZSBhcmUgc29tZSBkZXNpZ24gZGVjaXNpb25zIHRoYXQgbmVlZCB0byBiZSBtYWRlLlxuICovXG5cbmV4cG9ydCBjbGFzcyBVc2VyRGFvIHtcbiAgICBwcml2YXRlIGNvbGxlY3Rpb24hIDogQ29sbGVjdGlvbjsgLy9DdXJyZW50bHkgbm90IHVzZWQuXG5cbiAgICBjb25zdHJ1Y3RvcigpIHtcblxuICAgIH1cblxuICAgIHB1YmxpYyBhc3luYyBnZXRVc2VyKHVzZXJJRCA6IGFueSkge1xuICAgICAgICBsZXQgdXNlcjtcblxuICAgICAgICB0cnkge1xuICAgICAgICAgICAgbGV0IGRhdGFiYXNlID0gYXdhaXQgRGJDbGllbnQuY29ubmVjdCgpO1xuICAgICAgICAgICAgdXNlciA9IGRhdGFiYXNlIS5jb2xsZWN0aW9uKFwidXNlcnNcIikuZmluZE9uZSh7XCJ1c2VySURcIiA6IHVzZXJJRH0pO1xuICAgICAgICB9IGNhdGNoIHtcbiAgICAgICAgICAgIGNvbnNvbGUubG9nKFwiRGFvOiBFcnJvciBnZXR0aW5nIHVzZXJcIik7XG4gICAgICAgIH1cbiAgICAgICAgLypcbiAgICAgICAgYXdhaXQgRGJDbGllbnQuY29ubmVjdCgpXG4gICAgICAgICAgICAudGhlbigoZGIgOiBhbnkpID0+IHtcbiAgICAgICAgICAgICAgICBjb25zb2xlLmxvZyhcIkdldHRpbmcgdGhlIHVzZXI6IFwiICsgdXNlcklEKTtcbiAgICAgICAgICAgICAgICByZXR1cm4gZGIhLmNvbGxlY3Rpb24oXCJ1c2Vyc1wiKS5maW5kT25lKHtcInVzZXJJRFwiIDogdXNlcklEfSk7XG4gICAgICAgICAgICB9KVxuICAgICAgICAgICAgLnRoZW4oKHVzZXJEb2MgOiBhbnkpID0+IHtcbiAgICAgICAgICAgICAgICBjb25zb2xlLmxvZyh1c2VyRG9jKTtcbiAgICAgICAgICAgICAgICB1c2VyID0gdXNlckRvYztcbiAgICAgICAgICAgIH0pXG4gICAgICAgICAgICAuY2F0Y2goKGVyciA6IGFueSkgPT4ge1xuICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKFwiZXJyLm1lc3NhZ2VcIik7XG4gICAgICAgICAgICB9KTsgKi9cblxuICAgICAgICByZXR1cm4gdXNlcjtcbiAgICB9XG5cbiAgICBwdWJsaWMgYXN5bmMgZ2V0QWxsVXNlcnMoKSB7XG4gICAgICAgIGxldCB1c2VycyA9IHVuZGVmaW5lZDtcblxuICAgICAgICB0cnkge1xuICAgICAgICAgICAgbGV0IGRhdGFiYXNlID0gYXdhaXQgRGJDbGllbnQuY29ubmVjdCgpO1xuICAgICAgICAgICAgdXNlcnMgPSBkYXRhYmFzZSEuY29sbGVjdGlvbihcInVzZXJzXCIpLmZpbmQoKS50b0FycmF5KCk7XG4gICAgICAgIH0gY2F0Y2gge1xuICAgICAgICAgICAgY29uc29sZS5sb2coXCJEYW86IEVycm9yIGdldHRpbmcgYWxsIHVzZXJzLlwiKTtcbiAgICAgICAgfVxuXG4gICAgICAgIHJldHVybiB1c2VycztcbiAgICB9XG59Il19

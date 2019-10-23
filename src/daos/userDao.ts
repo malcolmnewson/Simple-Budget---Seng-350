@@ -7,50 +7,34 @@ import  { Collection } from "mongodb";
  */
 
 export class UserDao {
-    private collection! : Collection; //Currently not used.
-    public allUsers: any;
 
     constructor() {
-        //  console.log("in userdao constructor")
-        // this.allUsers = this.getAllUsers();
-        //console.log(this.allUsers);
+
     }
 
     public async getUser(userID : any) {
-        let user = undefined;
+        let user;
 
-        await DbClient.connect()
-            .then((db : any) => {
-                console.log("Getting the user: " + userID);
-                return db!.collection("users").findOne({"userID" : userID});
-            })
-            .then((userDoc : any) => {
-                console.log(userDoc);
-                user = userDoc;
-            })
-            .catch((err : any) => {
-                console.log("err.message");
-            });
+        try {
+            let database = await DbClient.connect();
+            user = database!.collection("users").findOne({"userID" : userID});
+        } catch {
+            console.log("Dao: Error getting user");
+        }
 
         return user;
     }
 
     public async getAllUsers() {
-        let allUsers = undefined;
+        let users = undefined;
 
-        await DbClient.connect()
-            .then((db : any) => {
-                console.log("Getting the users collection");
-                return db!.collection("users").find().toArray();
-            })
-            .then((users : any) => {
-                console.log(users);
-                allUsers = users;
-            })
-            .catch((err : any) => {
-                console.log("err.message");
-            });
+        try {
+            let database = await DbClient.connect();
+            users = database!.collection("users").find().toArray();
+        } catch {
+            console.log("Dao: Error getting all users.");
+        }
 
-        return allUsers;
+        return users;
     }
 }
