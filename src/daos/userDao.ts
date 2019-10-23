@@ -8,9 +8,12 @@ import  { Collection } from "mongodb";
 
 export class UserDao {
     private collection! : Collection; //Currently not used.
+    public allUsers: any;
 
     constructor() {
-
+        //  console.log("in userdao constructor")
+        // this.allUsers = this.getAllUsers();
+        //console.log(this.allUsers);
     }
 
     public async getUser(userID : any) {

@@ -2,4 +2,12 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  //p Welcome to #{title}
+  p #{message}
+  p(style='white-space:pre;')
+  | bonus message #{bonus}
+  | Users: #{users.users[0].userID}
+  a.foo_link(href='/users', target='_blank') Users
+  p
+    a.foo_link(href='/users/oliverlewis', target='_blank') Oliver
+

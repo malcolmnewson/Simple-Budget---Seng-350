@@ -1,6 +1,8 @@
-
-import { NextFunction, Request, Response, Router } from "express";
+import express, {NextFunction, Request, Response, Router} from "express";
 import { BaseRoute } from "./route";
+import {UserDao} from "../daos/userDao";
+import {UserRouter} from "./userRouter";
+import * as http from "http";
 
 
 /**
@@ -46,16 +48,43 @@ export class IndexRoute extends BaseRoute {
      * @param res {Response} The express Response object.
      * @next {NextFunction} Execute the next method.
      */
-    public index(req: Request, res: Response, next: NextFunction) {
+    public async index(req: Request, res: Response, next: NextFunction) {
         //set custom title
-        this.title = "Home | This is the main page";
+        this.title = "Budget App | This is the main page";
+        //
+
+        let data = "";
+        let apiResponse = await new Promise((resolve, reject) => {
+            http.get("http://localhost:3000/users", async (res) => {
+                res.on("data", chunk => {
+                    data += chunk;
+                });
+                await res.on("end", () => {
+                    apiResponse = JSON.parse(data);
+                    resolve(apiResponse);
+                })
+            });
+        });
+
+        console.log("apiResponse: " + (apiResponse as any).users[0].userID);
+        console.log(typeof apiResponse);
+
+        let userObject
+
 
         //set message
         let options: Object = {
-            "message": "Welcome to the UVic 350!"
+            "message": "Welcome to UVic Seng 350!",
+            "bonus": "Hello World",
+            "users": apiResponse as any
+
         };
+
+        console.log(options);
 
         //render template
         this.render(req, res, "index", options);
+
+
     }
 }
