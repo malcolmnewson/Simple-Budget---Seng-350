@@ -1,5 +1,4 @@
 import DbClient = require("../DbClient");
-import  { Collection } from "mongodb";
 
 /*
  * This class is currently not being used; however it eventually will be.
@@ -26,7 +25,7 @@ export class UserDao {
     }
 
     public async getAllUsers() {
-        let users = undefined;
+        let users;
 
         try {
             let database = await DbClient.connect();
