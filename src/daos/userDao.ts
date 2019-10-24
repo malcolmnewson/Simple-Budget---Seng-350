@@ -1,16 +1,12 @@
 import DbClient = require("../DbClient");
 
-/*
- * This class is currently not being used; however it eventually will be.
- * There are some design decisions that need to be made.
- */
-
 export class UserDao {
 
     constructor() {
 
     }
 
+    // Returns a single user's info by their ID
     public async getUser(userID : any) {
         let user;
 
@@ -24,6 +20,7 @@ export class UserDao {
         return user;
     }
 
+    // Returns all users
     public async getAllUsers() {
         let users;
 

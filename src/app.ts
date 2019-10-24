@@ -7,6 +7,7 @@ import path from "path";
 import errorHandler from "errorhandler";
 import { IndexRoute } from "./routes/index";
 import { UserRouter } from "./routes/userRouter";
+import { PurchaseRouter } from "./routes/purchaseRouter";
 
 /**
  * The server.
@@ -97,6 +98,7 @@ export class Server {
 
         IndexRoute.create(router);
         UserRouter.create(router);
+        PurchaseRouter.create(router);
 
         //use router middleware
         this.app.use(router);

@@ -1,8 +1,8 @@
 import {Router, Request, Response, NextFunction} from 'express';
-import { UserDao } from "../daos/userDao"
+import { UserDao } from "../daos/userDao";
 
 export class UserRouter {
-    // used to access database
+    // used to user collection from database
     private userDao : UserDao;
 
     public static create(router: Router) {
