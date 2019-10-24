@@ -1,5 +1,5 @@
-import {Router, Request, Response, NextFunction} from 'express';
-import { UserDao } from "../daos/userDao"
+import {NextFunction, Request, Response, Router} from 'express';
+import {UserDao} from "../daos/userDao"
 
 export class UserRouter {
     // used to access database
@@ -41,14 +41,14 @@ export class UserRouter {
                 .send({
                    message: 'Success',
                    status: res.status,
-                   users
+                    users: users
                 });
         } else {
             res.status(500)
                 .send({
                     message: 'Success',
                     status: res.status,
-                    users
+                    users: users
                 });
         }
     }
@@ -78,7 +78,7 @@ export class UserRouter {
         } else {
             res.status(404)
                 .send({
-                    message: 'No hero found with the given id.',
+                    message: 'No user found with the given id.',
                     status: res.status
                 });
         }

@@ -1,6 +1,6 @@
-
-import { NextFunction, Request, Response, Router } from "express";
-import { BaseRoute } from "./route";
+import {NextFunction, Request, Response, Router} from "express";
+import {BaseRoute} from "./route";
+import * as http from "http";
 
 
 /**
@@ -25,6 +25,11 @@ export class IndexRoute extends BaseRoute {
         router.get("/", (req: Request, res: Response, next: NextFunction) => {
             new IndexRoute().index(req, res, next);
         });
+
+        //add purchases page
+        router.get("/purchases", ((req, res, next) => {
+            new IndexRoute().purchases(req, res, next);
+        }))
     }
 
     /**
@@ -46,16 +51,64 @@ export class IndexRoute extends BaseRoute {
      * @param res {Response} The express Response object.
      * @next {NextFunction} Execute the next method.
      */
-    public index(req: Request, res: Response, next: NextFunction) {
+    public async index(req: Request, res: Response, next: NextFunction) {
         //set custom title
-        this.title = "Home | This is the main page";
+        this.title = "Budget App | Welcome!";
+
+        let data = "";
+        let apiResponse = await new Promise((resolve, reject) => {
+            http.get("http://localhost:3000/users", async (res) => {
+                res.on("data", chunk => {
+                    data += chunk;
+                });
+                await res.on("end", () => {
+                    apiResponse = JSON.parse(data);
+                    resolve(apiResponse);
+                })
+            });
+        });
+
+        console.log("api response: " + apiResponse);
+
+        const userIDs = [];
+        for (let user of (apiResponse as any).users) {
+            userIDs.push(user.userID);
+        }
 
         //set message
         let options: Object = {
-            "message": "Welcome to the UVic 350!"
+            "message": "Welcome to UVic Seng 350!",
+            "instructions": "Select your user ID to view your purchases",
+            "users": userIDs
         };
+
+        console.log(options);
 
         //render template
         this.render(req, res, "index", options);
+
+        //this.render(req, res, "purchases");
+
+
+
+
+    }
+
+    private purchases(req: Request, res: Response, next: NextFunction) {
+        this.title = "My Purchases";
+
+
+        var purchase1 = JSON.parse('{"_id":{"$oid":"5dae12e41c9d440000987caa"},"userID":"malcolmnewson","category":"Food","cost":{"$numberDouble":"20.98"},"date":{"$date":{"$numberLong":"1546344000000"}},"description":"Snack"}');
+        var purchase2 = JSON.parse('{"_id":{"$oid":"5dae15c21c9d440000987cac"},"userID":"malcolmnewson","category":"Food","cost":{"$numberDouble":"12"},"date":{"$date":{"$numberLong":"1546344000000"}},"description":"dinner"}');
+
+        var purchases = {purchase1, purchase2};
+
+        let options: Object = {
+            purchases: purchases
+
+        };
+
+        this.render(req, res, "purchases", options)
+
     }
 }
