@@ -1,5 +1,21 @@
 extends layout
 
+
 block content
-  h1= title
-  p Welcome to #{title}
+  div.View
+    h1.Banner #{title}
+    div.Message
+      div.Title
+        h3 Login here
+          //span.Details #{instructions}
+    div.NavButtons
+      each user in users
+        a(href='/users/' + user)
+          div.NavButton #{user}
+      h3 or view all purchases
+      a(href='/purchases' )
+        div.NavButton purchases
+
+
+
+
