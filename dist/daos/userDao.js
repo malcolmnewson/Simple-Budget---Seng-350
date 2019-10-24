@@ -59,8 +59,7 @@ var UserDao = /** @class */ (function () {
                         _a = _b.sent();
                         console.log("Dao: Error getting user");
                         return [3 /*break*/, 3];
-                    case 3:
-                        return [2 /*return*/, user];
+                    case 3: return [2 /*return*/, user];
                 }
             });
         });

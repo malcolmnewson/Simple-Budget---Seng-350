@@ -149,7 +149,7 @@ var UserRouter = /** @class */ (function () {
                         else {
                             res.status(404)
                                 .send({
-                                    message: 'No user found with the given id.',
+                                message: 'No user found with the given id.',
                                 status: res.status
                             });
                         }
