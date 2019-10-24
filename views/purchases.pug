@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    div.View
+        h1.Banner #{title}
+
+    table(style='width:60%', border='1')
+        tr
+            th Category
+            th Amount
+            th Description
+        each purchase in purchases
+            tr
+                td #{purchase.category}
+                td #{purchase.cost.$numberDouble}
+                td #{purchase.description}
