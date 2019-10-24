@@ -5,7 +5,7 @@ export class UserRouter {
     // used to access database
     private userDao : UserDao;
 
-    public static async create(router: Router) {
+    public static create(router: Router) {
         //log
         console.log("[UserRoute::create] Creating UserRoute route.");
 

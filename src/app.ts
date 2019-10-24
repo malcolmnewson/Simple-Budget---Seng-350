@@ -91,12 +91,12 @@ export class Server {
      * @method routes
      * @return void
      */
-    private async routes() {
+    private routes() {
         let router: express.Router;
         router = express.Router();
 
         IndexRoute.create(router);
-        await UserRouter.create(router);
+        UserRouter.create(router);
 
         //use router middleware
         this.app.use(router);
