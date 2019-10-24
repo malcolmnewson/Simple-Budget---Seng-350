@@ -2,19 +2,14 @@ extends layout
 
 
 block content
-  div.View
-    h1.Banner #{title}
-    div.Message
-      div.Title
+    h1 #{title}
         h3 Login here
-          //span.Details #{instructions}
-    div.NavButtons
-      each user in users
-        a(href='/users/' + user)
-          div.NavButton #{user}
-      h3 or view all purchases
-      a(href='/purchases' )
-        div.NavButton purchases
+
+    each user in users
+        a(href='/users/' + user) #{user}
+        br
+    h3 or view all purchases
+    a(href='/purchases' ) purchases
 
 
 
