@@ -41,14 +41,14 @@ export class UserRouter {
                 .send({
                    message: 'Success',
                    status: res.status,
-                   users
+                    users: users
                 });
         } else {
             res.status(500)
                 .send({
                     message: 'Success',
                     status: res.status,
-                    users
+                    users: users
                 });
         }
     }
