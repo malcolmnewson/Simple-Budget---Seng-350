@@ -68,16 +68,16 @@ export class IndexRoute extends BaseRoute {
             });
         });
 
-        const userIDs = [];
-        for (let user of (apiResponse as any).users) {
-            userIDs.push(user.userID);
-        }
+        // const userIDs = [];
+        // for (let user of (apiResponse as any).users) {
+        //     userIDs.push(user.userID);
+        // }
 
         //set message
         let options: Object = {
             "message": "Welcome to UVic Seng 350!",
-            "instructions": "Select your user ID to view your purchases",
-            "users": userIDs
+            "instructions": "Select your user ID to view your purchases"
+            //"users": userIDs
         };
 
         console.log(options);
