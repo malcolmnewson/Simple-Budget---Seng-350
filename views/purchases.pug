@@ -3,14 +3,18 @@ extends layout
 block content
 
     h1 #{title}
-
-    table(style='width:60%', border='1')
-        tr
-            th Category
-            th Amount
-            th Description
-        each purchase in purchases
+    h3 Welcome #{user}!
+    if purchases.length === 0
+        p This user has no purchases recorded
+    else
+        table(style='width:60%', border='1')
             tr
-                td #{purchase.category}
-                td #{purchase.cost.$numberDouble}
-                td #{purchase.description}
+                th Category
+                th Amount
+                th Description
+            each purchase in purchases
+                tr
+                    td #{purchase.category}
+                    td #{purchase.cost}
+                    td #{purchase.description}
+
