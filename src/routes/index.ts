@@ -22,8 +22,8 @@ export class IndexRoute extends BaseRoute {
         console.log("[IndexRoute::create] Creating index route.");
 
         //add home page route
-        router.get("/", (req: Request, res: Response, next: NextFunction) => {
-            new IndexRoute().index(req, res, next);
+        router.get("/", async(req: Request, res: Response, next: NextFunction) => {
+            await new IndexRoute().index(req, res, next);
         });
 
         //add purchases page
@@ -86,12 +86,6 @@ export class IndexRoute extends BaseRoute {
 
         //render template
         this.render(req, res, "index", options);
-
-        //this.render(req, res, "purchases");
-
-
-
-
     }
 
     private purchases(req: Request, res: Response, next: NextFunction) {
