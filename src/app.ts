@@ -7,6 +7,7 @@ import path from "path";
 import errorHandler from "errorhandler";
 import { IndexRoute } from "./routes/index";
 import { UserRouter } from "./routes/userRouter";
+import { PurchaseRouter } from "./routes/purchaseRouter";
 
 /**
  * The server.
@@ -91,12 +92,13 @@ export class Server {
      * @method routes
      * @return void
      */
-    private async routes() {
+    private routes() {
         let router: express.Router;
         router = express.Router();
 
         IndexRoute.create(router);
-        await UserRouter.create(router);
+        UserRouter.create(router);
+        PurchaseRouter.create(router);
 
         //use router middleware
         this.app.use(router);

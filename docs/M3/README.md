@@ -7,12 +7,26 @@ Deliverables
     Code coverage report.
     Readme file explaining functionality, what user stories were addressed, what design problems were faced (and how design changed).
 
-Marking Guide
 
-    Code compiles (no marks otherwise)
+Marking Guide (UPDATED)
+
+    code compiles
+    code conventions/CI from above (commented, code style, design principles)
+    working demo
+    clear explanation of what user stories were satisfied in this iteration
+    design as implemented follows design doc, or change rationale is present in README
+    async is async when necessary
+    TSLint does not complain
+    test suite present/part of CI
+    test coverage reasonable and meaningful
+   
+   ~Code compiles (no marks otherwise)
     No huge problems reported by linters and analyses
     Test coverage and quality is good
-    Software principles like good naming, comments, high cohesion are followed.
+    Software principles like good naming, comments, high cohesion are followed.~
+    
+    
+    
 
 
 ### Build documentation
