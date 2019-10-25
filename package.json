@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@types/body-parser": "^1.17.1",
@@ -21,5 +22,11 @@
     "mongodb": "^3.3.2",
     "morgan": "~1.9.1",
     "pug": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.19",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4"
   }
 }
