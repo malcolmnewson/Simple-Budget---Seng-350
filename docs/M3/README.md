@@ -4,10 +4,10 @@ node package manager: install all dependencies: ?npm init ??
 open in webstorm, if config file is included...
 
 ### Functionality
-At present, the app consists of a login page where a list of users and admin are presented. Once a user is selected they are directed to that users history page. This page displays all purchases by that users in a separate table per category If the web user selects an admin they are just directed to a json file of that database document.
+At present, the app consists of a login page where a list of users and admin are presented. Once a user is selected they are directed to that users history page. This page displays all purchases by that users in a separate table per category and sorted in reverse date. If the web user selects an admin they are directed to a simple list of users. Eventually this will changed to allow the admin to create or delete users. 
 
 ### User stories
-The user stories implemented for this code sprint are linked below. A user can log into their account by selecting their user name from the home page list of users. Once a user selects their account, they are directed to a history page that displays their purchases in each category. The first user story is fully implemented, but the second is not implemented to the details described in the user story. The history page just displays all of the purchases for that user in a table for each category, but without any sorting by date of purchase.
+The user stories implemented for this code sprint are linked below. A user can log into their account by selecting their user name from the home page list of users. Once a user selects their account, they are directed to a history page that displays their purchases in each category, sorted in reverse date order. 
 
 [As a user I want to log into my account in order to access my data](https://github.com/seng350/seng350f19-project-2-1/issues/2)
 
