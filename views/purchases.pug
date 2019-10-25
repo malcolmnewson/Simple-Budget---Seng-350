@@ -12,9 +12,14 @@ block content
                 th Category
                 th Amount
                 th Description
+                th Date
             each purchase in purchases
+                -
+                    var date = purchase.date
+                    date = date.substr(0,10)
                 tr
                     td #{purchase.category}
                     td #{purchase.cost}
                     td #{purchase.description}
+                    td #{date}
 
