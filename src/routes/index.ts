@@ -26,11 +26,6 @@ export class IndexRoute extends BaseRoute {
             new IndexRoute().index(req, res, next);
         });
 
-        // //add purchases page
-        // router.get("/purchases", ((req, res, next) => {
-        //     new IndexRoute().purchases(req, res, next);
-        // }))
-
         router.get("/user/:userID", async (req: Request, res: Response, next: NextFunction) => {
             new IndexRoute().purchases(req, res, next);
         });
@@ -62,8 +57,6 @@ export class IndexRoute extends BaseRoute {
             });
         });
 
-        console.log("api response: " + apiResponse);
-
         const userIDs = [];
         for (let user of (apiResponse as any).users) {
             userIDs.push(user.userID);
@@ -73,7 +66,6 @@ export class IndexRoute extends BaseRoute {
 
     private async requestPurchases(userID: String, req: Request, res: Response, next: NextFunction) {
         let address = "http://localhost:3000/purchases/" + userID;
-        console.log("requesting purchases at " + address);
 
         let data = "";
         let apiResponse = await new Promise((resolve, reject) => {
@@ -88,14 +80,10 @@ export class IndexRoute extends BaseRoute {
             });
         });
 
-        console.log("User: " + userID + "'s purchases:  " + apiResponse);
-
         const userPurchases = [];
         for (let purchase of (apiResponse as any).purchases) {
-            console.log(purchase.description);
             userPurchases.push(purchase);
         }
-        console.log("number of purchases: " + userPurchases.length);
         return userPurchases;
     }
 
@@ -114,14 +102,11 @@ export class IndexRoute extends BaseRoute {
 
         let userIDs = await this.requestUsers(req, res, next);
 
-        //set message
+        //set options
         let options: Object = {
-            "message": "Welcome to UVic Seng 350!",
             "instructions": "Select your user ID to view your purchases",
             "users": userIDs
         };
-
-        console.log(options);
 
         //render template
         this.render(req, res, "index", options);
