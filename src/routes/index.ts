@@ -42,19 +42,8 @@ export class IndexRoute extends BaseRoute {
         super();
     }
 
-    /**
-     * The home page route.
-     *
-     * @class IndexRoute
-     * @method index
-     * @param req {Request} The express Request object.
-     * @param res {Response} The express Response object.
-     * @next {NextFunction} Execute the next method.
-     */
-    public async index(req: Request, res: Response, next: NextFunction) {
-        //set custom title
-        this.title = "Budget App | Welcome!";
 
+    private async requestUsers(req: Request, res: Response, next: NextFunction) {
         let data = "";
         let apiResponse = await new Promise((resolve, reject) => {
             http.get("http://localhost:3000/users", async (res) => {
@@ -74,6 +63,24 @@ export class IndexRoute extends BaseRoute {
         for (let user of (apiResponse as any).users) {
             userIDs.push(user.userID);
         }
+        return userIDs;
+
+    }
+
+    /**
+     * The home page route.
+     *
+     * @class IndexRoute
+     * @method index
+     * @param req {Request} The express Request object.
+     * @param res {Response} The express Response object.
+     * @next {NextFunction} Execute the next method.
+     */
+    public async index(req: Request, res: Response, next: NextFunction) {
+        //set custom title
+        this.title = "Budget App | Welcome!";
+
+        let userIDs = await this.requestUsers(req, res, next);
 
         //set message
         let options: Object = {
@@ -88,8 +95,6 @@ export class IndexRoute extends BaseRoute {
         this.render(req, res, "index", options);
 
         //this.render(req, res, "purchases");
-
-
 
 
     }
