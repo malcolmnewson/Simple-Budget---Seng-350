@@ -6,8 +6,5 @@ module.exports = {
     roots: [
         "<rootDir>/src/",
         "<rootDir>/tests/"
-    ],
-    modulePathIgnorePatterns: [
-        "<rootDir>/tests/routes/"
     ]
 };
