@@ -2,10 +2,16 @@ import {UserDao} from "../src/daos/userDao"
 
 /*test('get user', () => {
    userDao : new UserDao();
-   expect(userDao.getUser("oliverlewis"))
+   userDao.getUser()
+   expect(
 });*/
-
 /*
-test('sample', () => {
-    expect(sum(1,2)).toBe(3);
+describe('Users', () => {
+    let instance: UserDao;
+
+    beforeEach(() => {
+
+    })
+    }
+
 });*/
