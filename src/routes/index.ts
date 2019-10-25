@@ -126,8 +126,6 @@ export class IndexRoute extends BaseRoute {
         //render template
         this.render(req, res, "index", options);
 
-        //this.render(req, res, "purchases");
-
 
     }
 
@@ -135,20 +133,11 @@ export class IndexRoute extends BaseRoute {
         this.title = "My Purchases";
 
         let userID = req.params.userID;
-        console.log("selected users: " + userID);
-
         let purchases = await this.requestPurchases(userID, req, res, next);
-
-        //
-        // var purchase1 = JSON.parse('{"_id":{"$oid":"5dae12e41c9d440000987caa"},"userID":"malcolmnewson","category":"Food","cost":{"$numberDouble":"20.98"},"date":{"$date":{"$numberLong":"1546344000000"}},"description":"Snack"}');
-        // var purchase2 = JSON.parse('{"_id":{"$oid":"5dae15c21c9d440000987cac"},"userID":"malcolmnewson","category":"Food","cost":{"$numberDouble":"12"},"date":{"$date":{"$numberLong":"1546344000000"}},"description":"dinner"}');
-        //
-        // var purchases = {purchase1, purchase2};
 
         let options: Object = {
             user: userID,
             purchases: purchases
-
         };
 
         this.render(req, res, "purchases", options)
