@@ -7,14 +7,20 @@ block content
     if purchases.length === 0
         p This user has no purchases recorded
     else
-        table(style='width:60%', border='1')
-            tr
-                th Category
-                th Amount
-                th Description
-            each purchase in purchases
-                tr
-                    td #{purchase.category}
-                    td #{purchase.cost}
-                    td #{purchase.description}
+        each category in categories
+            h2 #{category}
 
+            table(style='width:60%', border='1')
+                tr
+                    th Amount
+                    th Description
+                    th Date
+                each purchase in purchases
+                    if (category === purchase.category)
+                        tr
+                            -
+                                let date = purchase.date;
+                                date = date.substr(0,10)
+                            td  $ #{purchase.cost}
+                            td #{purchase.description}
+                            td #{date}
