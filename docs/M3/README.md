@@ -23,12 +23,6 @@ The user stories implemented for this code sprint are linked below. A user can l
 To run unit tests run `npm t` from terminal.
 
 To see code coverage report open `coverage/lcov-report/index.html` in a browser.
-
-    Commit latest, working code to Github tagged "sprint1". Ensure there is a build process documented in the Readme file.
-    Static analysis report 
-       Passing Travis CI builds
-    Code coverage report.
-    What design problems were faced (and how design changed).
     
     
 
