@@ -7,14 +7,14 @@ export class UserDao {
     }
 
     // Returns a single user's info by their ID
-    public async getUser(userID : any) {
+    public async getUser(userID: any) {
         let user;
 
         try {
-            let database = await DbClient.connect();
-            user = database!.collection("users").findOne({"userID" : userID});
+            const database = await DbClient.connect();
+            user = database!.collection("users").findOne({userID});
         } catch {
-            console.log("Dao: Error getting user");
+            // console.log("Dao: Error getting user");
         }
 
         return user;
@@ -25,10 +25,10 @@ export class UserDao {
         let users;
 
         try {
-            let database = await DbClient.connect();
+            const database = await DbClient.connect();
             users = database!.collection("users").find().toArray();
         } catch {
-            console.log("Dao: Error getting all users.");
+            // console.log("Dao: Error getting all users.");
         }
 
         return users;

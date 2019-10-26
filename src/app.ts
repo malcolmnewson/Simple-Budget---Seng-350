@@ -1,13 +1,12 @@
-
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+import errorHandler from "errorhandler";
 import express from "express";
 import logger from "morgan";
 import path from "path";
-import errorHandler from "errorhandler";
-import { IndexRoute } from "./routes/index";
-import { UserRouter } from "./routes/userRouter";
-import { PurchaseRouter } from "./routes/purchaseRouter";
+import {IndexRoute} from "./routes";
+import {PurchaseRouter} from "./routes/purchaseRouter";
+import {UserRouter} from "./routes/userRouter";
 
 /**
  * The server.
@@ -15,8 +14,6 @@ import { PurchaseRouter } from "./routes/purchaseRouter";
  * @class Server
  */
 export class Server {
-
-    public app: express.Application;
 
     /**
      * Bootstrap the application.
@@ -30,6 +27,8 @@ export class Server {
         return new Server();
     }
 
+    public app: express.Application;
+
     /**
      * Constructor.
      *
@@ -37,13 +36,15 @@ export class Server {
      * @constructor
      */
     constructor() {
-        //create express.js application
+        /*
+         create express.js application
+        */
         this.app = express();
 
-        //configure application
+        // configure application
         this.config();
 
-        //add routes
+        // add routes
         this.routes();
     }
 
@@ -54,25 +55,25 @@ export class Server {
      * @method config
      */
     public config() {
-        //add static paths
+        // add static paths
         this.app.use(express.static(path.join(__dirname, "public")));
 
-        //configure pug
+        // configure pug
         this.app.set("../views", path.join(__dirname, "../views"));
         this.app.set("view engine", "pug");
 
-        //mount logger
+        // mount logger
         this.app.use(logger("dev"));
 
-        //mount json form parser
+        // mount json form parser
         this.app.use(bodyParser.json());
 
-        //mount query string parser
+        // mount query string parser
         this.app.use(bodyParser.urlencoded({
-            extended: true
+            extended: true,
         }));
 
-        //mount cookie parser middleware
+        // mount cookie parser middleware
         this.app.use(cookieParser("SECRET_GOES_HERE"));
 
         // catch 404 and forward to error handler
@@ -81,7 +82,7 @@ export class Server {
             next(err);
         });
 
-        //error handling
+        // error handling
         this.app.use(errorHandler());
     }
 
@@ -100,7 +101,7 @@ export class Server {
         UserRouter.create(router);
         PurchaseRouter.create(router);
 
-        //use router middleware
+        // use router middleware
         this.app.use(router);
     }
 
