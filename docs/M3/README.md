@@ -1,8 +1,13 @@
 # Milestone 3: Code Iteration 1
 ## Build Steps
-clone repository
-node package manager: install all dependencies: ?npm init ??
-open in webstorm, if config file is included...
+1. Clone repository.
+2. Run `npm install` in the repository.
+3. Open WebStorm and create a new Node.js configuration. Specify `bin/www` as the JavaScript file.
+4. Run `tsc` in terminal.
+5. Run the app from WebStorm.
+6. Go to `http://localhost:3000/` in browser
+
+seng350f19-project-2-1/coverage/lcov-report/index.html
 
 ## Functionality
 At present, the app consists of a login page where a list of users and admin are presented. Once a user is selected they are directed to that users history page. This page displays all purchases by that users in a separate table per category and sorted in reverse date. If the web user selects an admin they are directed to a simple list of users. Eventually this will changed to allow the admin to create or delete users. 
