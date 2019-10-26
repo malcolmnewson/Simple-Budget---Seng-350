@@ -1,5 +1,4 @@
-
-import { NextFunction, Request, Response } from "express";
+import {Request, Response} from "express";
 
 /**
  * Constructor
@@ -10,7 +9,7 @@ export class BaseRoute {
 
     protected title: string;
 
-    private scripts: string[];
+    private readonly scripts: string[];
 
 
     /**

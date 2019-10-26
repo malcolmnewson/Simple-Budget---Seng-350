@@ -1,13 +1,12 @@
-
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import express from "express";
 import logger from "morgan";
 import path from "path";
 import errorHandler from "errorhandler";
-import { IndexRoute } from "./routes/index";
-import { UserRouter } from "./routes/userRouter";
-import { PurchaseRouter } from "./routes/purchaseRouter";
+import {IndexRoute} from "./routes";
+import {UserRouter} from "./routes/userRouter";
+import {PurchaseRouter} from "./routes/purchaseRouter";
 
 /**
  * The server.
