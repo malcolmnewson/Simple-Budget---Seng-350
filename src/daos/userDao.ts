@@ -14,7 +14,7 @@ export class UserDao {
             let database = await DbClient.connect();
             return database!.collection("users").findOne({"userID" : userID});
         } catch {
-            console.log("Dao: Error getting user");
+            // console.log("Dao: Error getting user");
         }
 
         return null;
@@ -27,7 +27,7 @@ export class UserDao {
             let database = await DbClient.connect();
             return database!.collection("users").find().toArray();
         } catch {
-            console.log("Dao: Error getting all users.");
+            // console.log("Dao: Error getting all users.");
         }
 
         return null;
