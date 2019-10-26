@@ -1,4 +1,4 @@
-# Milestone 2: Detailed Design
+# Milestone 3: Code Iteration 1
 ## Build Steps
 clone repository
 node package manager: install all dependencies: ?npm init ??
