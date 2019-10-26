@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+    h1 #{title}
+    h3 Welcome #{user}!
+    p You have administrator privileges.
+
+    h3 Current users in the system
+    table(style='width:60%', border='1')
+        tr
+            th User ID
+            th Name
+            th Account Identifier
+            th View Account
+        each user in allUsers
+            if (user.admin === false)
+                tr
+                    td #{user.userID}
+                    td #{user.givenName}
+                    td #{user._id}
+                    td
+                        a(href='/user/' + user.userID) #{user.userID}
+
+
+
