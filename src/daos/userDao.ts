@@ -6,31 +6,30 @@ export class UserDao {
 
     }
 
-    // Returns a single user's info by their ID
-    public async getUser(userID: any) {
-        let user;
+    // Returns a single user's info by their ID if they exist.
+    // Returns null otherwise.
+    public async getUser(userID : any) {
 
         try {
-            const database = await DbClient.connect();
-            user = database!.collection("users").findOne({userID});
+            let database = await DbClient.connect();
+            return database!.collection("users").findOne({"userID" : userID});
         } catch {
             // console.log("Dao: Error getting user");
         }
 
-        return user;
+        return null;
     }
 
-    // Returns all users
+    // Returns all users if successful, returns null otherwise
     public async getAllUsers() {
-        let users;
 
         try {
-            const database = await DbClient.connect();
-            users = database!.collection("users").find().toArray();
+            let database = await DbClient.connect();
+            return database!.collection("users").find().toArray();
         } catch {
             // console.log("Dao: Error getting all users.");
         }
 
-        return users;
+        return null;
     }
 }

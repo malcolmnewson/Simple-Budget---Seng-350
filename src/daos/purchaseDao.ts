@@ -8,30 +8,30 @@ export class PurchaseDao {
     // }
 
     // Gets all purchases related to the userID
-    public async getUsersPurchases(userID: any) {
-        let purchases;
+
+    public async getUsersPurchases(userID : any) {
 
         try {
-            const database = await DbClient.connect();
-            purchases = database!.collection(this.purchasesCollection).find({userID}).toArray();
+            let database = await DbClient.connect();
+            return database!.collection(this.purchases_collection).find({"userID" : userID}).toArray();
         } catch {
             // console.log("Dao: Error getting purchases for user");
         }
 
-        return purchases;
+        return null;
     }
 
     // Gets all purchases from all users
     public async getAllPurchases() {
-        let purchases;
 
         try {
-            const database = await DbClient.connect();
-            purchases = database!.collection(this.purchasesCollection).find().toArray();
+
+            let database = await DbClient.connect();
+            return database!.collection(this.purchases_collection).find().toArray();
         } catch {
             // console.log("Dao: Error getting all user purchases");
         }
 
-        return purchases;
+        return null;
     }
 }
