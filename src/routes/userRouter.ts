@@ -7,18 +7,23 @@ export class UserRouter {
         // log
         // console.log("[UserRoute::create] Creating UserRoute route.");
 
-        // add getAll route
+        // route for getting all users
         router.get("/users", async (req: Request, res: Response, next: NextFunction) => {
             await new UserRouter().getAll(req, res, next);
         });
 
-        // add getOne route
+        // route for getting an individual user
         router.get("/users/:userID", async (req: Request, res: Response, next: NextFunction) => {
-           await new UserRouter().getOne(req, res, next);
+            await new UserRouter().getOne(req, res, next);
+        });
+
+        // route for deleting a user
+        router.post("/users/delete/:userID", async (req: Request, res: Response) => {
+            await new UserRouter().deleteOne(req, res);
         });
     }
 
-    // used to user collection from database
+    // Dao for handling project_data.users in mongo
     private userDao: UserDao;
 
     constructor() {
@@ -83,5 +88,25 @@ export class UserRouter {
                     status: res.status,
                 });
         }
+    }
+
+    /*
+     * POST deletes a user by userID
+     */
+    public async deleteOne(req: Request, res: Response) {
+        const userID = req.params.userID;
+        let result = await this.userDao.deleteUser(userID);
+
+        // FINISH THIS.
+
+        if (result !== null) {
+            // success
+
+        } else {
+            // unsuccessful
+
+        }
+
+        res.send();
     }
 }

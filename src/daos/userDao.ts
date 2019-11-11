@@ -32,4 +32,24 @@ export class UserDao {
 
         return null;
     }
+
+    // Deletes the specified userID from project_data.users
+    // Returns null if unsuccessful. Otherwise returns the deleted object.
+    public async deleteUser(userID : any) {
+
+        let database = await DbClient.connect();
+
+        database!.collection("users").findOneAndDelete({"userID" : userID}, (error : any, result : any) => {
+
+            //check result.value to see if the deletion was successful.
+            if (result.value == null) {
+                console.log("Failed to delete user.");
+            } else {
+                console.log("Successfully deleted user.");
+            }
+
+            return result.value;
+        });
+    }
+
 }
