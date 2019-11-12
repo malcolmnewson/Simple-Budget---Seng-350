@@ -11,6 +11,12 @@ export class PurchaseRouter {
         router.get("/purchases/:userID", async (req: Request, res: Response, next: NextFunction) => {
             await new PurchaseRouter().getUserPurchases(req, res, next);
         });
+
+        // add uploadUserPurchase route
+        router.get("/purchases/upload", async (req: Request, res: Response, next: NextFunction) => {
+            console.log("Dao: error uploading users purchase");
+            await new PurchaseRouter().uploadUserPurchase(req, res, next);
+        });
     }
 
     // used to access purchase collection from database
@@ -48,4 +54,33 @@ export class PurchaseRouter {
                 });
         }
     }
+
+
+    /** ??????????
+     * Upload purchase Dao
+     *
+     * @class PurchaseDao
+     * @method uploadUsersPurchase
+     * @param req {Request} The express Request object.?
+     * @param res {Response} The express Response object.?
+     * @param next ?
+     * @next {NextFunction} Execute the next method.?
+     */
+    public async uploadUserPurchase(req:Request, res: Response, next: NextFunction){
+        try {
+            console.log("Dao: error uploading users purchase");
+            await this.purchaseDao.uploadUsersPurchase()
+        } catch {
+            //error message?
+        }
+        res.status(200)
+            .send({
+                message: "Success",
+                status: res.status,
+            });
+        //maybe add error codes?
+
+    }
+
+
 }

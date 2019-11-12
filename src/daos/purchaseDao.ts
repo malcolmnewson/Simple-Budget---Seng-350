@@ -33,4 +33,28 @@ export class PurchaseDao {
 
         return null;
     }
+    /**
+     * Upload purchase Dao
+     *
+     * @class PurchaseDao
+     * @method uploadUsersPurchase
+     * @param req {Request} The express Request object.?
+     * @param res {Response} The express Response object.?
+     * @param next ?
+     * @next {NextFunction} Execute the next method.?
+     */
+    public async uploadUsersPurchase(){ //purchase : any
+        try {
+            let database = await DbClient.connect();
+            database!.collection(this.purchasesCollection).insert({"userID":"malcolmnewson","category":"Transport","cost":75.05,"date":{"$date":"2019-02-01T12:00:00Z"},"description":"Gas"});
+            //console.log("Dao: error uploading users purchase");
+            return true;
+        } catch {
+             //console.log("Dao: error uploading users purchase");
+        }
+
+
+
+        return null;
+    }
 }
