@@ -3,7 +3,7 @@ Title: Marking Rubric - Project
 Authors: Neil Ernst
 ---
 
-# Running Total (this will change each milestone):   9
+# Running Total (this will change each milestone):   42
 
 NB: for all milestones, basic clean coding style: comments, standardized indentation, lack of code smells, is expected. Your submission and repository should show the following: 
 	- Travis CI is being used (M3+)
@@ -54,7 +54,7 @@ Marks deducted:
 -----
 
 
-# Milestone 3    / 20
+# Milestone 3    17/ 20
 
 ## Marking Guide	
 
@@ -69,4 +69,6 @@ Marks deducted:
 ## Notes M3
 
 (explaining why marks were deducted)
------
+
+- CI is not implemented. (-2)
+- Comments are missing. (-1)
