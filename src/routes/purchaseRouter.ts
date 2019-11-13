@@ -9,12 +9,13 @@ export class PurchaseRouter {
 
         // add getUserPurchases route
         router.get("/purchases/:userID", async (req: Request, res: Response, next: NextFunction) => {
+            console.log("Successful userID");
             await new PurchaseRouter().getUserPurchases(req, res, next);
         });
 
         // add uploadUserPurchase route
-        router.get("/purchases/upload", async (req: Request, res: Response, next: NextFunction) => {
-            console.log("Dao: error uploading users purchase");
+        router.get("/purchases/:upload", async (req: Request, res: Response, next: NextFunction) => {
+            console.log("Successful upload");
             await new PurchaseRouter().uploadUserPurchase(req, res, next);
         });
     }
@@ -67,9 +68,11 @@ export class PurchaseRouter {
      * @next {NextFunction} Execute the next method.?
      */
     public async uploadUserPurchase(req:Request, res: Response, next: NextFunction){
+        let result;
         try {
             console.log("Dao: error uploading users purchase");
-            await this.purchaseDao.uploadUsersPurchase()
+            result = await this.purchaseDao.uploadUsersPurchase();
+            console.log(result);
         } catch {
             //error message?
         }

@@ -44,11 +44,12 @@ export class PurchaseDao {
      * @next {NextFunction} Execute the next method.?
      */
     public async uploadUsersPurchase(){ //purchase : any
+        let result;
         try {
             let database = await DbClient.connect();
-            database!.collection(this.purchasesCollection).insert({"userID":"malcolmnewson","category":"Transport","cost":75.05,"date":{"$date":"2019-02-01T12:00:00Z"},"description":"Gas"});
+            result = database!.collection(this.purchasesCollection).insert({"userID":"malcolmnewson","category":"Transport","cost":75.05,"date":{"$date":"2019-02-01T12:00:00Z"},"description":"Gas"});
             //console.log("Dao: error uploading users purchase");
-            return true;
+            return result;
         } catch {
              //console.log("Dao: error uploading users purchase");
         }
