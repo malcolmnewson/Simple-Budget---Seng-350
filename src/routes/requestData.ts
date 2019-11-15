@@ -75,7 +75,7 @@ export class RequestData {
      * @return userPurchases.
      */
     public async requestPurchases(userID: string, res: Response) {
-        const address = "http://localhost:3000/purchasePage/" + userID;
+        const address = "http://localhost:3000/user/" + userID;
 
         let data = "";
         let apiResponse = await new Promise((resolve, reject) => {
