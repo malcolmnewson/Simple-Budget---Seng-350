@@ -87,6 +87,7 @@ export class RequestData {
                     apiResponse = JSON.parse(data);
                     resolve(apiResponse);
                 });
+
             });
         });
 
