@@ -70,12 +70,12 @@ export class RequestData {
      * Http get request one user's purchases.
      * @class RequestData
      * @method requestPurchases
-     * @param userID {string} id of user specidied
+     * @param userID {string} id of user specified
      * @param res {Response} The express Response object.
      * @return userPurchases.
      */
     public async requestPurchases(userID: string, res: Response) {
-        const address = "http://localhost:3000/purchasePage/" + userID;
+        const address = "http://localhost:3000/users/" + userID;
 
         let data = "";
         let apiResponse = await new Promise((resolve, reject) => {
@@ -91,7 +91,7 @@ export class RequestData {
         });
 
         const userPurchases = [];
-        for (const purchase of (apiResponse as any).purchasePage) {
+        for (const purchase of (apiResponse as any).user) {
             userPurchases.push(purchase);
         }
         return userPurchases;
