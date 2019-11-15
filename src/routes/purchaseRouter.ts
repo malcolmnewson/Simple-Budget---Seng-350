@@ -14,9 +14,13 @@ export class PurchaseRouter {
         });
 
         // add uploadUserPurchase route
-        router.get("/purchases/:upload", async (req: Request, res: Response, next: NextFunction) => {
+        router.post("/purchases/upload/banana", async (req: Request, res: Response) => {
             console.log("Successful upload");
-            await new PurchaseRouter().uploadUserPurchase(req, res, next);
+            await new PurchaseRouter().uploadUserPurchase(req, res);
+        });
+        router.post("/users/delete/:userID", async (req: Request, res: Response) => {
+            console.log("DELETING A USER");
+
         });
     }
 
@@ -67,10 +71,10 @@ export class PurchaseRouter {
      * @param next ?
      * @next {NextFunction} Execute the next method.?
      */
-    public async uploadUserPurchase(req:Request, res: Response, next: NextFunction){
+    public async uploadUserPurchase(req:Request, res: Response){
         let result;
         try {
-            console.log("Dao: error uploading users purchase");
+            console.log("in upload users purchases router method");
             result = await this.purchaseDao.uploadUsersPurchase();
             console.log(result);
         } catch {

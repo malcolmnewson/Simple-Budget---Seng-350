@@ -16,6 +16,10 @@ export class UserRouter {
         router.get("/users/:userID", async (req: Request, res: Response, next: NextFunction) => {
            await new UserRouter().getOne(req, res, next);
         });
+        router.post("/purchases/upload/banana", async (req: Request, res: Response) => {
+            console.log("Successful upload");
+
+        });
     }
 
     // used to user collection from database
