@@ -51,24 +51,4 @@ export class PurchaseDao {
         }
         return null;
     }
-    /**
-     * update purchase Dao
-     *
-     * @class purchaseDao
-     * @method updateUsersPurchase
-     * @param purchase The json object to be updated.
-     */
-    public async updateUsersPurchase(purchase : any){
-        let result;
-        try {
-            let database = await DbClient.connect();
-            //result = database!.collection(this.purchasesCollection).insert(purchase);
-            //console.log("In purchase user upload DAO");
-            //console.log(result)
-            return result;
-        } catch {
-            //console.log("Dao: error uploading users purchase");
-        }
-        return null;
-    }
 }
