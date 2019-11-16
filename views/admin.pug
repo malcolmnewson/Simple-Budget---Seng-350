@@ -11,13 +11,15 @@ block content
         tr
             th User ID
             th Name
-            th Account Identifier
             th View Account
+            th Delete Account
         each user in allUsers
             if (user.admin === false)
                 tr
                     td #{user.userID}
                     td #{user.givenName}
-                    td #{user._id}
                     td
                         a(href='/user/' + user.userID) #{user.userID}
+                    td
+                        form(action='/users/delete/'+user.userID, method='post', display='')
+                            input(type='submit', value='Delete')
