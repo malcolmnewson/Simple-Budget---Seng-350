@@ -21,10 +21,6 @@ export class UserRouter {
         router.post("/users/delete/:userID", async (req: Request, res: Response) => {
             await new UserRouter().deleteOne(req, res);
         });
-        router.post("/purchases/upload/banana", async (req: Request, res: Response) => {
-            console.log("Successful upload");
-
-        });
     }
 
     // Dao for handling project_data.users in mongo
