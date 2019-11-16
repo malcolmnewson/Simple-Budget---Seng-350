@@ -80,8 +80,10 @@ export class RequestData {
         let data = "";
         let apiResponse = await new Promise((resolve, reject) => {
             http.get(address, async (res) => {
+                console.log("res: " + res);
                 res.on("data", (chunk) => {
                     data += chunk;
+                    console.log("data: " + data);
                 });
                 await res.on("end", () => {
                     apiResponse = JSON.parse(data);
@@ -94,6 +96,7 @@ export class RequestData {
         for (const purchase of (apiResponse as any).purchases) {
             userPurchases.push(purchase);
         }
+        //console.log(userPurchases);
         return userPurchases;
     }
 

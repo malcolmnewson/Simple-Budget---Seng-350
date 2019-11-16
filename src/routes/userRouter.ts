@@ -16,6 +16,17 @@ export class UserRouter {
         router.get("/users/:userID", async (req: Request, res: Response, next: NextFunction) => {
            await new UserRouter().getOne(req, res, next);
         });
+
+        router.post("/create_user", async (req: Request, res: Response) => {
+            console.log("post request received");
+            console.log("res: " + res as any);
+
+            await new UserRouter().createUser(req, res);
+
+
+            res.redirect('back');
+            // await new UserRouter().getOne(req, res, next);
+        });
     }
 
     // used to user collection from database
@@ -83,5 +94,9 @@ export class UserRouter {
                     status: res.status,
                 });
         }
+    }
+
+    private async createUser(req: Request, res: Response) {
+
     }
 }

@@ -21,3 +21,12 @@ block content
                     td #{user._id}
                     td
                         a(href='/user/' + user.userID) #{user.userID}
+
+    h3 Add new user to system
+    p UserID must be unique
+    form(action='/create_user/' method='post')
+        label(for='userID') Enter UserID:
+        input#userID(type='text' name='UserID' value='Default')
+        label(for='first_name') Enter first name:
+        input#first_name(type='text' name='first_name' value='Default')
+        input(type='submit' value='OK')
