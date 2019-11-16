@@ -114,13 +114,14 @@ export class UserRouter {
         let result = await this.userDao.deleteUser(userID);
 
         if (result !== null) {
-            res.send({
+            res.redirect('back');
+            /*res.send({
                 message: "Success"
-            });
+            });*/
         } else {
-            res.send({
+            /*res.send({
                 message: "Failed"
-            });
+            });*/
         }
     }
 }
