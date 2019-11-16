@@ -111,17 +111,9 @@ export class UserRouter {
      */
     public async deleteOne(req: Request, res: Response) {
         const userID = req.params.userID;
-        let result = await this.userDao.deleteUser(userID);
 
-        if (result !== null) {
-            res.redirect('back');
-            /*res.send({
-                message: "Success"
-            });*/
-        } else {
-            /*res.send({
-                message: "Failed"
-            });*/
-        }
+        await this.userDao.deleteUser(userID);
+
+        return res.redirect('back');
     }
 }
