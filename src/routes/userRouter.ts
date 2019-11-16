@@ -21,6 +21,17 @@ export class UserRouter {
         router.post("/users/delete/:userID", async (req: Request, res: Response) => {
             await new UserRouter().deleteOne(req, res);
         });
+
+        router.post("/create_user", async (req: Request, res: Response) => {
+            console.log("post request received");
+            console.log("res: " + res as any);
+
+            await new UserRouter().createUser(req, res);
+
+
+            res.redirect('back');
+            // await new UserRouter().getOne(req, res, next);
+        });
     }
 
     // Dao for handling project_data.users in mongo
@@ -115,5 +126,10 @@ export class UserRouter {
         await this.userDao.deleteUser(userID);
 
         return res.redirect('back');
+    }
+
+    private async createUser(req: Request, res: Response) {
+
+
     }
 }
