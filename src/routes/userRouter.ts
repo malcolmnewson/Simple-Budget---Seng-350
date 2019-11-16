@@ -97,6 +97,26 @@ export class UserRouter {
     }
 
     private async createUser(req: Request, res: Response) {
+        let result;
+        try {
+            result = await this.userDao.addNewUser();
+        } catch {
+            console.log("add new user failed");
+        }
+        // if (result) {
+        //     res.status(200)
+        //         .send({
+        //             message: "Success",
+        //             status: res.status,
+        //             result,
+        //         });
+        // } else {
+        //     res.status(404)
+        //         .send({
+        //             message: "User created.",
+        //             status: res.status,
+        //         });
+        // }
 
     }
 }

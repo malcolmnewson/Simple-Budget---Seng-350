@@ -32,4 +32,22 @@ export class UserDao {
 
         return null;
     }
+
+    public async addNewUser() {
+        const testUser = {
+            "_id": {"$oid": "5dd042fb1c9d440000f6077c"},
+            "userID": "test_user7",
+            "givenName": "Test User",
+            "admin": false
+        }
+
+        try {
+            let database = await DbClient.connect();
+            return database!.collection("users").insertOne(testUser);
+        } catch {
+            console.log("Error inserting user")
+        }
+        return null;
+
+    }
 }
