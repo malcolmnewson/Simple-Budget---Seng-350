@@ -1,1 +1,4 @@
-Language: node.js
+language: node.js
+install:
+  - npm install
+
