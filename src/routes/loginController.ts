@@ -89,7 +89,7 @@ export class LoginController extends BaseRoute {
             purchases,
             user: userID,
         };
-        this.render(req, res, "purchasePage", options);
+        this.render(req, res, "purchases", options);
     }
 
 }
