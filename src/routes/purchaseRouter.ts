@@ -11,6 +11,13 @@ export class PurchaseRouter {
         router.get("/purchases/:userID", async (req: Request, res: Response) => {
             await new PurchaseRouter().getUserPurchases(req, res);
         });
+
+        // add uploadUserPurchase route
+        router.post("/purchases/upload", async (req: Request, res: Response) => {
+            await new PurchaseRouter().uploadUserPurchase(req, res);
+        });
+
+
     }
 
     // used to access purchase collection from database
@@ -49,8 +56,27 @@ export class PurchaseRouter {
             res.status(404);
             res.send({
                     message: "No purchases found related to the userID",
-                    status: res.status,
+                    //status: res.status,
                 });
         }
+    }
+
+
+    /**
+     * Upload purchase Dao
+     *
+     * @class PurchaseDao
+     * @method uploadUsersPurchase
+     * @param req {Request} The express Request object.
+     * @param res {Response} The express Response object.
+     */
+    public async uploadUserPurchase(req:Request, res: Response){
+        let result;
+        try {
+            result = await this.purchaseDao.uploadUsersPurchase(req.body);
+        } catch {
+            //error message?
+        }
+        return res.redirect('back');
     }
 }
