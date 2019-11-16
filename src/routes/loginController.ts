@@ -84,6 +84,8 @@ export class LoginController extends BaseRoute {
 
         purchases.sort((a, b) => (a.date > b.date) ? -1 : 1);
 
+        //console.log(purchases);
+
         const options: object = {
             categories,
             purchases,

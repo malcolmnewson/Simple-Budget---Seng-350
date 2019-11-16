@@ -20,6 +20,16 @@ block content
                     td #{user.givenName}
                     td
                         a(href='/user/' + user.userID) #{user.userID}
+
                     td
-                        form(action='/users/delete/'+user.userID, method='post', display='')
+                        form(action='/users/delete/'+user.userID, method='post')
                             input(type='submit', value='Delete')
+
+    h3 Add new user to system
+    p UserID must be unique
+    form(action='/create_user/' method='post')
+        label(for='userID') Enter UserID:
+        input#userID(type='text' name='UserID' value='Default')
+        label(for='first_name') Enter first name:
+        input#first_name(type='text' name='first_name' value='Default')
+        input(type='submit' value='OK')
