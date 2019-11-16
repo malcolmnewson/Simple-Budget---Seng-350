@@ -75,7 +75,7 @@ export class RequestData {
      * @return userPurchases.
      */
     public async requestPurchases(userID: string, res: Response) {
-        const address = "http://localhost:3000/user/" + userID;
+        const address = "http://localhost:3000/purchases/" + userID;
 
         let data = "";
         let apiResponse = await new Promise((resolve, reject) => {
@@ -91,7 +91,7 @@ export class RequestData {
         });
 
         const userPurchases = [];
-        for (const purchase of (apiResponse as any).purchasePage) {
+        for (const purchase of (apiResponse as any).purchases) {
             userPurchases.push(purchase);
         }
         return userPurchases;
