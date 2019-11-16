@@ -19,7 +19,9 @@ export class PurchaseDao {
 
         try {
             let database = await DbClient.connect();
-            return database!.collection(this.purchasesCollection).find({"userID" : userID}).toArray();
+            let purchases = database!.collection(this.purchasesCollection).find({"userID" : userID}).toArray();
+            DbClient.closeConnection();
+            return purchases;
         } catch {
             console.log("Dao: Error getting purchases for user");
             return null;
@@ -36,9 +38,10 @@ export class PurchaseDao {
     public async getAllPurchases() {
 
         try {
-
             let database = await DbClient.connect();
-            return database!.collection(this.purchasesCollection).find().toArray();
+            let purchases = database!.collection(this.purchasesCollection).find().toArray();
+            DbClient.closeConnection();
+            return purchases;
         } catch {
             console.log("Dao: Error getting all user purchases");
             return null;
