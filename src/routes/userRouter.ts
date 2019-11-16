@@ -45,7 +45,7 @@ export class UserRouter {
         try {
             users = await this.userDao.getAllUsers();
         } catch {
-            // console.log("Router: Error getting all users.");
+            console.log("Router: Error getting all users.");
         }
 
         if (users !== undefined) {
