@@ -9,19 +9,20 @@ export class PurchaseRouter {
 
         // add getUserPurchases route
         router.get("/purchases/:userID", async (req: Request, res: Response, next: NextFunction) => {
-            console.log("Successful userID");
+            //console.log("Successful userID");
             await new PurchaseRouter().getUserPurchases(req, res, next);
         });
 
         // add uploadUserPurchase route
-        router.post("/purchases/upload/banana", async (req: Request, res: Response) => {
-            console.log("Successful upload");
+        router.post("/purchases/upload", async (req: Request, res: Response) => {
             await new PurchaseRouter().uploadUserPurchase(req, res);
         });
-        router.post("/users/delete/:userID", async (req: Request, res: Response) => {
-            console.log("DELETING A USER");
 
+        // add updateUserPurchase route
+        router.post("/purchases/update", async (req: Request, res: Response) => {
+            await new PurchaseRouter().updateUserPurchase(req, res);
         });
+
     }
 
     // used to access purchase collection from database
@@ -55,27 +56,50 @@ export class PurchaseRouter {
             res.status(404)
                 .send({
                     message: "No purchases found related to the userID",
-                    status: res.status,
+                    //status: res.status,
                 });
         }
     }
 
 
-    /** ??????????
+    /**
      * Upload purchase Dao
      *
      * @class PurchaseDao
      * @method uploadUsersPurchase
-     * @param req {Request} The express Request object.?
-     * @param res {Response} The express Response object.?
-     * @param next ?
-     * @next {NextFunction} Execute the next method.?
+     * @param req {Request} The express Request object.
+     * @param res {Response} The express Response object.
      */
     public async uploadUserPurchase(req:Request, res: Response){
         let result;
         try {
-            console.log("in upload users purchases router method");
-            result = await this.purchaseDao.uploadUsersPurchase();
+            //console.log("in upload users purchases router method");
+            result = await this.purchaseDao.uploadUsersPurchase(req.body);
+            console.log(result);
+        } catch {
+            //error message?
+        }
+        res.status(200)
+            .send({
+                message: "Success",
+                status: res.status,
+            });
+        //maybe add error codes?
+
+    }
+    /**
+     * update purchase Dao
+     *
+     * @class PurchaseDao
+     * @method updateUsersPurchase
+     * @param req {Request} The express Request object.
+     * @param res {Response} The express Response object.
+     */
+    public async updateUserPurchase(req:Request, res: Response){
+        let result;
+        try {
+            //console.log("in upload users purchases router method");
+            result = await this.purchaseDao.updateUsersPurchase(req.body);
             console.log(result);
         } catch {
             //error message?

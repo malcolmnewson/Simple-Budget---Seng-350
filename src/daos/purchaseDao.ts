@@ -36,22 +36,38 @@ export class PurchaseDao {
     /**
      * Upload purchase Dao
      *
-     * @class PurchaseDao
+     * @class purchaseDao
      * @method uploadUsersPurchase
-     * @param req {Request} The express Request object.?
-     * @param res {Response} The express Response object.?
-     * @param next ?
-     * @next {NextFunction} Execute the next method.?
+     * @param purchase The json object to be uploaded.
      */
-    public async uploadUsersPurchase(){ //purchase : any
+    public async uploadUsersPurchase(purchase : any){
         let result;
         try {
             let database = await DbClient.connect();
-            result = database!.collection(this.purchasesCollection).insert({"userID":"malcolmnewson","category":"Transport","cost":75.05,"date":{"$date":"2019-02-01T12:00:00Z"},"description":"Gas"});
-            console.log("In purchase user upload DAO");
+            result = database!.collection(this.purchasesCollection).insert(purchase);
             return result;
         } catch {
              //console.log("Dao: error uploading users purchase");
+        }
+        return null;
+    }
+    /**
+     * update purchase Dao
+     *
+     * @class purchaseDao
+     * @method updateUsersPurchase
+     * @param purchase The json object to be updated.
+     */
+    public async updateUsersPurchase(purchase : any){
+        let result;
+        try {
+            let database = await DbClient.connect();
+            //result = database!.collection(this.purchasesCollection).insert(purchase);
+            //console.log("In purchase user upload DAO");
+            //console.log(result)
+            return result;
+        } catch {
+            //console.log("Dao: error uploading users purchase");
         }
         return null;
     }
