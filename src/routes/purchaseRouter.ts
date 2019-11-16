@@ -73,20 +73,10 @@ export class PurchaseRouter {
     public async uploadUserPurchase(req:Request, res: Response){
         let result;
         try {
-            //console.log("in upload users purchases router method");
             result = await this.purchaseDao.uploadUsersPurchase(req.body);
-            console.log(result);
         } catch {
             //error message?
         }
-        res.status(200)
-            .send({
-                message: "Success",
-                status: res.status,
-            });
-        //maybe add error codes?
-
+        return res.redirect('back');
     }
-
-
 }
