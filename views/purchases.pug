@@ -4,6 +4,25 @@ block content
 
     h1 #{title}
     h3 Welcome #{user}!
+    h4 To upload a new purchase please fill out the below form
+
+    form(action="/purchases/upload", method='POST')
+        input(type='hidden', name='userID', value=user)
+        |  category:
+        select(name='category')
+            option(value='Food') Food
+            option(value='Clothing') Clothing
+            option(value='Transport') Transport
+            option(value='School') School
+        |  cost:
+        input(type='number', name='cost')
+        |  date:
+        input(type='date', name='date')
+        |  description:
+        input(type='text' name='description')
+        input(type='submit', value='upload')
+
+
     if purchases.length === 0
         p This user has no purchases recorded
     else

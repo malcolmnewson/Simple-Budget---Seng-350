@@ -70,7 +70,7 @@ export class RequestData {
      * Http get request one user's purchases.
      * @class RequestData
      * @method requestPurchases
-     * @param userID {string} id of user specidied
+     * @param userID {string} id of user specified
      * @param res {Response} The express Response object.
      * @return userPurchases.
      */
@@ -89,6 +89,7 @@ export class RequestData {
                     apiResponse = JSON.parse(data);
                     resolve(apiResponse);
                 });
+
             });
         });
 
