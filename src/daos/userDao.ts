@@ -1,4 +1,5 @@
 import DbClient = require("../DbClient");
+import {Db} from "mongodb";
 
 export class UserDao {
 
@@ -18,7 +19,9 @@ export class UserDao {
 
         try {
             let database = await DbClient.connect();
-            return database!.collection("users").findOne({"userID" : userID});
+            let user = database!.collection("users").findOne({"userID" : userID});
+            DbClient.closeConnection();
+            return user;
         } catch {
             console.log("Dao: Error getting user");
             return null;
@@ -36,7 +39,9 @@ export class UserDao {
 
         try {
             let database = await DbClient.connect();
-            return database!.collection("users").find().toArray();
+            let users = database!.collection("users").find().toArray();
+            DbClient.closeConnection();
+            return users;
         } catch {
             console.log("Dao: Error getting all users.");
             return null;

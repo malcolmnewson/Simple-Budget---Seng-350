@@ -1,4 +1,10 @@
-language: node.js
+language: node_js
+node_js:
+  - node
 install:
   - npm install
-
+git:
+  quiet: true
+  depth: false
+scripts:
+  - npm run coverage
