@@ -1,5 +1,6 @@
 import {NextFunction, Request, Response, Router} from "express";
 import {PurchaseDao} from "../daos/purchaseDao";
+import {LoginController} from "./loginController"
 
 export class PurchaseRouter {
 
@@ -17,7 +18,16 @@ export class PurchaseRouter {
             await new PurchaseRouter().uploadUserPurchase(req, res);
         });
 
+        // add updateStepOne route, which passes the data to be updated to the purchasePage
+        // so that it can be put into a form so the user can change it
+        router.post("/purchases/updateStepOne", async (req: Request, res: Response,next: NextFunction) => {
+            await new LoginController().purchasePage(req, res, next);
+        });
 
+        // add updateUserPurchase route
+        router.post("/purchases/update", async (req: Request, res: Response) => {
+            await new PurchaseRouter().updateUserPurchase(req, res);
+        });
     }
 
     // used to access purchase collection from database
@@ -78,5 +88,23 @@ export class PurchaseRouter {
             //error message?
         }
         return res.redirect('back');
+    }
+    /**
+     * Update purchase Dao
+     *
+     * @class PurchaseDao
+     * @method updateUsersPurchase
+     * @param req {Request} The express Request object.
+     * @param res {Response} The express Response object.
+     */
+    public async updateUserPurchase(req:Request, res: Response){
+        let result;
+        try {
+            result = await this.purchaseDao.updateUsersPurchase(req.body);
+        } catch {
+            //error message?
+        }
+        const returnAddress = "/user/"+req.body.userID;
+        return res.redirect(returnAddress);
     }
 }

@@ -1,4 +1,5 @@
 import DbClient = require("../DbClient");
+import mongodb = require("mongodb");
 
 export class PurchaseDao {
 
@@ -59,6 +60,27 @@ export class PurchaseDao {
             return result;
         } catch {
              //console.log("Dao: error uploading users purchase");
+        }
+        return null;
+    }
+    /**
+     * Update purchase Dao
+     *
+     * @class purchaseDao
+     * @method updateUsersPurchase
+     * @param purchase The json object to be updated.
+     */
+    public async updateUsersPurchase(purchase : any){
+        let result;
+        try {
+            let database = await DbClient.connect();
+            const ObjectID = mongodb.ObjectID;
+            const id: mongodb.ObjectID = new ObjectID(purchase._id)
+            delete purchase["_id"];
+            result = database!.collection(this.purchasesCollection).replaceOne({_id:id}, purchase);
+            return result;
+        } catch {
+            //console.log("Dao: error uploading users purchase");
         }
         return null;
     }
