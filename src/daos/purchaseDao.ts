@@ -55,10 +55,11 @@ export class PurchaseDao {
      * @param purchase The json object to be uploaded.
      */
     public async uploadUsersPurchase(purchase : any){
+        //console.log("Uploading: " + JSON.parse(purchase));
         let result;
         try {
             let database = await DbClient.connect();
-            result = database!.collection(this.purchasesCollection).insert(purchase);
+            result = database!.collection(this.purchasesCollection).insertOne(purchase);
             return result;
         } catch {
              //console.log("Dao: error uploading users purchase");

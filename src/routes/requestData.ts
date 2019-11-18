@@ -34,7 +34,7 @@ export class RequestData {
             });
         });
 
-        const userIDs = [];
+        let userIDs = [];
         for (const user of (apiResponse as any).users) {
             userIDs.push(user);
         }
@@ -80,10 +80,10 @@ export class RequestData {
         let data = "";
         let apiResponse = await new Promise((resolve, reject) => {
             http.get(address, async (res) => {
-                console.log("res: " + res);
+                //console.log("res: " + res);
                 res.on("data", (chunk) => {
                     data += chunk;
-                    console.log("data: " + data);
+                    //console.log("data: " + data);
                 });
                 await res.on("end", () => {
                     apiResponse = JSON.parse(data);

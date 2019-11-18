@@ -22,14 +22,13 @@ export class UserRouter {
             await new UserRouter().deleteOne(req, res);
         });
 
-        router.post("/create_user", async (req: Request, res: Response) => {
+        router.post("/users/create_user", async (req: Request, res: Response) => {
             console.log("post request received");
-            console.log("res: " + res as any);
 
             await new UserRouter().createUser(req, res);
 
 
-            res.redirect('back');
+            //res.redirect('back');
             // await new UserRouter().getOne(req, res, next);
         });
     }
@@ -129,27 +128,9 @@ export class UserRouter {
     }
 
     private async createUser(req: Request, res: Response) {
-        let result;
-        try {
-            result = await this.userDao.addNewUser();
-        } catch {
-            console.log("add new user failed");
-        }
-        // if (result) {
-        //     res.status(200)
-        //         .send({
-        //             message: "Success",
-        //             status: res.status,
-        //             result,
-        //         });
-        // } else {
-        //     res.status(404)
-        //         .send({
-        //             message: "User created.",
-        //             status: res.status,
-        //         });
-        // }
 
+        await this.userDao.addNewUser(req.body);
 
+        return res.redirect('back');
     }
 }

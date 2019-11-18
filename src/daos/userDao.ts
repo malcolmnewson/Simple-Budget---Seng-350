@@ -1,7 +1,8 @@
 import DbClient = require("../DbClient");
-import {Db} from "mongodb";
 
 export class UserDao {
+
+    private usersCollection: string = "users";
 
     constructor() {
 
@@ -73,21 +74,46 @@ export class UserDao {
         })
         }
 
-    public async addNewUser() {
-        const testUser = {
-            "_id": {"$oid": "5dd042fb1c9d440000f6077c"},
-            "userID": "test_user7",
-            "givenName": "Test User",
-            "admin": false
-        }
+    public async addNewUser(user: any) {
+        // const testUser = {
+        //     "userID": "test_user7",
+        //     "givenName": "Test User",
+        //     "admin": false
+        // }
 
-        try {
-            let database = await DbClient.connect();
-            return database!.collection("users").insertOne(testUser);
-        } catch {
-            console.log("Error inserting user")
+
+        if (user.admin === 'true') {
+            user.admin = true;
+        } else {
+            user.admin = false;
         }
-        return null;
+        user.userID = user.userID as string;
+        user.givenName = user.givenName as string;
+
+        let database = await DbClient.connect();
+        let result;
+
+        database!.collection(this.usersCollection).insertOne(user, (error: any, result: any) => {
+            if (result == null) {
+                console.log("failed to add user");
+                console.log(error);
+                return null;
+            } else {
+                console.log("added user");
+                console.log(user);
+                return null;
+            }
+        });
+
+        // try {
+        //
+        //     result =  database!.collection(this.usersCollection).insertOne(testUser);
+        //     console.log("result: " + result);
+        //     return result;
+        // } catch {
+        //     console.log("Error inserting user")
+        // }
+        // return null;
 
         }
 
