@@ -104,7 +104,6 @@ export class PurchaseRouter {
         } catch {
             //error message?
         }
-        const returnAddress = "/user/"+req.body.userID;
-        return res.redirect(returnAddress);
+        return res.redirect("/user/"+req.body.userID);
     }
 }
