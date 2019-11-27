@@ -10,7 +10,7 @@ block content
         input(type='hidden', name='userID', value=user)
         |  category:
         select(name='category')
-            each category in categories
+            each category in categoryList
                 option(value=category) #{category}
         |  cost:
         input(type='number', name='cost', step='0.01')
@@ -20,14 +20,15 @@ block content
         input(type='text' name='description')
         input(type='submit', value='upload')
 
+
     if (updateData!=0)
-        h4 To update a purchase, please correct the relevent fields and hit update.
+        h4 To update a purchase, please correct the relevant fields and hit update.
         form(action="/purchases/update", method='POST')
             input(type='hidden', name='_id', value=updateData._id)
             input(type='hidden', name='userID', value=updateData.userID)
             |  category:
             select(name='category')
-                each category in categories
+                each category in categoryList
                     if (category === updateData.category)
                         option(selected='') #{category}
                     else

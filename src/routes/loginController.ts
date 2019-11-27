@@ -72,13 +72,13 @@ export class LoginController extends BaseRoute {
      * @param next
      * @next {NextFunction} Execute the next method.
      */
-    public async purchasePage(req: Request, res: Response, next: NextFunction) {
+    private async purchasePage(req: Request, res: Response, next: NextFunction) {
         this.title = "My Purchases";
         let userID = req.params.userID;
+        const categoryList = ['Clothing','Food','School','Transport','Other']
 
         // Check if req.body is not empty.
-        // If so, then req.body is data for update form
-        //NOTE i made logincontoller purchase page public and it used to be privite.
+        // If so, then req.body has data for update form
         let updateData = 0;
         if(!(req.body.constructor === Object && Object.keys(req.body).length === 0)) {
             updateData = req.body;
@@ -87,19 +87,16 @@ export class LoginController extends BaseRoute {
 
         const purchases = await new RequestData().requestPurchases(userID, res);
 
-        /*
         const categories = purchases.map((item) => item.category)
             .filter((value, index, self) => self.indexOf(value) === index);
         categories.sort();
-         */
-
-        const categories = ['Clothing','Food','School','Transport']
 
         purchases.sort((a, b) => (a.date > b.date) ? -1 : 1);
 
 
         const options: object = {
             updateData,
+            categoryList,
             categories,
             purchases,
             user: userID,

@@ -18,10 +18,10 @@ export class PurchaseRouter {
             await new PurchaseRouter().uploadUserPurchase(req, res);
         });
 
-        // add updateStepOne route, which passes the data to be updated to the purchasePage
-        // so that it can be put into a form so the user can change it
+        // add updateStepOne route
         router.post("/purchases/updateStepOne", async (req: Request, res: Response,next: NextFunction) => {
-            await new LoginController().purchasePage(req, res, next);
+            req.params.userID = req.body.userID;
+            await new LoginController().login(req, res, next);
         });
 
         // add updateUserPurchase route
