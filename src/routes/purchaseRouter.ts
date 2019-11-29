@@ -1,6 +1,7 @@
 import {NextFunction, Request, Response, Router} from "express";
 import {PurchaseDao} from "../daos/purchaseDao";
 import {LoginController} from "./loginController"
+import {BaseRoute} from "./route";
 
 export class PurchaseRouter {
 

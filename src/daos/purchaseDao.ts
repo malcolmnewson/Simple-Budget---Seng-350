@@ -84,4 +84,32 @@ export class PurchaseDao {
         }
         return null;
     }
+    /**
+     * get Summary purchases for search criteria
+     *
+     * @class purchaseDao
+     * @method getSummaryPurchases
+     * @param purchase The json object to be updated.
+     */
+    public async getSummaryPurchases(userID : any, category: any, dateStart: any, dateEnd: any){
+        let result;
+        try {
+            let database = await DbClient.connect();
+            const ObjectID = mongodb.ObjectID;
+            //result = database!.collection(this.purchasesCollection).find().toArray();
+            //var isoStart = new Date(dateStart).toISOString();
+            //var isoEnd = new Date(dateEnd).toISOString();
+            //console.log("userID = " + userID)
+            //console.log("category= " + category)
+            //console.log("date start= "+ dateStart)
+            //console.log("date end= "+ dateEnd)
+            result = database!.collection(this.purchasesCollection).find(
+                {"userID":userID,"category":category,
+                    "date":{$gte: dateStart,$lt: dateEnd}}).toArray();
+            return result;
+        } catch {
+            //console.log("Dao: error uploading users purchase");
+        }
+        return null;
+    }
 }
