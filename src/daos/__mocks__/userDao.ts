@@ -10,4 +10,12 @@ export class UserDao {
             admin: false
         };
     }
+
+    public async getAllUsers() {
+
+    }
+
+    public async deleteUser(userID : any) {
+
+    }
 }
