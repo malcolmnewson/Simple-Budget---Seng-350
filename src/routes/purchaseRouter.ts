@@ -19,9 +19,9 @@ export class PurchaseRouter {
         });
 
         // add updateRequest route
-        router.post("/purchases/updateRequest", async (req: Request, res: Response,next: NextFunction) => {
+        router.post("/purchases/updateRequest", async (req: Request, res: Response) => {
             req.params.userID = req.body.userID;
-            await new LoginController().login(req, res, next);
+            await new LoginController().login(req, res);
         });
 
         // add updateSubmission route
