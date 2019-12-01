@@ -26,10 +26,14 @@ block content
                             input(type='submit', value='Delete')
 
     h3 Add new user to system
-    p UserID must be unique
-    form(action='/create_user/' method='post')
+    p Note: UserID must be unique
+    form(action='/users/create_user/' method='post')
         label(for='userID') Enter UserID:
-        input#userID(type='text' name='UserID' value='Default')
-        label(for='first_name') Enter first name:
-        input#first_name(type='text' name='first_name' value='Default')
+        input#userID(type='text' name='userID' value='userID here')
+        label(for='givenName') Enter name:
+        input#givenName(type='text' name='givenName' value='Default')
+        | Admin User?
+        select(name='admin')
+            option(value='true') Yes
+            option(value='false') No
         input(type='submit' value='OK')

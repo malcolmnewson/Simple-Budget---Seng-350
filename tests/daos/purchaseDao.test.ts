@@ -8,13 +8,15 @@ describe('PurchaseDao', () => {
         expect(instance).toBeInstanceOf(PurchaseDao);
     });
 
-    test('Getting a users purchases', async () => {
+    test('Getting a users purchases', async (done) => {
         const purchases = await instance.getUsersPurchases("test_user");
         expect(purchases).toBeDefined();
+        done();
     });
 
-    test('Getting all users purchases', async () => {
+    test('Getting all users purchases', async (done) => {
         const purchases = await instance.getAllPurchases();
         expect(purchases).toBeDefined();
+        done();
     })
 });

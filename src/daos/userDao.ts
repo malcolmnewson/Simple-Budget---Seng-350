@@ -2,6 +2,8 @@ import DbClient = require("../DbClient");
 
 export class UserDao {
 
+    private usersCollection: string = "users";
+
     constructor() {
 
     }
@@ -18,12 +20,15 @@ export class UserDao {
 
         try {
             let database = await DbClient.connect();
-            return database!.collection("users").findOne({"userID" : userID});
+            let user = database!.collection("users").findOne({"userID": userID});
+            DbClient.closeConnection();
+            return user;
         } catch {
             console.log("Dao: Error getting user");
             return null;
         }
     }
+
 
     /**
      * Gets all user objects from Mongo.
@@ -36,7 +41,9 @@ export class UserDao {
 
         try {
             let database = await DbClient.connect();
-            return database!.collection("users").find().toArray();
+            let users = database!.collection("users").find().toArray();
+            DbClient.closeConnection();
+            return users;
         } catch {
             console.log("Dao: Error getting all users.");
             return null;
@@ -64,7 +71,50 @@ export class UserDao {
             } else {
                 return result.value;
             }
+        })
+        }
+
+    public async addNewUser(user: any) {
+        // const testUser = {
+        //     "userID": "test_user7",
+        //     "givenName": "Test User",
+        //     "admin": false
+        // }
+
+
+        if (user.admin === 'true') {
+            user.admin = true;
+        } else {
+            user.admin = false;
+        }
+        user.userID = user.userID as string;
+        user.givenName = user.givenName as string;
+
+        let database = await DbClient.connect();
+        let result;
+
+        database!.collection(this.usersCollection).insertOne(user, (error: any, result: any) => {
+            if (result == null) {
+                console.log("failed to add user");
+                console.log(error);
+                return null;
+            } else {
+                console.log("added user");
+                console.log(user);
+                return null;
+            }
         });
-    }
+
+        // try {
+        //
+        //     result =  database!.collection(this.usersCollection).insertOne(testUser);
+        //     console.log("result: " + result);
+        //     return result;
+        // } catch {
+        //     console.log("Error inserting user")
+        // }
+        // return null;
+
+        }
 
 }

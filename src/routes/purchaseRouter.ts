@@ -1,4 +1,4 @@
-import {NextFunction, Request, Response, Router} from "express";
+import {Request, Response, Router} from "express";
 import {PurchaseDao} from "../daos/purchaseDao";
 import {LoginController} from "./loginController"
 
@@ -74,6 +74,7 @@ export class PurchaseRouter {
      * @param req {Request} The express Request object.
      * @param res {Response} The express Response object.
      */
+
     public async uploadUserPurchase(req:Request, res: Response) {
         let result = await this.purchaseDao.uploadUsersPurchase(req.body);
         if (result == null) {
