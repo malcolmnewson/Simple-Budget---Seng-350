@@ -5,9 +5,6 @@ export class PurchaseDao {
 
     private purchasesCollection: string = "purchases";
 
-    // constructor() {
-    // }
-
     /**
      * Gets all purchases for a single user.
      *
@@ -45,12 +42,14 @@ export class PurchaseDao {
             return null;
         }
     }
+
     /**
      * Upload purchase Dao
      *
      * @class purchaseDao
      * @method uploadUsersPurchase
      * @param purchase The json object to be uploaded.
+     * @return result from upload, null if failed
      */
     public async uploadUsersPurchase(purchase : any){
         let result;
@@ -59,10 +58,11 @@ export class PurchaseDao {
             result = database!.collection(this.purchasesCollection).insert(purchase);
             return result;
         } catch {
-             //console.log("Dao: error uploading users purchase");
+             console.log("Dao: error uploading users purchase");
+             return null;
         }
-        return null;
     }
+
     /**
      * Update purchase Dao
      *
@@ -80,8 +80,8 @@ export class PurchaseDao {
             result = database!.collection(this.purchasesCollection).replaceOne({_id:id}, purchase);
             return result;
         } catch {
-            //console.log("Dao: error uploading users purchase");
+            console.log("Dao: error updating users purchase");
+            return null;
         }
-        return null;
     }
 }

@@ -85,6 +85,7 @@ export class LoginController extends BaseRoute {
             userID = req.body.userID;
         }
 
+        //Retrieve purchases
         const purchases = await new RequestData().requestPurchases(userID, res);
 
         const categories = purchases.map((item) => item.category)
@@ -92,7 +93,6 @@ export class LoginController extends BaseRoute {
         categories.sort();
 
         purchases.sort((a, b) => (a.date > b.date) ? -1 : 1);
-
 
         const options: object = {
             updateData,
