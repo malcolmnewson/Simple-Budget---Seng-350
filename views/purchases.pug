@@ -10,18 +10,36 @@ block content
         input(type='hidden', name='userID', value=user)
         |  category:
         select(name='category')
-            option(value='Food') Food
-            option(value='Clothing') Clothing
-            option(value='Transport') Transport
-            option(value='School') School
+            each category in categoryList
+                option(value=category) #{category}
         |  cost:
-        input(type='number', name='cost')
+        input(type='number', name='cost', step='0.01')
         |  date:
         input(type='date', name='date')
         |  description:
         input(type='text' name='description')
         input(type='submit', value='upload')
 
+
+    if (updateData!=0)
+        h4 To update a purchase, please correct the relevant fields and hit update.
+        form(action="/purchases/updateSubmission", method='POST')
+            input(type='hidden', name='_id', value=updateData._id)
+            input(type='hidden', name='userID', value=updateData.userID)
+            |  category:
+            select(name='category')
+                each category in categoryList
+                    if (category === updateData.category)
+                        option(selected='') #{category}
+                    else
+                        option(value=category) #{category}
+            |  cost:
+            input(type='number', name='cost', step='0.01', value=updateData.cost)
+            |  date:
+            input(type='date', name='date', value=updateData.date)
+            |  description:
+            input(type='text' name='description', value=updateData.description)
+            input(type='submit', value='update')
 
     if purchases.length === 0
         p This user has no purchases recorded
@@ -43,3 +61,12 @@ block content
                             td  $ #{purchase.cost}
                             td #{purchase.description}
                             td #{date}
+                            td
+                                form(action="/purchases/updateRequest", method='POST')
+                                    input(type='hidden', name='_id', value=purchase._id)
+                                    input(type='hidden', name='userID', value=user)
+                                    input(type='hidden', name='category', value=purchase.category)
+                                    input(type='hidden', name='cost', value=purchase.cost)
+                                    input(type='hidden', name='date', value=purchase.date)
+                                    input(type='hidden', name='description', value=purchase.description)
+                                    input(type='submit', value='update')

@@ -1,11 +1,9 @@
 import DbClient = require("../DbClient");
+import mongodb = require("mongodb");
 
 export class PurchaseDao {
 
     private purchasesCollection: string = "purchases";
-
-    // constructor() {
-    // }
 
     /**
      * Gets all purchases for a single user.
@@ -47,22 +45,47 @@ export class PurchaseDao {
             return null;
         }
     }
+
     /**
      * Upload purchase Dao
      *
      * @class purchaseDao
      * @method uploadUsersPurchase
      * @param purchase The json object to be uploaded.
+     * @return result from upload, null if failed
      */
     public async uploadUsersPurchase(purchase : any){
+        //console.log("Uploading: " + JSON.parse(purchase));
         let result;
         try {
             let database = await DbClient.connect();
-            result = database!.collection(this.purchasesCollection).insert(purchase);
+            result = database!.collection(this.purchasesCollection).insertOne(purchase);
             return result;
         } catch {
-             //console.log("Dao: error uploading users purchase");
+             console.log("Dao: error uploading users purchase");
+             return null;
         }
-        return null;
+    }
+
+    /**
+     * Update purchase Dao
+     *
+     * @class purchaseDao
+     * @method updateUsersPurchase
+     * @param purchase The json object to be updated.
+     */
+    public async updateUsersPurchase(purchase : any){
+        let result;
+        try {
+            let database = await DbClient.connect();
+            const ObjectID = mongodb.ObjectID;
+            const id: mongodb.ObjectID = new ObjectID(purchase._id)
+            delete purchase["_id"];
+            result = database!.collection(this.purchasesCollection).replaceOne({_id:id}, purchase);
+            return result;
+        } catch {
+            console.log("Dao: error updating users purchase");
+            return null;
+        }
     }
 }
