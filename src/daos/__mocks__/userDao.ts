@@ -16,6 +16,10 @@ export class UserDao {
     }
 
     public async deleteUser(userID : any) {
-        return {};
+        return { message: 'Success',};
+    }
+
+    public async addNewUser(user : any) {
+        return { message: 'Success',};
     }
 }

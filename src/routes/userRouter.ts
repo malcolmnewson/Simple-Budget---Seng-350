@@ -44,7 +44,7 @@ export class UserRouter {
      * @param res {Result} The result object
      * @param next {NextFunction} The next function call.
      */
-    private async getAll(req: Request, res: Response) {
+    public async getAll(req: Request, res: Response) {
         let users;
 
         try {
@@ -78,7 +78,7 @@ export class UserRouter {
      * @param req {Request} The request object.
      * @param res {Result} The result object.
      */
-    private async getOne(req: Request, res: Response) {
+    public async getOne(req: Request, res: Response) {
         // Pull the requested id out. (ex. if the url is .../users/<userID> then query = <userID>)
         const userID = req.params.userID;
         let user;
@@ -114,7 +114,7 @@ export class UserRouter {
      * @param req {Request} The request object.
      * @param res {Result} The result object.
      */
-    private async deleteOne(req: Request, res: Response) {
+    public async deleteOne(req: Request, res: Response) {
         const userID = req.params.userID;
 
         await this.userDao.deleteUser(userID);
@@ -130,7 +130,7 @@ export class UserRouter {
      * @param req {Request} The request object.
      * @param res {Result} The result object.
      */
-    private async createUser(req: Request, res: Response) {
+    public async createUser(req: any, res: any) {
         await this.userDao.addNewUser(req.body);
         return res.redirect('back');
     }
