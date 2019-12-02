@@ -24,6 +24,7 @@ describe('UserDao: Getting users', () => {
 describe('UserDao: Adding and deleting users', () => {
    let instance: UserDao;
    let user = { userID: 'unit_test_user', givenName: 'Unit Test User', admin: 'false'};
+   let user_admin = { userID: 'unit_test_user_admin', givenName: 'Unit Test Admin', admin: 'false'};
 
    beforeEach(() => {
        instance = new UserDao();
@@ -36,9 +37,21 @@ describe('UserDao: Adding and deleting users', () => {
        done();
    });
 
+   test('Adding a new admin', async (done) => {
+       let result = await instance.addNewUser(user_admin);
+       expect(result).not.toBeNull();
+       done();
+   });
+
    test('Deleting a user', async(done) => {
       let result = await instance.deleteUser('unit_test_user');
       expect(result).not.toBeNull();
       done();
    });
+
+   test('Deleting an admin', async(done) => {
+       let result = await instance.deleteUser('unit_test_user_admin');
+       expect(result).not.toBeNull();
+       done();
+   })
 });
