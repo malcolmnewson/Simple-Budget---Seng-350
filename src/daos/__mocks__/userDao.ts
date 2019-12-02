@@ -12,10 +12,10 @@ export class UserDao {
     }
 
     public async getAllUsers() {
-
+        return {};
     }
 
     public async deleteUser(userID : any) {
-
+        return {};
     }
 }
