@@ -5,7 +5,6 @@ export class UserDao {
     private usersCollection: string = "users";
 
     constructor() {
-
     }
 
     /**
@@ -60,27 +59,17 @@ export class UserDao {
      */
     public async deleteUser(userID : any) {
 
-        let database = await DbClient.connect();
-
-        database!.collection("users").findOneAndDelete({"userID" : userID}, (error : any, result : any) => {
-
-            //check result.value to see if the deletion was successful.
-            if (result.value == null) {
-                console.log("Failed to delete user.");
-                return null;
-            } else {
-                return result.value;
-            }
-        })
+        try {
+            let database = await DbClient.connect();
+            let result = await database!.collection("users").findOneAndDelete({"userID" : userID});
+            return result.value;
+        } catch {
+            console.log("Dao: Error deleting user.");
+            return null;
         }
+    }
 
     public async addNewUser(user: any) {
-        // const testUser = {
-        //     "userID": "test_user7",
-        //     "givenName": "Test User",
-        //     "admin": false
-        // }
-
 
         if (user.admin === 'true') {
             user.admin = true;
@@ -90,31 +79,13 @@ export class UserDao {
         user.userID = user.userID as string;
         user.givenName = user.givenName as string;
 
-        let database = await DbClient.connect();
-        let result;
-
-        database!.collection(this.usersCollection).insertOne(user, (error: any, result: any) => {
-            if (result == null) {
-                console.log("failed to add user");
-                console.log(error);
-                return null;
-            } else {
-                console.log("added user");
-                console.log(user);
-                return null;
-            }
-        });
-
-        // try {
-        //
-        //     result =  database!.collection(this.usersCollection).insertOne(testUser);
-        //     console.log("result: " + result);
-        //     return result;
-        // } catch {
-        //     console.log("Error inserting user")
-        // }
-        // return null;
-
+        try {
+            let database = await DbClient.connect();
+            let result = await database!.collection(this.usersCollection).insertOne(user);
+            return result;
+        } catch {
+            console.log("Dao: Error adding the user.");
+            return null;
         }
-
+    }
 }

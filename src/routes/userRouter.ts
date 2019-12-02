@@ -22,14 +22,9 @@ export class UserRouter {
             await new UserRouter().deleteOne(req, res);
         });
 
+        // route for adding a user
         router.post("/users/create_user", async (req: Request, res: Response) => {
-            console.log("post request received");
-
             await new UserRouter().createUser(req, res);
-
-
-            //res.redirect('back');
-            // await new UserRouter().getOne(req, res, next);
         });
     }
 
@@ -49,7 +44,7 @@ export class UserRouter {
      * @param res {Result} The result object
      * @param next {NextFunction} The next function call.
      */
-    public async getAll(req: Request, res: Response) {
+    private async getAll(req: Request, res: Response) {
         let users;
 
         try {
@@ -83,7 +78,7 @@ export class UserRouter {
      * @param req {Request} The request object.
      * @param res {Result} The result object.
      */
-    public async getOne(req: Request, res: Response) {
+    private async getOne(req: Request, res: Response) {
         // Pull the requested id out. (ex. if the url is .../users/<userID> then query = <userID>)
         const userID = req.params.userID;
         let user;
@@ -119,7 +114,7 @@ export class UserRouter {
      * @param req {Request} The request object.
      * @param res {Result} The result object.
      */
-    public async deleteOne(req: Request, res: Response) {
+    private async deleteOne(req: Request, res: Response) {
         const userID = req.params.userID;
 
         await this.userDao.deleteUser(userID);
@@ -127,10 +122,16 @@ export class UserRouter {
         return res.redirect('back');
     }
 
+    /**
+     * Routing method for adding a user
+     *
+     * @class userRouter
+     * @method createUser
+     * @param req {Request} The request object.
+     * @param res {Result} The result object.
+     */
     private async createUser(req: Request, res: Response) {
-
         await this.userDao.addNewUser(req.body);
-
         return res.redirect('back');
     }
 }
