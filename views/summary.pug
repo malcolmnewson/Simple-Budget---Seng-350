@@ -4,6 +4,7 @@ block content
 
     h1 #{title}
     h3 Welcome #{user}!
+    a(href='/user/' + user) Purchases
     h4 Here is your summary of purchases
     form(action='/user/summary/timeFrame', method='POST')
         input(type='hidden', name='userID', value=user)
@@ -27,5 +28,3 @@ block content
                         each y in x
                             td  $ #{y}
                         tr
-    br
-    a(href='/user/' + user) Purchases
