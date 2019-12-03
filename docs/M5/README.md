@@ -1,6 +1,6 @@
 ### Completed User stories:
 
-(User stories)[https://github.com/seng350/seng350f19-project-2-1/issues?q=is%3Aissue+is%3Aclosed]
+[User stories](https://github.com/seng350/seng350f19-project-2-1/issues?q=is%3Aissue+is%3Aclosed)
 As the Administrator, I want to be able to create a user account in order to manage accounts in the system.
 As the Administrator, I want to be able to delete a user account in order to manage accounts in the system.
 As a user, I want to log into my account in order to access my data.
@@ -12,7 +12,7 @@ As a user, I want to access a summary of my expenses in a variety of formats and
 
 ### QAS
 
-(QAS)[https://github.com/seng350/seng350f19-project-2-1/issues?q=is%3Aopen+is%3Aissue]
+[QAS](https://github.com/seng350/seng350f19-project-2-1/issues?q=is%3Aopen+is%3Aissue)
 
 
 
