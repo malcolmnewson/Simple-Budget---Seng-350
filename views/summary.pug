@@ -13,14 +13,17 @@ block content
             option(value=month) #{'Month'}
         input(type='submit', value='change')
     h3 Total spending
-    table(style='width:60%', border='1')
-        tr
-            //loop through time frame and print timeframe
-            th #{'Category'}
-            each date in dates
-                th #{date}
+    if results.length === 0
+        p This user has no purchases recorded
+    else
+        table(style='width:60%', border='1')
             tr
-                each x in results
-                    each y in x
-                        td  $ #{y}
-                    tr
+                //loop through time frame and print timeframe
+                th #{'Category'}
+                each date in dates
+                    th #{date}
+                tr
+                    each x in results
+                        each y in x
+                            td  $ #{y}
+                        tr
