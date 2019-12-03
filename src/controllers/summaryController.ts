@@ -13,6 +13,9 @@ export class SummaryRoute extends BaseRoute {
      * @param res {Response} The express Response object.
      */
     public async summary(req: Request, res: Response) {
+
+
+
         // set custom title
         this.title = "Budget App | Summary Page!";
         let userID = req.params.userID;
@@ -25,6 +28,20 @@ export class SummaryRoute extends BaseRoute {
         }
 
         const purchases = await new RequestData().requestPurchases(userID, res);
+
+        //if purchases is empty
+        if(purchases.length == 0){
+            console.log("in check")
+            this.title = "User has No purchases";
+            const options: object = {
+                user: userID,
+                dates: [],
+                results: []
+            };
+
+            this.render(req, res, "summary",options);
+            return 0;
+        }
 
         //get all categories from purchases
         const categories = purchases.map((item) => item.category)
