@@ -5,9 +5,6 @@ export class PurchaseDao {
 
     private purchasesCollection: string = "purchases";
 
-    // constructor() {
-    // }
-
     /**
      * Gets all purchases for a single user.
      *
@@ -20,7 +17,9 @@ export class PurchaseDao {
 
         try {
             let database = await DbClient.connect();
-            return database!.collection(this.purchasesCollection).find({"userID" : userID}).toArray();
+            let purchases = database!.collection(this.purchasesCollection).find({"userID" : userID}).toArray();
+            DbClient.closeConnection();
+            return purchases;
         } catch {
             console.log("Dao: Error getting purchases for user");
             return null;
@@ -37,32 +36,37 @@ export class PurchaseDao {
     public async getAllPurchases() {
 
         try {
-
             let database = await DbClient.connect();
-            return database!.collection(this.purchasesCollection).find().toArray();
+            let purchases = database!.collection(this.purchasesCollection).find().toArray();
+            DbClient.closeConnection();
+            return purchases;
         } catch {
             console.log("Dao: Error getting all user purchases");
             return null;
         }
     }
+
     /**
      * Upload purchase Dao
      *
      * @class purchaseDao
      * @method uploadUsersPurchase
      * @param purchase The json object to be uploaded.
+     * @return result from upload, null if failed
      */
     public async uploadUsersPurchase(purchase : any){
+        //console.log("Uploading: " + JSON.parse(purchase));
         let result;
         try {
             let database = await DbClient.connect();
-            result = database!.collection(this.purchasesCollection).insert(purchase);
+            result = database!.collection(this.purchasesCollection).insertOne(purchase);
             return result;
         } catch {
-             //console.log("Dao: error uploading users purchase");
+             console.log("Dao: error uploading users purchase");
+             return null;
         }
-        return null;
     }
+
     /**
      * Update purchase Dao
      *
@@ -80,8 +84,8 @@ export class PurchaseDao {
             result = database!.collection(this.purchasesCollection).replaceOne({_id:id}, purchase);
             return result;
         } catch {
-            //console.log("Dao: error uploading users purchase");
+            console.log("Dao: error updating users purchase");
+            return null;
         }
-        return null;
     }
 }

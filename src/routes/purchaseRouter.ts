@@ -1,4 +1,4 @@
-import {NextFunction, Request, Response, Router} from "express";
+import {Request, Response, Router} from "express";
 import {PurchaseDao} from "../daos/purchaseDao";
 import {LoginController} from "./loginController"
 import {BaseRoute} from "./route";
@@ -19,14 +19,14 @@ export class PurchaseRouter {
             await new PurchaseRouter().uploadUserPurchase(req, res);
         });
 
-        // add updateStepOne route
-        router.post("/purchases/updateStepOne", async (req: Request, res: Response,next: NextFunction) => {
+        // add updateRequest route
+        router.post("/purchases/updateRequest", async (req: Request, res: Response) => {
             req.params.userID = req.body.userID;
-            await new LoginController().login(req, res, next);
+            await new LoginController().login(req, res);
         });
 
-        // add updateUserPurchase route
-        router.post("/purchases/update", async (req: Request, res: Response) => {
+        // add updateSubmission route
+        router.post("/purchases/updateSubmission", async (req: Request, res: Response) => {
             await new PurchaseRouter().updateUserPurchase(req, res);
         });
     }
@@ -47,14 +47,9 @@ export class PurchaseRouter {
      * @param res {Result} The result object.
      */
     public async getUserPurchases(req: Request, res: Response) {
-        let purchases;
         const userID = req.params.userID;
 
-        try {
-            purchases = await this.purchaseDao.getUsersPurchases(userID);
-        } catch {
-            console.log("Router: error getting a users purchases");
-        }
+        let purchases = await this.purchaseDao.getUsersPurchases(userID);
 
         if (purchases) {
             res.status(200);
@@ -64,14 +59,13 @@ export class PurchaseRouter {
                     status: res.status,
                 });
         } else {
+            console.log("Router: error getting a users purchases");
             res.status(404);
             res.send({
-                    message: "No purchases found related to the userID",
-                    //status: res.status,
+                    message: "No purchases found related to the userID"
                 });
         }
     }
-
 
     /**
      * Upload purchase Dao
@@ -81,15 +75,15 @@ export class PurchaseRouter {
      * @param req {Request} The express Request object.
      * @param res {Response} The express Response object.
      */
-    public async uploadUserPurchase(req:Request, res: Response){
-        let result;
-        try {
-            result = await this.purchaseDao.uploadUsersPurchase(req.body);
-        } catch {
-            //error message?
+
+    public async uploadUserPurchase(req:Request, res: Response) {
+        let result = await this.purchaseDao.uploadUsersPurchase(req.body);
+        if (result == null) {
+            console.log("Router: error uploading a users purchases");
         }
-        return res.redirect('back');
+        return res.redirect("/user/" + req.body.userID);
     }
+
     /**
      * Update purchase Dao
      *
@@ -98,12 +92,10 @@ export class PurchaseRouter {
      * @param req {Request} The express Request object.
      * @param res {Response} The express Response object.
      */
-    public async updateUserPurchase(req:Request, res: Response){
-        let result;
-        try {
-            result = await this.purchaseDao.updateUsersPurchase(req.body);
-        } catch {
-            //error message?
+    public async updateUserPurchase(req:Request, res: Response) {
+        let result = await this.purchaseDao.updateUsersPurchase(req.body);
+        if (result == null) {
+            console.log("Router: error updating a users purchases");
         }
         return res.redirect("/user/"+req.body.userID);
     }

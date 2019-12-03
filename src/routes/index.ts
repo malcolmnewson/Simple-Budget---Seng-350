@@ -28,8 +28,8 @@ export class IndexRoute extends BaseRoute {
             new IndexRoute().index(req, res, next);
         });
 
-        router.get("/user/:userID", async (req: Request, res: Response, next: NextFunction) => {
-            new LoginController().login(req, res, next);
+        router.get("/user/:userID", async (req: Request, res: Response) => {
+            new LoginController().login(req, res);
         });
 
         // add summary page route for different time frame
