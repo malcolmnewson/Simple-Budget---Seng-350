@@ -41,30 +41,26 @@ export class UserRouter {
      * @class userRouter
      * @method getAll
      * @param req {Request} The request object.
-     * @param res {Result} The result object
+     * @param res {Response} The response object
      * @param next {NextFunction} The next function call.
      */
     public async getAll(req: Request, res: Response) {
-        let users;
 
-        try {
-            users = await this.userDao.getAllUsers();
-        } catch {
-            console.log("Router: Error getting all users.");
-        }
+        let users = await this.userDao.getAllUsers();
 
-        if (users !== undefined) {
-            res.status(200)
-                .send({
+        // DELETE THIS
+        console.log(users);
+
+        if (users !== null) {
+            return res.send({
                     message: "Success",
-                   status: res.status,
+                    status: 200,
                     users,
                 });
         } else {
-            res.status(500)
-                .send({
-                    message: "Success",
-                    status: res.status,
+            return res.send({
+                    message: "Fail",
+                    status: 404,
                     users,
                 });
         }
@@ -76,32 +72,23 @@ export class UserRouter {
      * @class userRouter
      * @method getOne
      * @param req {Request} The request object.
-     * @param res {Result} The result object.
+     * @param res {Response} The response object.
      */
     public async getOne(req: Request, res: Response) {
         // Pull the requested id out. (ex. if the url is .../users/<userID> then query = <userID>)
         const userID = req.params.userID;
-        let user;
+        let user = await this.userDao.getUser(userID);
 
-        try {
-            // Send the query to the userDao
-            user = await this.userDao.getUser(userID);
-        } catch {
-            console.log("Router: error getting user");
-        }
-
-        if (user) {
-            res.status(200);
-            res.send({
+        if (user !== null) {
+            return res.send({
                     message: "Success",
-                    status: res.status,
+                    status: 200,
                     user,
                 });
         } else {
-            res.status(404);
-            res.send({
-                    message: "No hero found with the given id.",
-                    status: res.status,
+            return res.send({
+                    message: "Fail",
+                    status: 404,
                 });
         }
     }
@@ -112,7 +99,7 @@ export class UserRouter {
      * @class userRouter
      * @method deleteOne
      * @param req {Request} The request object.
-     * @param res {Result} The result object.
+     * @param res {Response} The response object.
      */
     public async deleteOne(req: Request, res: Response) {
         const userID = req.params.userID;
@@ -128,9 +115,9 @@ export class UserRouter {
      * @class userRouter
      * @method createUser
      * @param req {Request} The request object.
-     * @param res {Result} The result object.
+     * @param res {Response} The response object.
      */
-    public async createUser(req: any, res: any) {
+    public async createUser(req: Request, res: Response) {
         await this.userDao.addNewUser(req.body);
         return res.redirect('back');
     }
