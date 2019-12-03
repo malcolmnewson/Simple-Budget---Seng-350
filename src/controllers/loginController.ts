@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
-import {BaseRoute} from "./route";
+import {BaseRoute} from "../routes/route";
 import {IndexRoute} from "./index";
-import {RequestData} from "./requestData";
+import {RequestData} from "../routes/requestData";
 
 export class LoginController extends BaseRoute {
 

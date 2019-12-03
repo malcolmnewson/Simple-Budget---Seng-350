@@ -1,11 +1,11 @@
 import {NextFunction, Request, Response, Router} from "express";
-import {BaseRoute} from "./route";
+import {BaseRoute} from "../routes/route";
 import {LoginController} from "./loginController";
-import {RequestData} from "./requestData";
+import {RequestData} from "../routes/requestData";
 import {PurchaseDao} from "../daos/purchaseDao";
-import {SummaryRoute} from "../controllers/summaryController";
+import {SummaryRoute} from "./summaryController";
 
- /**
+/**
  * / route
  *
  * @class IndexRoute
@@ -42,8 +42,6 @@ export class IndexRoute extends BaseRoute {
             await new SummaryRoute().summary(req, res);
         });
     }
-
-
 
     /**
      * Constructor
@@ -84,5 +82,4 @@ export class IndexRoute extends BaseRoute {
         // render template
         this.render(req, res, "index", options);
     }
-
 }
