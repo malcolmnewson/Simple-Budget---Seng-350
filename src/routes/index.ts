@@ -2,8 +2,10 @@ import {NextFunction, Request, Response, Router} from "express";
 import {BaseRoute} from "./route";
 import {LoginController} from "./loginController";
 import {RequestData} from "./requestData";
+import {PurchaseDao} from "../daos/purchaseDao";
+import {SummaryRoute} from "../controllers/summaryController";
 
-/**
+ /**
  * / route
  *
  * @class IndexRoute
@@ -29,7 +31,19 @@ export class IndexRoute extends BaseRoute {
         router.get("/user/:userID", async (req: Request, res: Response) => {
             new LoginController().login(req, res);
         });
+
+        // add summary page route for different time frame
+        router.post("/user/summary/timeFrame", async (req: Request, res: Response, next: NextFunction) => {
+            req.params.userID = req.body.userID;
+            await new SummaryRoute().summary(req, res);
+        });
+        // add summary page route form purchases page
+        router.get("/user/summary/:userID", async (req: Request, res: Response, next: NextFunction) => {
+            await new SummaryRoute().summary(req, res);
+        });
     }
+
+
 
     /**
      * Constructor
@@ -70,4 +84,5 @@ export class IndexRoute extends BaseRoute {
         // render template
         this.render(req, res, "index", options);
     }
+
 }

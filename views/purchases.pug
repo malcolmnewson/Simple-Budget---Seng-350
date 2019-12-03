@@ -4,6 +4,8 @@ block content
 
     h1 #{title}
     h3 Welcome #{user}!
+    a(href='/user/summary/'+user) #{'summary'}
+    br
     h4 To upload a new purchase please fill out the below form
 
     form(action="/purchases/upload", method='POST')
