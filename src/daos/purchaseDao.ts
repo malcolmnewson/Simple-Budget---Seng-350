@@ -88,4 +88,24 @@ export class PurchaseDao {
             return null;
         }
     }
+    /**
+     * Delete purchase Dao
+     *
+     * @class purchaseDao
+     * @method deletePurchase
+     * @param _id The _id of the purchase to be deleted.
+     */
+    public async deletePurchase(_id : any){
+        let result;
+        try {
+            let database = await DbClient.connect();
+            const ObjectID = mongodb.ObjectID;
+            const id: mongodb.ObjectID = new ObjectID(_id)
+            result = database!.collection(this.purchasesCollection).deleteOne({_id:id});
+            return result;
+        } catch {
+            console.log("Dao: error deleting users purchase");
+            return null;
+        }
+    }
 }
