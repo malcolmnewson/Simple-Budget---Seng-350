@@ -4,10 +4,11 @@ block content
 
     h1 #{title}
     h3 Welcome #{user}!
+    a(href='/user/' + user) Purchases
     h4 Here is your summary of purchases
     form(action='/user/summary/timeFrame', method='POST')
         input(type='hidden', name='userID', value=user)
-        |  TimeFrame:
+        |  Time Frame:
         select(name='timeFrame')
             option(value=year) #{'Year'}
             option(value=month) #{'Month'}

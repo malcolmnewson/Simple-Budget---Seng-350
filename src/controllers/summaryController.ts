@@ -1,6 +1,5 @@
-import {NextFunction, Request, Response, Router} from "express";
+import {Request, Response} from "express";
 import {RequestData} from "../routes/requestData";
-import {PurchaseDao} from "../daos/purchaseDao";
 import {BaseRoute} from "../routes/route";
 
 export class SummaryRoute extends BaseRoute {
@@ -17,7 +16,7 @@ export class SummaryRoute extends BaseRoute {
 
 
         // set custom title
-        this.title = "Budget App | Summary Page!";
+        this.title = "My Summary";
         let userID = req.params.userID;
         const categoryList = ['Clothing','Food','School','Transport','Other']
 
