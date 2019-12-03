@@ -8,7 +8,7 @@ block content
     h4 Here is your summary of purchases
     form(action='/user/summary/timeFrame', method='POST')
         input(type='hidden', name='userID', value=user)
-        |  TimeFrame:
+        |  Time Frame:
         select(name='timeFrame')
             option(value=year) #{'Year'}
             option(value=month) #{'Month'}
