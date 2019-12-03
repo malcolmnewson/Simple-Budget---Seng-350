@@ -72,3 +72,8 @@ block content
                                     input(type='hidden', name='date', value=purchase.date)
                                     input(type='hidden', name='description', value=purchase.description)
                                     input(type='submit', value='update')
+                            td
+                                form(action="/purchases/delete", method='POST')
+                                    input(type='hidden', name='_id', value=purchase._id)
+                                    input(type='hidden', name='userID', value=user)
+                                    input(type='submit', value='delete')

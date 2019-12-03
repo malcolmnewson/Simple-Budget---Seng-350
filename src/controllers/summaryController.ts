@@ -31,8 +31,6 @@ export class SummaryRoute extends BaseRoute {
 
         //if purchases is empty
         if(purchases.length == 0){
-            console.log("in check")
-            this.title = "User has No purchases";
             const options: object = {
                 user: userID,
                 dates: [],

@@ -28,6 +28,12 @@ export class PurchaseRouter {
         router.post("/purchases/updateSubmission", async (req: Request, res: Response) => {
             await new PurchaseRouter().updateUserPurchase(req, res);
         });
+
+        // add deletePurchase route
+        router.post("/purchases/delete", async (req: Request, res: Response) => {
+            await new PurchaseRouter().deletePurchase(req, res);
+        });
+
     }
 
     // used to access purchase collection from database
@@ -67,9 +73,9 @@ export class PurchaseRouter {
     }
 
     /**
-     * Upload purchase Dao
+     * Upload purchase route
      *
-     * @class PurchaseDao
+     * @class PurchaseRouter
      * @method uploadUsersPurchase
      * @param req {Request} The express Request object.
      * @param res {Response} The express Response object.
@@ -84,15 +90,30 @@ export class PurchaseRouter {
     }
 
     /**
-     * Update purchase Dao
+     * Update purchase route
      *
-     * @class PurchaseDao
+     * @class PurchaseRouter
      * @method updateUsersPurchase
      * @param req {Request} The express Request object.
      * @param res {Response} The express Response object.
      */
     public async updateUserPurchase(req:Request, res: Response) {
         let result = await this.purchaseDao.updateUsersPurchase(req.body);
+        if (result == null) {
+            console.log("Router: error deleting a users purchases");
+        }
+        return res.redirect("/user/"+req.body.userID);
+    }
+    /**
+     * Delete purchase Dao
+     *
+     * @class PurchaseDao
+     * @method deletePurchase
+     * @param req {Request} The express Request object.
+     * @param res {Response} The express Response object.
+     */
+    public async deletePurchase(req:Request, res: Response) {
+        let result = await this.purchaseDao.deletePurchase(req.body._id);
         if (result == null) {
             console.log("Router: error updating a users purchases");
         }

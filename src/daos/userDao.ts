@@ -74,7 +74,7 @@ export class UserDao {
         })
         }
 
-    public async addNewUser(user: any) {
+public async addNewUser(user: any) {
         // const testUser = {
         //     "userID": "test_user7",
         //     "givenName": "Test User",
