@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response, Router} from "express";
-import {BaseRoute} from "./route";
+import {BaseRoute} from "../routes/route";
 import {LoginController} from "./loginController";
-import {RequestData} from "./requestData";
+import {RequestData} from "../routes/requestData";
 
 /**
  * / route
