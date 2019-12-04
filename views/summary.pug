@@ -1,0 +1,30 @@
+extends layout
+
+block content
+
+    h1 #{title}
+    h3 Welcome #{user}!
+    a(href='/user/' + user) Purchases
+    h4 Here is your summary of purchases
+    form(action='/user/summary/timeFrame', method='POST')
+        input(type='hidden', name='userID', value=user)
+        |  Time Frame:
+        select(name='timeFrame')
+            option(value=year) #{'Year'}
+            option(value=month) #{'Month'}
+        input(type='submit', value='change')
+    h3 Total spending
+    if results.length === 0
+        p This user has no purchases recorded
+    else
+        table(style='width:60%', border='1')
+            tr
+                //loop through time frame and print timeframe
+                th #{'Category'}
+                each date in dates
+                    th #{date}
+                tr
+                    each x in results
+                        each y in x
+                            td  $ #{y}
+                        tr
