@@ -77,7 +77,14 @@ describe('PurchaseDao: Adding and deleting purchases', () => {
     });
 
     test('Deleting a purchase', async (done) => {
-
+        let delete_result;
+        let upload_result = await instance.uploadUsersPurchase(new_purchase);
+        if (upload_result !== null) {
+            delete_result = await instance.deletePurchase(upload_result.ops[0]._id);
+        }
+        if (delete_result !== null && delete_result !== undefined) {
+            expect(delete_result.deletedCount).toBe(1);
+        }
         done();
     });
 });
