@@ -24,7 +24,7 @@ block content
                     td
                         form(action='/users/delete/'+user.userID, method='post')
                             input(type='submit', value='Delete')
-
+    br
     h3 Add new user to system
     p Note: UserID must be unique
     form(action='/users/create_user/' method='post')

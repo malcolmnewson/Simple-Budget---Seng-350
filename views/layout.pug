@@ -1,11 +1,10 @@
 doctype html
 html
     head
+        if title !== "Budget App | Welcome!"
+            a(href='/' ) Home
         title= title
         //link(rel='stylesheet', href='../public/stylesheets/style.css')
     body
         block content
-        - if(currentUrl !== '/')
-            br
-            br
-            a(href='/' ) Home
+

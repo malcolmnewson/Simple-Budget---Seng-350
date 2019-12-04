@@ -4,7 +4,7 @@ import express from "express";
 import logger from "morgan";
 import path from "path";
 import errorHandler from "errorhandler";
-import {IndexRoute} from "./routes";
+import {IndexRoute} from "./controllers";
 import {UserRouter} from "./routes/userRouter";
 import {PurchaseRouter} from "./routes/purchaseRouter";
 

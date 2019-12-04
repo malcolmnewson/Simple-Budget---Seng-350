@@ -4,6 +4,8 @@ block content
 
     h1 #{title}
     h3 Welcome #{user}!
+    a(href='/user/summary/'+ user) Summary
+    br
     h4 To upload a new purchase please fill out the below form
 
     form(action="/purchases/upload", method='POST')
@@ -70,3 +72,8 @@ block content
                                     input(type='hidden', name='date', value=purchase.date)
                                     input(type='hidden', name='description', value=purchase.description)
                                     input(type='submit', value='update')
+                            td
+                                form(action="/purchases/delete", method='POST')
+                                    input(type='hidden', name='_id', value=purchase._id)
+                                    input(type='hidden', name='userID', value=user)
+                                    input(type='submit', value='delete')
