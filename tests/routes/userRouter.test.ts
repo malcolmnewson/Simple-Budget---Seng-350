@@ -14,16 +14,6 @@ const mockResponse = (content : any) => {
     return <Response><unknown>content;
 };
 
-/*describe('Creating Routes', () => {
-    let instance: UserRouter;
-
-    // Delete when a actual test is created.
-    test('Creating routes', () => {
-        expect(true).toBeTruthy();
-    });
-});*/
-
-
 describe('User Router', () => {
     let instance: UserRouter;
 
@@ -32,23 +22,68 @@ describe('User Router', () => {
         expect(instance).toBeInstanceOf(UserRouter);
     });
 
-    /* TODO
-    * get output of actual userDao.getAllUsers() and use this as the return object in
-    * the mocked dao
-     */
     test('Getting all users', async(done) => {
        const req = mockRequest({});
        const res = mockResponse({ send: jest.fn((cmd) => {return cmd;})});
+
        let result = await instance.getAll(req, res);
-       expect(result).toBe({});
+
+       let expected_users = [
+           {
+               _id: '5daaee8a1c9d4400006d4110',
+               userID: 'oliverlewis',
+               givenName: 'Oliver Lewis',
+               admin: false
+           },
+           {
+               _id: '5daaef8c1c9d4400006d4114',
+               userID: 'emilysluis',
+               givenName: 'Emily Sluis',
+               admin: false
+           },
+           {
+               _id: '5daaefac1c9d4400006d4115',
+               userID: 'malcolmnewson',
+               givenName: 'Malcolm Newson',
+               admin: false
+           }
+       ];
+       let expected_result = {
+           message: "Success",
+           status: 200,
+           users: expected_users,
+       };
+
+       expect(result).toStrictEqual(expected_result);
+       done();
     });
 
     test('Getting a single user', async(done) => {
+        const req = mockRequest({ params: { userID: 'test_user'}});
+        const res = mockResponse({ send: jest.fn((cmd) => {return cmd;})});
 
+        let result = await instance.getOne(req, res);
+
+        let expected_result = {
+            message: "Success",
+            status: 200,
+            user: {
+                userID: 'test_user',
+                givenName: 'Test User',
+                admin: false
+            },
+        };
+
+        expect(result).toStrictEqual(expected_result);
+        done();
     });
 
     test('Deleting a user', async(done) => {
-
+        const req = mockRequest({ params: { userID: 'test_user'}});
+        const res = mockResponse({ redirect: jest.fn((cmd) => {return cmd;})});
+        let result = await instance.deleteOne(req, res);
+        expect(result).toBe('back');
+        done();
     });
 
     test('Creating a user', async (done) => {

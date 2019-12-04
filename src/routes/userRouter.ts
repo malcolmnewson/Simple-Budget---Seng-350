@@ -48,9 +48,6 @@ export class UserRouter {
 
         let users = await this.userDao.getAllUsers();
 
-        // DELETE THIS
-        console.log(users);
-
         if (users !== null) {
             return res.send({
                     message: "Success",
