@@ -55,7 +55,6 @@ export class PurchaseDao {
      * @return result from upload, null if failed
      */
     public async uploadUsersPurchase(purchase : any){
-        //console.log("Uploading: " + JSON.parse(purchase));
         let result;
         try {
             let database = await DbClient.connect();
@@ -76,6 +75,7 @@ export class PurchaseDao {
      */
     public async updateUsersPurchase(purchase : any){
         let result;
+
         try {
             let database = await DbClient.connect();
             const ObjectID = mongodb.ObjectID;

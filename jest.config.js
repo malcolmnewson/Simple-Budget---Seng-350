@@ -6,5 +6,6 @@ module.exports = {
     roots: [
         "<rootDir>/src/",
         "<rootDir>/tests/"
-    ]
+    ],
+    collectCoverageFrom: ["**/src/daos/*.ts", "**/src/routes/*Router.ts"],
 };
