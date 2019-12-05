@@ -1,4 +1,4 @@
-import {UserDao} from "../../src/daos/userDao"
+import {UserDao} from "../../daos/userDao"
 
 describe('UserDao: Getting users', () => {
     let instance: UserDao;

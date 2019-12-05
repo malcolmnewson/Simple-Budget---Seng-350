@@ -1,4 +1,4 @@
-import {PurchaseDao} from "../../src/daos/purchaseDao"
+import {PurchaseDao} from "../../daos/purchaseDao"
 import mongodb = require("mongodb");
 
 describe('PurchaseDao: Getting purchases', () => {

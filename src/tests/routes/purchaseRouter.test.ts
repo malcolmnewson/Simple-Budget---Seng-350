@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
-import {PurchaseRouter} from "../../src/routes/purchaseRouter";
+import {PurchaseRouter} from "../../routes/purchaseRouter";
 
-jest.mock('../../src/daos/purchaseDao');
+jest.mock('../../daos/purchaseDao');
 
 // Mock request object.
 const mockRequest = (content : any) => {
