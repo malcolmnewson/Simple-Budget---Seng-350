@@ -56,18 +56,16 @@ export class PurchaseRouter {
 
         let purchases = await this.purchaseDao.getUsersPurchases(userID);
 
-        if (purchases) {
-            res.status(200);
-            res.send({
+        if (purchases !== null) {
+            return res.send({
                     message: "Success",
                     purchases,
-                    status: res.status,
+                    status: 200,
                 });
         } else {
-            console.log("Router: error getting a users purchases");
-            res.status(404);
-            res.send({
-                    message: "No purchases found related to the userID"
+            return res.send({
+                    message: "No purchases found related to the userID",
+                    status: 404,
                 });
         }
     }
@@ -83,7 +81,7 @@ export class PurchaseRouter {
 
     public async uploadUserPurchase(req:Request, res: Response) {
         let result = await this.purchaseDao.uploadUsersPurchase(req.body);
-        if (result == null) {
+        if (result === null) {
             console.log("Router: error uploading a users purchases");
         }
         return res.redirect("/user/" + req.body.userID);
@@ -99,7 +97,7 @@ export class PurchaseRouter {
      */
     public async updateUserPurchase(req:Request, res: Response) {
         let result = await this.purchaseDao.updateUsersPurchase(req.body);
-        if (result == null) {
+        if (result === null) {
             console.log("Router: error deleting a users purchases");
         }
         return res.redirect("/user/"+req.body.userID);
