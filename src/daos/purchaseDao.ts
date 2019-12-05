@@ -59,6 +59,7 @@ export class PurchaseDao {
         try {
             let database = await DbClient.connect();
             result = await database!.collection(this.purchasesCollection).insertOne(purchase);
+            DbClient.closeConnection();
             return result;
         } catch {
              console.log("Dao: error uploading users purchase");
@@ -82,6 +83,7 @@ export class PurchaseDao {
             const id: mongodb.ObjectID = new ObjectID(purchase._id)
             delete purchase["_id"];
             result = await database!.collection(this.purchasesCollection).replaceOne({_id:id}, purchase);
+            DbClient.closeConnection();
             return result;
         } catch {
             console.log("Dao: error updating users purchase");
@@ -102,6 +104,7 @@ export class PurchaseDao {
             const ObjectID = mongodb.ObjectID;
             const id: mongodb.ObjectID = new ObjectID(_id)
             result = await database!.collection(this.purchasesCollection).deleteOne({_id:id});
+            DbClient.closeConnection();
             return result;
         } catch {
             console.log("Dao: error deleting users purchase");
