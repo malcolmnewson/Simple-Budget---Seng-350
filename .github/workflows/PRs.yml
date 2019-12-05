@@ -13,3 +13,4 @@ jobs:
     - run: npm install
     - run: tsc
     - run: npm start
+    - run: curl "http://localhost:3000/users/test_user" -s -o /dev/null -w  "%{time_starttransfer}\n"
