@@ -62,6 +62,7 @@ export class UserDao {
         try {
             let database = await DbClient.connect();
             let result = await database!.collection("users").findOneAndDelete({"userID" : userID});
+            DbClient.closeConnection();
             return result.value;
         } catch {
             console.log("Dao: Error deleting user.");
@@ -82,6 +83,7 @@ export class UserDao {
         try {
             let database = await DbClient.connect();
             let result = await database!.collection(this.usersCollection).insertOne(user);
+            DbClient.closeConnection();
             return result;
         } catch {
             console.log("Dao: Error adding the user.");
