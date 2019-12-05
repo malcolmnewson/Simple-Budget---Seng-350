@@ -10,5 +10,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: npm install
-    - run: jest --coverage
     - run: npm start
