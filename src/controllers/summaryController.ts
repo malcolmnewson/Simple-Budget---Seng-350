@@ -13,8 +13,6 @@ export class SummaryRoute extends BaseRoute {
      */
     public async summary(req: Request, res: Response) {
 
-
-
         // set custom title
         this.title = "My Summary";
         let userID = req.params.userID;
@@ -85,7 +83,7 @@ export class SummaryRoute extends BaseRoute {
      * @method calcTotals
      * @param categories List of all the categories.
      * @param purchases List of all the json objects of user purchases
-     * @param date List of all the dates to use as boundries for filter
+     * @param date List of all the dates to use as boundaries for filter
      */
     private calcTotals(categories: any, purchases: any, date: any){
         let results = [];

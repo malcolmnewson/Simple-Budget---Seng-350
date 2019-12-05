@@ -60,7 +60,6 @@ export class LoginController extends BaseRoute {
         this.render(req, res, "admin", options);
     }
 
-
     /**
      * Render user's purchases page
      *

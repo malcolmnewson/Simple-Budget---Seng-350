@@ -4,7 +4,7 @@ module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'node',
     roots: [
-        "<rootDir>/src/",
-        "<rootDir>/tests/"
-    ]
+        "<rootDir>/src/"
+    ],
+    collectCoverageFrom: ["**/src/daos/*.ts", "**/src/routes/*Router.ts"],
 };
