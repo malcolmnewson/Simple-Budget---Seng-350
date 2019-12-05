@@ -12,6 +12,4 @@ jobs:
     - uses: actions/setup-node@v1
     - run: npm install
     - run: tsc
-    - run: |
-        ls
-        npm start
+    - run: npm start
