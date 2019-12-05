@@ -1,8 +1,8 @@
 import {Request, Response} from "express";
-import {UserRouter} from "../../src/routes/userRouter";
-import {UserDao} from "../../src/daos/userDao";
+import {UserRouter} from "../../routes/userRouter";
+import {UserDao} from "../../daos/userDao";
 
-jest.mock('../../src/daos/userDao');
+jest.mock('../../daos/userDao');
 
 // Mock request object.
 const mockRequest = (content : any) => {
