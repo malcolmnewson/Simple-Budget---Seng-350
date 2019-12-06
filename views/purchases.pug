@@ -15,7 +15,7 @@ block content
             each category in categoryList
                 option(value=category) #{category}
         |  cost:
-        input(type='number', name='cost', step='0.01')
+        input(type='number', name='cost', step='0.01', min="0")
         |  date:
         input(type='date', name='date')
         |  description:
@@ -36,7 +36,7 @@ block content
                     else
                         option(value=category) #{category}
             |  cost:
-            input(type='number', name='cost', step='0.01', value=updateData.cost)
+            input(type='number', name='cost', step='0.01', value=updateData.cost, min="0")
             |  date:
             input(type='date', name='date', value=updateData.date)
             |  description:
