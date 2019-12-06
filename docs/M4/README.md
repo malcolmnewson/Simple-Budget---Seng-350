@@ -12,8 +12,37 @@ The two remaining user stories were added during this sprint; a purchase summary
 
 
 ## Automated Testing of QAS
-(exlanation of how you are automating testing of 3 QAS)
+### Usability - [Input validation on purchase amount.](https://github.com/seng350/seng350f19-project-2-1/issues/14)
+All input validation is done using the HTML form that takes purchase data from the user. The category is a simple drop [down menue](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/Category.png) with 5 options including Clothing, Food, School, Transport, and Other. The cost can not be [negative](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/negative%20cost.jpg) and can only include down to [0.01](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/less%20then%20cents.jpg). The calendar is a [built in selection](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/calender.jpg) that can not accept invalid dates. The description is limited to 15 characters.
 
+### Performance - [A user's page loads within 1 second of login.](https://github.com/seng350/seng350f19-project-2-1/issues/4)
+As outlined in the QAS issue, the automated test was to run a script that records how long it takes to load a users page once they attempt to login. The [script](https://github.com/seng350/seng350f19-project-2-1/blob/master/scripts/curl_script) is below. This URL the script uses is the main page the user, test_user, will see when they log into the application. By changing "test_user" to a different username allows us to test pages with different amounts of data needing to be loaded. The amount of data a webpage loads correlates directly to the number of purchases they have. 
+
+```bash
+#!/bin/bash
+
+time=0
+total=0
+average=0
+for i in {1..50}
+do
+    time=$(curl "http://localhost:3000/user/test_user" -s -o /dev/null -w  "%{time_starttransfer}\n")
+    total=$(echo "$total + $time" | bc)
+done
+average=$(echo "scale=3; $total / 50" | bc)
+echo $average
+```
+The goal was to use this script within a GitHub Workflow to test each pull request. If the output was over 1 second then the job would fail, otherwise it would pass. However, we ran into issues while trying to automate this script into our CI pipeline. Since our application is not deployed anywhere, we were unable to start the app and then run the test script at the same time. If our app was deployed somewhere this test could of been automated.
+#### Results
+The below screen capture shows the result of running the script on the user, 'test_user'. The terminal on the right shows the GET requests getting received by our application. The terminal on the left shows the result of the script. Test results for three different user accounts is displayed in the table below. Each account has a varying number of purchases being loaded.
+
+| Account | Number of Purchases | Average Response Time (seconds) | Test Result |
+| --- | :---: | :---: | :---: |
+| test_user | 1 | 0.607 | PASS |
+| oliverlewis | 19 | 0.441 | PASS |
+| malcolmnewson | 38 | 0.586 | PASS |
+
+### Usability - [User can change the time frame of the summary and see the results within 1 second.](https://github.com/seng350/seng350f19-project-2-1/issues/12)
 
 ## Integration testing and CI pipeline
 (explination of integration testing and ci pipeline)
