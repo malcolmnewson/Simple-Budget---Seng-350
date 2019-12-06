@@ -9,7 +9,9 @@ The two remaining user stories were added during this sprint; a purchase summary
 ## CI Pipeline
 Our CI pipeline is comprised of a GitHub Action (workflow) and Travis CI. For each pull request that is created, a workflow is executed and 
 a Travis build is created. If either of these processes fail the pull request will be marked as failed. A sample of a checked pull request is given
-[here]().    
+[here](https://github.com/seng350/seng350f19-project-2-1/pull/63/checks).
+
+![alt text](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/pull_request_checks.png "Sample of our CI in a pull request")
 
 The GitHub Action checks-out our repository under an environment variable to allow other workflow processes to access it.
 It then runs `npm install`, and compiles the project. 
