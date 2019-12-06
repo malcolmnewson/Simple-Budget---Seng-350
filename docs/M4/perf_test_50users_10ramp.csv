@@ -1,0 +1,4 @@
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+Change to Monthly Format,50,472,367,563,45.31,0.000%,4.82998,3.67,1.13,778.0
+Change to Yearly Format,50,455,329,556,45.31,0.000%,4.90052,3.72,1.14,778.0
+TOTAL,100,464,329,563,46.09,0.000%,9.36242,7.11,2.18,778.0
