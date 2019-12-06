@@ -6,31 +6,36 @@ export class PurchaseRouter {
 
     public static create(router: Router) {
         // log
-        console.log("[PurchaseRoute::create] Creating PurchaseRoute routes.");
+        console.log("[PurchaseRoute::create] Creating PurchaseRoute routes. Hellloooooo");
 
         // add getUserPurchases route
         router.get("/purchases/:userID", async (req: Request, res: Response) => {
+            console.log("[PurchaseRouter] getUserPurchases()");
             await new PurchaseRouter().getUserPurchases(req, res);
         });
 
         // add uploadUserPurchase route
         router.post("/purchases/upload", async (req: Request, res: Response) => {
+            console.log("[PurchaseRouter] uploadUserPurchases()");
             await new PurchaseRouter().uploadUserPurchase(req, res);
         });
 
         // add updateRequest route
         router.post("/purchases/updateRequest", async (req: Request, res: Response) => {
             req.params.userID = req.body.userID;
+            console.log("[PurchaseRouter] login with updated purchase data");
             await new LoginController().login(req, res);
         });
 
         // add updateSubmission route
         router.post("/purchases/updateSubmission", async (req: Request, res: Response) => {
+            console.log("[PurchaseRouter] updateUserPurchases()");
             await new PurchaseRouter().updateUserPurchase(req, res);
         });
 
         // add deletePurchase route
         router.post("/purchases/delete", async (req: Request, res: Response) => {
+            console.log("[PurchaseRouter] deletePurchases()");
             await new PurchaseRouter().deletePurchase(req, res);
         });
 

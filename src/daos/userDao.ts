@@ -37,6 +37,8 @@ export class UserDao {
      * @return an array of all user objects if successful, null otherwise
      */
     public async getAllUsers() {
+        console.log("[UserDao] getAllUsers()");
+
 
         try {
             let database = await DbClient.connect();

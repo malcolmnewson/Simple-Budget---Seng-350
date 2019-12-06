@@ -21,6 +21,8 @@ export class RequestData {
      * @return userIDs.
      */
     public async requestAllUsers(res: Response) {
+        console.log("[RequestData] requestAllUsers()");
+
         let data = "";
         let apiResponse = await new Promise((resolve, reject) => {
             http.get("http://localhost:3000/users", async (res) => {
