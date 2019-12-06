@@ -13,6 +13,7 @@ The two remaining user stories were added during this sprint; a purchase summary
 
 ## Automated Testing of QAS
 ### Usability - [Input validation on purchase amount.](https://github.com/seng350/seng350f19-project-2-1/issues/14)
+All input validation is done using the HTML form that takes purchase data from the user. The category is a simple drop [down menue](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/Category.png) with 5 options including Clothing, Food, School, Transport, and Other. The cost can not be [negative](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/negative%20cost.jpg) and can only include down to [0.01](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/less%20then%20cents.jpg). The calendar is a [built in selection](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/calender.jpg) that can not accept invalid dates. The description is limited to 15 characters.
 
 ### Performance - [A user's page loads within 1 second of login.](https://github.com/seng350/seng350f19-project-2-1/issues/4)
 As outlined in the QAS issue, the automated test was to run a script that records how long it takes to load a users page once they attempt to login. The [script](https://github.com/seng350/seng350f19-project-2-1/blob/master/scripts/curl_script) is below. 
@@ -36,6 +37,8 @@ The goal was to use this script within a GitHub Workflow to test each pull reque
 TODO
 
 ### Usability - [User can change the time frame of the summary and see the results within 1 second.](https://github.com/seng350/seng350f19-project-2-1/issues/12)
+
+
 
 
 ## Integration testing and CI pipeline
