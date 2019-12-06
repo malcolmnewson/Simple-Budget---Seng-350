@@ -36,6 +36,8 @@ The goal was to use this script within a GitHub Workflow to test each pull reque
 #### Results
 The below screen capture shows the result of running the script on the user, 'test_user'. The terminal on the right shows the GET requests getting received by our application. The terminal on the left shows the result of the script. Test results for three different user accounts is displayed in the table below. Each account has a varying number of purchases being loaded.
 
+![alt text](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/test_user_load_time.png "Curl Script on test_user")
+
 | Account | Number of Purchases | Average Response Time (seconds) | Test Result |
 | --- | :---: | :---: | :---: |
 | test_user | 1 | 0.607 | PASS |
