@@ -5,7 +5,7 @@ total=0
 average=0
 for i in {1..50}
 do
-    time=$(curl "http://localhost:3000/user/test_user" -s -o /dev/null -w  "%{time_starttransfer}\n")
+    time=$(curl "http://localhost:3000/user/malcolmnewson" -s -o /dev/null -w  "%{time_starttransfer}\n")
     total=$(echo "$total + $time" | bc)
 done
 average=$(echo "scale=3; $total / 50" | bc)
