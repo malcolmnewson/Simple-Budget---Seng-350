@@ -32,9 +32,27 @@ done
 average=$(echo "scale=3; $total / 50" | bc)
 echo $average
 ```
-The goal was to use this script within a GitHub Workflow to test each pull request. If the output was over 1 second then the job would fail, otherwise it would pass. However, we ran into issues while trying to automate this script into our CI pipeline. Since our application is not deployed anywhere, we were unable to start the app and then run the test script at the same time. If our app was deployed somewhere this test could of been automated.
+The goal was to use this script within a GitHub Workflow to test each pull request. If the output was over 1 second then the job would fail, otherwise it would pass. However, we ran into issues while trying to automate this script into our CI pipeline. Since our application is not deployed anywhere, we were unable to start the app and then run the test script at the same time. If our website was deployed somewhere then this test could of been automated. The [workflow](https://github.com/seng350/seng350f19-project-2-1/blob/master/.github/workflows/PRs.yml) below shows our attempt at automating this. The workflow currently installs dependencies (npm install) and compiles our project (tsc) for every pull request that is created. If anything fails then the pull request is updated to reflect this. The goal was to add our test script to this workflow but, as stated previously, we could not get this going.
+
+```yaml
+name: CI
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+    - run: npm install
+    - run: tsc
+```
+
 #### Results
-The below screen capture shows the result of running the script on the user, 'test_user'. The terminal on the right shows the GET requests getting received by our application. The terminal on the left shows the result of the script. Test results for three different user accounts is displayed in the table below. Each account has a varying number of purchases being loaded.
+Because we could not automate this test, we ran it locally. The below screen capture shows the result of running the script on the user, 'test_user'. The terminal on the right shows the GET requests getting received by our application. The terminal on the left shows the result of the script. Test results for three different user accounts is displayed in the table below. Each account has a varying number of purchases being loaded.
 
 ![alt text](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/test_user_load_time.png "Curl Script on test_user")
 
