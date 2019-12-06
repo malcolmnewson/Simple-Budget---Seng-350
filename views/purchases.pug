@@ -19,7 +19,7 @@ block content
         |  date:
         input(type='date', name='date')
         |  description:
-        input(type='text' name='description')
+        input(type='text' name='description',maxlength="15")
         input(type='submit', value='upload')
 
 
@@ -40,7 +40,7 @@ block content
             |  date:
             input(type='date', name='date', value=updateData.date)
             |  description:
-            input(type='text' name='description', value=updateData.description)
+            input(type='text' name='description', value=updateData.description, maxlength="15")
             input(type='submit', value='update')
 
     if purchases.length === 0
