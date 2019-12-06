@@ -12,7 +12,30 @@ The two remaining user stories were added during this sprint; a purchase summary
 
 
 ## Automated Testing of QAS
-(exlanation of how you are automating testing of 3 QAS)
+### Usability - [Input validation on purchase amount.](https://github.com/seng350/seng350f19-project-2-1/issues/14)
+
+### Performance - [A user's page loads within 1 second of login.](https://github.com/seng350/seng350f19-project-2-1/issues/4)
+As outlined in the QAS issue, the automated test was to run a script that records how long it takes to load a users page once they attempt to login. The [script](https://github.com/seng350/seng350f19-project-2-1/blob/master/scripts/curl_script) is below. 
+
+```bash
+#!/bin/bash
+
+time=0
+total=0
+average=0
+for i in {1..50}
+do
+    time=$(curl "http://localhost:3000/user/test_user" -s -o /dev/null -w  "%{time_starttransfer}\n")
+    total=$(echo "$total + $time" | bc)
+done
+average=$(echo "scale=3; $total / 50" | bc)
+echo $average
+```
+The goal was to use this script within a GitHub Workflow to test each pull request. If the output was over 1 second then the job would fail, otherwise it would pass. However, we ran into issues while trying to automate this script into our CI pipeline. Since our application is not deployed anywhere, we were unable to start the app and then run the test script at the same time. If our app was deployed somewhere this test could of been automated.
+#### Results
+TODO
+
+### Usability - [User can change the time frame of the summary and see the results within 1 second.](https://github.com/seng350/seng350f19-project-2-1/issues/12)
 
 
 ## Integration testing and CI pipeline
