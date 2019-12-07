@@ -7,7 +7,18 @@ The two remaining user stories were added during this sprint; a purchase summary
 - [As a user I want to edit previously logged purchases in order to update them.](https://github.com/seng350/seng350f19-project-2-1/issues/8)
 
 ## CI Pipeline
-The CI tool that we're using is Travis CI. 
+Our CI pipeline is comprised of a GitHub Action (workflow) and Travis CI. For each pull request that is created, a workflow is executed and 
+a Travis build is created. If either of these processes fail the pull request will be marked as failed. A sample of a checked pull request is given
+[here](https://github.com/seng350/seng350f19-project-2-1/pull/63/checks).
+
+![alt text](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/pull_request_checks.png "Sample of our CI in a pull request")
+
+The GitHub Action checks-out our repository under an environment variable to allow other workflow processes to access it.
+It then runs `npm install`, and compiles the project. 
+If at any point along the workflow a process fails then the workflow will mark the pull request as failed. 
+Currently, there are no automated tests being executed in the workflow.
+ 
+Our Travis builds are responsible for executing our unit tests. If any tests fail then the pull request is marked as failed.
 
 ## Integration Testing  
 *Note: The integration testing for this milestone wasn’t completed, however the explanations below outline how it can be implemented in the future.* 
@@ -160,7 +171,7 @@ For example, in order for a user to complete the first user story, “As a user,
 
 ## Automated Testing of QAS
 ### Usability - [Input validation on purchase amount.](https://github.com/seng350/seng350f19-project-2-1/issues/14)
-All input validation is done using the HTML form that takes purchase data from the user. The category is a simple drop [down menue](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/Category.png) with 5 options including Clothing, Food, School, Transport, and Other. This makes invalid user input of category impossible. The cost can not be [less than zero](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/negative%20cost.jpg) and can only include [two desimals](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/less%20then%20cents.jpg). If the user attempts to input an invalid cost and tries to submit, the purchase is not submitted and a pop up statement informs them of the requirement they are failing. The calendar is a [built in selection](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/calender.jpg) that can not accept invalid dates. It is possible to input a date down to 0001-01-01 which is unrealistic but not invalid. The description is limited to 15 characters including numbers, letters, and special characters. While special characters and numbers might not seem like good descriptions, the user is free to use them. The field will not accept any more characters after the limit is reached.
+All input validation is done using the HTML form that takes purchase data from the user. The category is a simple [drop-down menu](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/Category.png) with 5 options including Clothing, Food, School, Transport, and Other. This makes invalid user input of category impossible. The cost can not be [less than zero](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/negative%20cost.jpg) and can only include [two desimals](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/less%20then%20cents.jpg). If the user attempts to input an invalid cost and tries to submit, the purchase is not submitted and a pop up statement informs them of the requirement they are failing. The calendar is a [built in selection](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/calender.jpg) that can not accept invalid dates. It is possible to input a date down to 0001-01-01 which is unrealistic but not invalid. The description is limited to 15 characters including numbers, letters, and special characters. While special characters and numbers might not seem like good descriptions, the user is free to use them. The field will not accept any more characters after the limit is reached.
 
 This use of data validation is sufficient for our users purchases and for the updating of purchases. Category is limited to choices rather than an input field for text, cost is limited to positive numbers with up to two decimals, date is limited by the selection from a calendar, and the description is only limited by length. Because of the simplicity of the app, simply listing purchases, making sums of costs, and sorting by date, these restraints on user inputs are adequate. The html form will not accept submissions that fail these criteria and so no database entry can have invalid data.
 
@@ -213,11 +224,11 @@ Because we could not automate this test, we ran it locally. The below screen cap
 | malcolmnewson | 38 | 0.586 | PASS |
 
 ### Usability - [User can change the time frame of the summary and see the results within 1 second.](https://github.com/seng350/seng350f19-project-2-1/issues/12)
-Our definition of testing this QAS is performance-realated. Specifically, with the server under load, we want to ensure that a user can change the time format of their summary page and get the results in less than 1 second. We define "under load" as handling at least 5 requests per second.
+Our definition of testing this QAS is performance-related. Specifically, with the server under load, we want to ensure that a user can change the time format of their summary page and get the results in less than 1 second. We define "under load" as handling at least 5 requests per second.
 
 To test this, a user account, 'perf_user' was created containing 60 purchases. By loading this user's summary page, we can make sure that the requests result in a reasonable amount of data being processed.
 
-Because this was performance test of our applications load handling, we decided to use JMeter as it was the most recommented performance testing tool. Similar to the test above, we were not able to make use of automated testing. Our initial idea was to run the JMeter test plan on a server and output the results in order to determine if we're still satisfying our QAS. However, since our web application is not deployed anywhere we were not able to make this work. Instead, the test plan was run locally.
+Because this was performance test of our applications load handling, we decided to use JMeter as it was the most recommended performance testing tool. Similar to the test above, we were not able to make use of automated testing. Our initial idea was to run the JMeter test plan on a server and output the results in order to determine if we're still satisfying our QAS. However, since our web application is not deployed anywhere we were not able to make this work. Instead, the test plan was run locally.
 
 The following [JMeter test plan](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/PerfTesting.jmx "JMeter Config") was created:
 ```
@@ -250,7 +261,7 @@ The [results](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs
 
 The important values that we care about are throughput and average. We can see that the average response time of these requests are 0.464 seconds while the throughput is 9.36 requests/second. This confirms the QAS is **satisfied** as the response time is less than 1 second while the server is under load.
 
-### delete before handin
+### delete before hand-in
 project rubric
 
     code compiles
