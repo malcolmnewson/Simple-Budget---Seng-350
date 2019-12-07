@@ -6,6 +6,11 @@ The two remaining user stories were added during this sprint; a purchase summary
 - [As a user I want to access a summary of my expenses in a variety of formats and time frames.](https://github.com/seng350/seng350f19-project-2-1/issues/7)
 - [As a user I want to edit previously logged purchases in order to update them.](https://github.com/seng350/seng350f19-project-2-1/issues/8)
 
+## CI Pipeline
+The CI tool that we're using is Travis CI. 
+
+## Integration Testing
+ADD DESCRIPTION
 
 ## Automated Testing of QAS
 ### Usability - [Input validation on purchase amount.](https://github.com/seng350/seng350f19-project-2-1/issues/14)
@@ -98,9 +103,6 @@ The [results](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs
 | TOTAL | 100 | **464** | 329 | 563 | 46.09 | 0.000% | **9.36242** | 7.11 |
 
 The important values that we care about are throughput and average. We can see that the average response time of these requests are 0.464 seconds while the throughput is 9.36 requests/second. This confirms the QAS is **satisfied** as the response time is less than 1 second while the server is under load.
-
-## Integration testing and CI pipeline
-(explination of integration testing and ci pipeline)
 
 ### delete before handin
 project rubric
