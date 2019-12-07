@@ -66,10 +66,45 @@ Because we could not automate this test, we ran it locally. The below screen cap
 | malcolmnewson | 38 | 0.586 | PASS |
 
 ### Usability - [User can change the time frame of the summary and see the results within 1 second.](https://github.com/seng350/seng350f19-project-2-1/issues/12)
+Our definition of testing this QAS is performance-realated. Specifically, with the server under load, we want to ensure that a user can change the time format of their summary page and get the results in less than 1 second. We define "under load as handling at least 5 requests per second.
+
+To test this, a user account, 'perf_user' was created containing 60 purchases. By loading this user's summary page, we can make sure that the requests result in a reasonable amount of data being processed.
+
+Because this was performance test of our applications load handling, we decided to use JMeter as it was the most recommented performance testing tool. Similar to the test above, we were not able to make use of automated testing. Our initial idea was to run the JMeter test plan on a server and output the results in order to determine if we're still satisfying our QAS. However, since our web application is not deployed anywhere we were not able to make this work. Instead, the test plan was run locally.
+
+The following JMeter test plan was created:
+```
+Thread Properties
+   - Number of Threads (users): 50
+   - Ramp-up Period (seconds): 10
+   - Loop Count: 1
+POST request to change summary format to monthly (Montly Format)
+   - Server Name: localhost
+   - Port: 3000
+   - Method: POST
+   - Body Data: { userID: 'perf_user', timeFrame: 'Month',}
+POST request to change summary format to yearly (Yearly Format)
+   - Server Name: localhost
+   - Port: 3000
+   - Method: POST
+   - Body Data: { userID: 'perf_user', timeFrame: 'Year',}
+```
+
+This configuration will create 50 concurrent connections to our server. The Ramp-up Period sets the start-up delay between each connection to be 0.5 seconds. For each connection, there are two POST requests sent sequentially. The first one changes the time frame to monthly, and the second one turns it to yearly. This configuration results in 100 POST requests over 10 seconds.
+
+#### Results
+The [results](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/perf_test_50users_10ramp.csv "CSV Format") of running the JMeter test is shown below.
+
+| Label | # Samples | Average | Min | Max | Std. Dev. | Error % | Throughput (req/sec) | Received (KB/sec) |
+| ----- | --------- | ------- | --- | --- | --------- | ------- | -------------------- | ----------------- |
+| Monthly Format | 50 | 472 | 367 | 563 | 45.31 | 0.000% | 4.82998 | 3.67 |
+| Yearly Format | 50 | 455 | 329 | 556 | 45.31 | 0.000% | 4.90052 | 3.72 |
+| TOTAL | 100 | **464** | 329 | 563 | 46.09 | 0.000% | **9.36242** | 7.11 |
+
+The important values that we care about are throughput and average. We can see that the average response time of these requests are 0.464 seconds while the throughput is 9.36 requests/second. This confirms the QAS is **satisfied** as the response time is less than 1 second while the server is under load.
 
 ## Integration testing and CI pipeline
 (explination of integration testing and ci pipeline)
-
 
 ### delete before handin
 project rubric
