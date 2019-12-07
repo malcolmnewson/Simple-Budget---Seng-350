@@ -260,21 +260,3 @@ The [results](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs
 | TOTAL | 100 | **464** | 329 | 563 | 46.09 | 0.000% | **9.36242** | 7.11 |
 
 The important values that we care about are throughput and average. We can see that the average response time of these requests are 0.464 seconds while the throughput is 9.36 requests/second. This confirms the QAS is **satisfied** as the response time is less than 1 second while the server is under load.
-
-### delete before hand-in
-project rubric
-
-    code compiles
-    code conventions/CI from above (commented, code style, design principles)
-    working demo
-    clear explanation of how the remaining user stories were satisfied in this iteration
-    design as implemented follows design doc, or change rationale is present in README
-    async is async when necessary
-    TSLint does not complain
-    test suite present/part of CI
-    test coverage reasonable and meaningful
-
-And new in M4:
-
-    explanation of how you are automating testing 3 QAS from your list in M1
-    explanation of integration testing and CI pipeline
