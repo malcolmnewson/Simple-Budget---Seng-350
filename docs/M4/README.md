@@ -72,7 +72,7 @@ To test this, a user account, 'perf_user' was created containing 60 purchases. B
 
 Because this was performance test of our applications load handling, we decided to use JMeter as it was the most recommented performance testing tool. Similar to the test above, we were not able to make use of automated testing. Our initial idea was to run the JMeter test plan on a server and output the results in order to determine if we're still satisfying our QAS. However, since our web application is not deployed anywhere we were not able to make this work. Instead, the test plan was run locally.
 
-The following JMeter test plan was created:
+The following [JMeter test plan](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/PerfTesting.jmx "JMeter Config") was created:
 ```
 Thread Properties
    - Number of Threads (users): 50
