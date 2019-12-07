@@ -18,7 +18,7 @@ It then runs `npm install`, and compiles the project.
 If at any point along the workflow a process fails then the workflow will mark the pull request as failed. 
 Currently, there are no automated tests being executed in the workflow.
  
-Our Travis builds are responsible for executing our unit tests. If any tests fail then the pull request is marked as failed. The status of the most recent build of the master branch is also embedded into our [README](https://github.com/seng350/seng350f19-project-2-1). 
+Our Travis builds are responsible for executing our unit tests. If any tests fail then the pull request is marked as failed.
 
 ## Integration Testing  
 *Note: The integration testing for this milestone wasn’t completed, however the explanations below outline how it can be implemented in the future.* 
