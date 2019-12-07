@@ -66,7 +66,7 @@ Because we could not automate this test, we ran it locally. The below screen cap
 | malcolmnewson | 38 | 0.586 | PASS |
 
 ### Usability - [User can change the time frame of the summary and see the results within 1 second.](https://github.com/seng350/seng350f19-project-2-1/issues/12)
-Our definition of testing this QAS is performance-realated. Specifically, with the server under load, we want to ensure that a user can change the time format of their summary page and get the results in less than 1 second. We define "under load as handling at least 5 requests per second.
+Our definition of testing this QAS is performance-realated. Specifically, with the server under load, we want to ensure that a user can change the time format of their summary page and get the results in less than 1 second. We define "under load" as handling at least 5 requests per second.
 
 To test this, a user account, 'perf_user' was created containing 60 purchases. By loading this user's summary page, we can make sure that the requests result in a reasonable amount of data being processed.
 
