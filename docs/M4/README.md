@@ -9,8 +9,154 @@ The two remaining user stories were added during this sprint; a purchase summary
 ## CI Pipeline
 The CI tool that we're using is Travis CI. 
 
-## Integration Testing
-ADD DESCRIPTION
+## Integration Testing  
+*Note: The integration testing for this milestone wasn’t completed, however the explanations below outline how it can be implemented in the future.* 
+
+### Setting up the frameworks
+For this project, Jest was selected for both the unit testing and the integration testing. Jest was selected because it is a JavaScript testing framework with Typescript options that can standalone as a testing framework. It has relatively minimal configurations and supports mocking which was essential for the unit testing. In order to do the integration testing, the Supertest library can be imported. It is a library build specifically to test Node.js HTTP servers, so it will facilitate testing the GET, and POST the application uses.
+In order to set up Jest we need to ensure it is installed and add it to the package.json configuration file. Once configured properly, running the command ‘npm test’ will run all the appropriately named test methods. 
+Setting up Supertest is similarly simple, it needs to be installed and then called using “require (‘supertest’)” in any test file that will be using the library. 
+
+### Test Plan per User Story
+For each user story, a “happy path” was determined. This path was determined by following which pages a user visits and what input they provide. Following this path, it was determined which controller, routers and methods were used and those were then added to the respective test plans. For these test to be integration tests, the methods need to be tested in the same order as a user would access them and each should be tested using input returned from previous tests. 
+For example, in order for a user to complete the first user story, “As a user, I want to log into my account in order to access my data”, the user accesses the home page, selects their user id, then their purchase page (or admin page) loads. This requires the routers UserRoute and PurchaseRoute to be created, the index to load, multiple methods and helper methods to be called, and the purchase page to load. This path as a whole needs to be tested, and thanks to all local methods having been testing by unit tests, this should not be too lengthy.
+
+### The list of methods and HTTP requests to be tested per user story are as follows:  
+*Note: The class is listed between square brackets [ ] followed by the method that belongs to the happy path. HTTP endpoints that need testing are shown in **bold**.*
+#### 1.	As the Administrator, I want to be able to create a user account in order to manage accounts in the system.
+-	*Login process testing covered by user story test 3.*
+-	**GET /users/admin1** 
+-	[LoginController] admin()
+-	[RequestData] requestAllUsers()
+-	[User Router] getAll()
+-	[UserDao] getAllUsers()
+-	**GET /users** 
+-	**GET /user/admin1** 
+-	[User Router] createUser()
+-	**POST /users/create_user/** 
+-	[LoginController] login()
+-	[RequestData] requestUser()
+-	[User Router] getOne()
+-	**GET /users/admin1** 
+-	[LoginController] admin()
+-	[RequestData] requestAllUsers()
+-	[User Router] getAll()
+-	[UserDao] getAllUsers()
+-	**GET /users** 
+-	**GET /user/admin1** 
+
+ 
+
+#### 2.	As the Administrator, I want to be able to delete a user account in order to manage accounts in the system.
+-	*Login process testing covered by user story test 3.*
+-	**GET /users/admin1** 
+-	[LoginController] admin()
+-	[RequestData] requestAllUsers()
+-	[User Router] getAll()
+-	[UserDao] getAllUsers()
+-	**GET /users** 
+-	**GET /user/**
+-	[User Router] deleteOne()
+-	**POST /users/delete/demo** 
+-	[LoginController] login()
+-	[RequestData] requestUser()
+-	[User Router] getOne()
+-	**GET /users/admin1** 
+-	[LoginController] admin()
+-	[RequestData] requestAllUsers()
+-	[User Router] getAll()
+-	[UserDao] getAllUsers()
+-	**GET /users** 
+-	**GET /user/admin1** 
+ 
+
+#### 3.	As a user, I want to log into my account in order to access my data.
+-	[IndexRoute] index()
+-	[RequestData] requestAllUsers()
+-	[User Router] getAll()
+-	[UserDao] getAllUsers()
+-	**GET /users** 
+-	[LoginController] login()
+-	[RequestData] requestUser()
+-	[User Router] getOne()
+-	**GET /users/emilysluis** 
+
+#### 4.	As a user, I want to enter a purchase into a spending category in order to track how much money has been spent in that category.
+-	*Login process testing covered by user story test 3.*
+-	**GET /users/emilysluis** 
+-	[LoginController] purchasePage()
+-	[RequestData] requestPurchases()
+-	[PurchaseRouter] getUserPurchases()
+-	**GET /purchases/emilysluis** 
+-	**GET /user/emilysluis** 
+-	[PurchaseRouter] uploadUserPurchases()
+-	**POST /purchases/upload** 
+-	[LoginController] login()
+-	[RequestData] requestUser()
+-	[User Router] getOne()
+-	**GET /users/emilysluis** 
+-	[LoginController] purchasePage()
+-	[RequestData] requestPurchases()
+-	[PurchaseRouter] getUserPurchases()
+-	**GET /purchases/emilysluis** 
+-	**GET /user/emilysluis** 
+
+
+#### 5.	As a user, I want to see my spending history within each category in order to see all past purchases.
+-	*Login process testing covered by user story test 3.*
+-	**GET /users/emilysluis**
+-	[LoginController] purchasePage()
+-	[RequestData] requestPurchases()
+-	[PurchaseRouter] getUserPurchases()
+-	**GET /purchases/emilysluis**
+-	**GET /user/emilysluis** 
+
+#### 6.	As a user, I want to edit previously logged purchases in order to update them.
+-	*Login process testing covered by user story test 3.*
+-	**GET /users/emilysluis**
+-	[LoginController] purchasePage()
+-	[RequestData] requestPurchases()
+-	[PurchaseRouter] getUserPurchases()
+-	**GET /purchases/emilysluis** 
+-	**POST /purchases/updateRequest** 
+-	[PurchaseRouter] updateUserPurchases()
+-	**POST /purchases/updateSubmission**
+-	[LoginController] login()
+-	[RequestData] requestUser()
+-	[User Router] getOne()
+-	**GET /users/emilysluis *Reloaded with item to edit in loaded into the update fields**
+-	[LoginController] purchasePage()
+-	[RequestData] requestPurchases()
+-	[PurchaseRouter] getUserPurchases()
+-	**GET /purchases/emilysluis** 
+-	**GET /user/emilysluis *Reloaded with updated item**
+
+
+#### 7.	As a user, I want to access a summary of my expenses in a variety of formats and time frames.
+-	*Login process testing covered by user story test 3.*
+-	**GET /users/emilysluis**
+-	[LoginController] purchasePage()
+-	[RequestData] requestPurchases()
+-	[PurchaseRouter] getUserPurchases()
+-	**GET /purchases/emilysluis** 
+-	**GET /user/emilysluis** 
+-	[SummaryRoute] summary()
+-	[RequestData] requestPurchases()
+-	[PurchaseRouter] getUserPurchases()
+-	**GET /purchases/emilysluis**
+-	[SummaryRoute] makeDateList()
+-	[SummaryRoute] makeTableDateList()
+-	[SummaryRoute] calcTotals()
+-	**GET /user/summary/emilysluis** 
+-	[SummaryRoute] summary()
+-	[RequestData] requestPurchases()
+-	[PurchaseRouter] getUserPurchases()
+-	**GET /purchases/emilysluis** 
+-	[SummaryRoute] makeDateList()
+-	[SummaryRoute] makeTableDateList()
+-	[SummaryRoute] calcTotals()
+-	**POST /user/summary/timeFrame** 
+
 
 ## Automated Testing of QAS
 ### Usability - [Input validation on purchase amount.](https://github.com/seng350/seng350f19-project-2-1/issues/14)
