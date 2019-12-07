@@ -9,7 +9,7 @@ The two remaining user stories were added during this sprint; a purchase summary
 ## CI Pipeline
 Our CI pipeline is comprised of a GitHub Action (workflow) and Travis CI. For each pull request that is created, a workflow is executed and 
 a Travis build is created. If either of these processes fail the pull request will be marked as failed. A sample of a checked pull request is given
-[here](https://github.com/seng350/seng350f19-project-2-1/pull/63/checks).
+[here](https://github.com/seng350/seng350f19-project-2-1/pull/52/checks).
 
 ![alt text](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/pull_request_checks.png "Sample of our CI in a pull request")
 
@@ -18,7 +18,7 @@ It then runs `npm install`, and compiles the project.
 If at any point along the workflow a process fails then the workflow will mark the pull request as failed. 
 Currently, there are no automated tests being executed in the workflow.
  
-Our Travis builds are responsible for executing our unit tests. If any tests fail then the pull request is marked as failed.
+Our Travis builds are responsible for executing our unit tests. If any tests fail then the pull request is marked as failed. The status of the most recent build of the master branch is also embedded into our [README](https://github.com/seng350/seng350f19-project-2-1). 
 
 ## Integration Testing  
 *Note: The integration testing for this milestone wasn’t completed, however the explanations below outline how it can be implemented in the future.* 
