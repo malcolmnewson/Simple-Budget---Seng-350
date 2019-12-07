@@ -1,4 +1,5 @@
 ## seng350f19-project-2-1
+[![Build Status](https://travis-ci.com/seng350/seng350f19-project-2-1.svg?token=BNfzpAAY1U7D2L1TKSAQ&branch=master)](https://travis-ci.com/seng350/seng350f19-project-2-1)
 # Team Name: Simple Budget
 
 ## Overview
