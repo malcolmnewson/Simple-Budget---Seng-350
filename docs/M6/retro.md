@@ -11,7 +11,7 @@ The DAOs had descriptive comments, consistent error handling, and clean code. Th
 During the design phase, we were able to determine the experience levels of each team member. This allowed us to split up the workload to ensure that no team members have too little or too much work, or a task they weren’t able to do.
 * **Met regularly**  
 Throughout this project, our team met regularly. The frequency of our meetings depended on how much collaboration was needed to finish the current tasks and how soon our next deadline was. In these meetings we checked in with each team member, and gave them a chance to show and teach us what they had been working on. We then regrouped and determined what our next goals and deadlines should be. Task were split up based on ability while still maintaining a fairly equal workload.
-* **Good communication over slack**  
+* **Good communication over Slack**  
 While we were not always able to meet in person, we were always able to get in touch over Slack to make quick decisions or set up meetings.
 * **Realistic user stories**  
 During the initial planning phase of the project, a consensus was reached among the group members to keep the ambitions of the project realistic based on our experience and focus on the foundations of a CRUD application. We knew that we would not have an accurate estimation of how easy different functionality would be to implement and that it would be easy to overcommit; therefore, the user stories we wrote were initially not ambitious, but provied the opportunity for expansion if we didn't have enough to do.
