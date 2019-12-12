@@ -12,7 +12,7 @@ During the design phase, we were able to determine the experience levels of each
   * **Met regularly**  
 Throughout this project, our team met regularly. The frequency of our meetings depended on how much collaboration was needed to finish the current tasks and how soon our next deadline was. In these meetings we checked in with each team member, and gave them a chance to show and teach us what they had been working on. We then regrouped and determined what our next goals and deadlines should be. Task were split up based on ability while still maintaining a fairly equal workload. If a certain task was later determined to be the most difficult or time consuming than expected, they could also be redistributed at the next meeting (or over slack).
 
- * **Good communication over slack** 
+ * **Good communication over slack**     
  While we were not always able to meet in person, we were always able to get in touch over Slack to quickly decide on a couple details or the next meeting date.
 
   * **Realistic user stories**  
