@@ -17,6 +17,7 @@ For a full list of user stories and QAS see [here](https://github.com/seng350/se
 * [Milestone 3.5: Code Iteration 2](https://github.com/seng350/seng350f19-project-2-1/tree/master/docs/M3.5)
 * [Milestone 4: Final Code Iteration](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M4/README.md)
 * [Milestone 5: Demo](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M5/README.md)
+* [Milestone 6: Retrospective](https://github.com/seng350/seng350f19-project-2-1/blob/master/docs/M6/retro.md)
 
 ## Build Process
 1. Clone Repo: `git clone https://github.com/seng350/seng350f19-project-2-1.git`
