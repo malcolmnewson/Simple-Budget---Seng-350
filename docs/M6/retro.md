@@ -31,7 +31,7 @@ Throughout this project, our team met regularly. The frequency of our meetings d
   We made the mistake of starting our testing later than we should have. We wrote some basic unit tests for the first development milestone but didn’t put any more thought towards our testing until after the second development milestone; this includes integration testing and QAS testing as well as unit testing. Getting an earlier start on testing would have allowed us to do a better job of automating our tests. Additionally, we would have benefited from writing our tests around the same time the functionality was implemented since code is generally understood best when it is first written.
   * **Clarifying expectations of the UI**  
   At the start of the project, we decided to not worry about adding CSS to our frontend. We were under the impression that the UI style was not important, therefore we decided to spend our time elsewhere in the project. However, we later received feedback that the UI was poor and lost marks because of it. We should have done a better job of understanding UI expectations prior to making a decision.
-  * **Taken time to learn each framework**
+  * **Taken time to learn each framework**   
   In hindsight, learning to use frameworks we were unfamiliar with would have been a good use of our time. Many programming tasks ended up taking way longer than needed due to us not having a strong grasp on Express, TypeScript, Pug, etc. This also caused a sort of confidence barrier for some team members, meaning that we didn’t want to develop complex functionality for fear we might not be able to implement it properly.
 
 ## How could our design be improved?
