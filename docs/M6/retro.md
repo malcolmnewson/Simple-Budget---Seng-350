@@ -33,6 +33,8 @@ During the design phase, we were able to determine the experience levels of each
 < Add description here >
 * **Better naming of our classes**  
 Our current design does not make it obvious that we're following an MVC design; this is largely caused by how we ended up naming our classes. 
+* **Better algorithm for generating purchase summary**  
+< Add description here >
 
 ## What did we learn?
 * **Even small decisions may have a large impact later on**  
