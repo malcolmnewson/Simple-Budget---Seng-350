@@ -6,9 +6,13 @@
 
 ## What did we do that went well?
   * **The DAO's were well written**  
-  The DAO's had descriptive comments, consistent error handling, and clean code. This made them easy to impliment within other modules,  and easy to unit test.
+The DAO's had descriptive comments, consistent error handling, and clean code. This made them easy to impliment within other modules,  and easy to unit test.
   * **Skill-levels were accurately assessed**  
-  During the design phase we were able to determine the experience levels of each team member. This allowed us to split up the workloads  to ensure that no team members have too little or too much work.
+During the design phase we were able to determine the experience levels of each team member. This allowed us to split up the workloads  to ensure that no team members have too little or too much work.
+  * **Met regularly**  
+  < Add description here >
+  * **Realistic user stories**  
+  < Add description here >
 
 ## What could we of done better?
   * **Setting code quality expectations**  
@@ -18,10 +22,17 @@
   * **Follow the design at all times**  
   When we first started working on user stories we made the mistake of accepting code into our repository on the basis that it worked and nothing more with the idea being we would refactor it before the current milestone ends. We should of had a more rigerous code review process to ensure that we follow our design from the very beginning. Not doing this produced an unnecessary and time-consuming refactor.
   * **Discussion on error handling**  
-  As a team we never formally discussed how to impliment error handling in our design. 
+  As a team we never formally discussed how to impliment error handling in our design.
+  * **Started testing earlier**  
+  < Add description here >
+  * **Understand expectations on the UI**  
+  < Add description here >
   
 ## How could our design be improved?
-
+* **Simplify the DAOs**  
+< Add description here >
+* **Better naming of our classes**  
+Our current design does not make it obvious that we're following an MVC design; this is largely caused by how we ended up naming our classes. 
 
 ## What did we learn?
 
