@@ -32,7 +32,7 @@ During the design phase, we were able to determine the experience levels of each
 * **Simplify the DAOs**  
 < Add description here >
 * **Better naming of our classes**  
-Our current design does not make it obvious that we're following an MVC design; this is largely caused by how we ended up naming our classes. 
+Our current design does not make it obvious that we're following an MVC design; this is largely caused by how we ended up naming our classes. Instead, we named the controllers, "Routers"; and the models, "DAOs". Naming our classes "Controllers" and "DAOs" would make our design clear to someone reading the code; they wouldn't have to look at a design document for this information.
 * **Better algorithm for generating purchase summary**  
 < Add description here >
 
